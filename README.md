@@ -1,6 +1,6 @@
-# scanner
+# Moqat3on|مقاطعون
 
-A new Flutter project.
+Free Plaestine.
 
 ## Getting Started
 
