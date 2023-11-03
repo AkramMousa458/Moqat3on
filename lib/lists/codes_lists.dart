@@ -28,6 +28,7 @@ class CodesLists {
     1155 //unilever
     ,
     1031 //Chipsy
+    ,
   ];
 
   static List<int> companyCodes5 = [
@@ -59,6 +60,3 @@ class CodesLists {
     50003329 //nestla
   ];
 }
-
-
-

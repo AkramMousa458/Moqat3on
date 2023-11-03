@@ -16,12 +16,11 @@ class BannedCategoryCard extends StatelessWidget {
       },
       child: Container(
         alignment: Alignment.center,
-        
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: Colors.black,
           image: DecorationImage(
-              opacity: 0.3,
+              opacity: 0.5,
               image: AssetImage(bannedCategory.img),
               fit: BoxFit.cover),
         ),

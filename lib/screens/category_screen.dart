@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:scanner/lists/drinks_lists.dart';
 import 'package:scanner/lists/milk_lists.dart';
 import 'package:scanner/lists/markets_lists.dart';
 import 'package:scanner/lists/restaurants_lists.dart';
+import 'package:scanner/lists/tea_lists.dart';
+import 'package:scanner/lists/water_lists.dart';
 import 'package:scanner/models/banned_category_model.dart';
 import 'package:scanner/screens/products_screen.dart';
 import 'package:scanner/widgets/category_card.dart';
@@ -29,8 +32,22 @@ class CategoryScreen extends StatelessWidget {
       name: 'مشروبات',
       img: 'assets/categories/مشروبات.jpg',
       screen: ProductsScreen(
-          bannedProducts: marketsBannedProductList,
-          replaceProducts: marketsReplaceProductList),
+          bannedProducts: drinksBannedProductList,
+          replaceProducts: drinksReplaceProductList),
+    ),
+    BannedCategoryModel(
+      name: 'شاي وقهوة',
+      img: 'assets/categories/شاي وقهوة.jpg',
+      screen: ProductsScreen(
+          bannedProducts: teaBannedProductList,
+          replaceProducts: teaReplaceProductList),
+    ),
+    BannedCategoryModel(
+      name: 'مياه',
+      img: 'assets/categories/مياه.jpg',
+      screen: ProductsScreen(
+          bannedProducts: waterBannedProductList,
+          replaceProducts: waterReplaceProductList),
     ),
     BannedCategoryModel(
       name: 'حلويات',
