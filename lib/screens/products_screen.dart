@@ -4,9 +4,10 @@ import 'package:scanner/widgets/head_title.dart';
 import 'package:scanner/widgets/product_card.dart';
 
 class ProductsScreen extends StatelessWidget {
-  const ProductsScreen({super.key, required this.bannedProducts, required this.replaceProducts});
+  const ProductsScreen(
+      {super.key, required this.bannedProducts, required this.replaceProducts});
 
-  final List<ProductModel> bannedProducts, replaceProducts;  
+  final List<ProductModel> bannedProducts, replaceProducts;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,8 @@ class ProductsScreen extends StatelessWidget {
                           indent: 16,
                           thickness: 1,
                         ),
-                        const HeadTitle(text: ': بعض البدائل', color: Colors.green),
+                        const HeadTitle(
+                            text: ': بعض البدائل', color: Colors.green),
                         ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
@@ -75,6 +77,7 @@ class ProductsScreen extends StatelessWidget {
                             );
                           },
                         ),
+                        const SubTitle(text: '(أو أي بديل محلي)'),
                       ],
                     );
                   },

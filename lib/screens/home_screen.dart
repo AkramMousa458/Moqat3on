@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scan/scan.dart';
+import 'package:scanner/constants.dart';
 import 'package:scanner/methods/fetch_product.dart';
-import 'package:scanner/methods/codes_lists.dart';
+import 'package:scanner/lists/codes_lists.dart';
 import 'package:scanner/screens/category_screen.dart';
 import 'package:scanner/widgets/custom_button.dart';
 
@@ -134,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            scanResult != 'خارج المقاطعة'
+            scanResult != inText
                 ? Text(
                     scanResult,
                     style: const TextStyle(

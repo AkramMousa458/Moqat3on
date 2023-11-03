@@ -65,6 +65,11 @@ flutter:
     - assets/categories/
     - assets/products/مطاعم/
     - assets/products/متاجر/
+    - assets/products/جبن والبان/
+    - assets/products/حلويات/
+    - assets/products/مشروبات/
+    - assets/products/منتجات تجميل/
+    - assets/products/منتجات تنظيف/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
