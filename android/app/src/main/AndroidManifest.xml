@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.CAMERA" />
     <application
-        android:label="Mokat3on|مقاطعون"
+        android:label="Moqata3a|مقاطعة"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

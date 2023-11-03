@@ -1,19 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/models/banned_category_model.dart';
+import 'package:scanner/screens/home_screen.dart';
+import 'package:scanner/screens/products_screen.dart';
 import 'package:scanner/widgets/banned_category_card.dart';
 
 class ProductsOutCategoryScreen extends StatelessWidget {
   ProductsOutCategoryScreen({super.key});
 
-  final List<BannedCategory> bannedCategortList = [
-    BannedCategory(name: 'المطاعم', img: 'assets/categories/مطاعم.jpg'),
-    BannedCategory(name: 'جبن', img: 'assets/categories/جبن.jpg'),
-    BannedCategory(name: 'مشروبات', img: 'assets/categories/مشروبات.jpg'),
-    BannedCategory(name: 'حلويات', img: 'assets/categories/حلويات.jpg'),
-    BannedCategory(
-        name: 'منتجات تجميل', img: 'assets/categories/منتجات تجميل.jpg'),
-    BannedCategory(
-        name: 'منتجات تنظيف', img: 'assets/categories/منتجات تنظيف.jpg'),
+  final List<ProductsModel> bannedCategortList = [
+    ProductsModel(
+      name: 'المطاعم',
+      img: 'assets/categories/مطاعم.jpg',
+      screen: ProductsScreen(),
+    ),
+    ProductsModel(
+      name: 'جبن',
+      img: 'assets/categories/جبن.jpg',
+      screen: const HomeScreen(),
+    ),
+    ProductsModel(
+      name: 'مشروبات',
+      img: 'assets/categories/مشروبات.jpg',
+      screen: const HomeScreen(),
+    ),
+    ProductsModel(
+      name: 'حلويات',
+      img: 'assets/categories/حلويات.jpg',
+      screen: const HomeScreen(),
+    ),
+    ProductsModel(
+      name: 'منتجات تجميل',
+      img: 'assets/categories/منتجات تجميل.jpg',
+      screen: const HomeScreen(),
+    ),
+    ProductsModel(
+      name: 'منتجات تنظيف',
+      img: 'assets/categories/منتجات تنظيف.jpg',
+      screen: const HomeScreen(),
+    ),
+    ProductsModel(
+      name: 'هايبر',
+      img: 'assets/categories/هايبر.jpg',
+      screen: const HomeScreen(),
+    ),
   ];
 
   @override
@@ -45,7 +74,8 @@ class ProductsOutCategoryScreen extends StatelessWidget {
           itemCount: bannedCategortList.length,
           itemBuilder: (context, index) {
             return BannedCategoryCard(
-                bannedCategory: bannedCategortList[index]);
+              bannedCategory: bannedCategortList[index],
+            );
           },
         ),
       ),

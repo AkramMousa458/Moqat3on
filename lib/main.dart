@@ -22,7 +22,6 @@ class Scanner extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: kAppTitle,
       home: const HomeScreen(),
-      // home: const ScannerBarcode(),
     );
   }
 }

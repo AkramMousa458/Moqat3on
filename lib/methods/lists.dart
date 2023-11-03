@@ -2,6 +2,8 @@ class CodesLists {
   static List<List<String>> countryCodes = [
     ['000', '019'] //United States and Canada
     ,
+    ['030', '039'] //United States drugs
+    ,
     ['060', '099'] //United States and Canada
     ,
     ['100', '139'] //United States

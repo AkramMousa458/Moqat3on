@@ -4,7 +4,7 @@ import 'package:scanner/models/banned_category_model.dart';
 class BannedCategoryCard extends StatelessWidget {
   const BannedCategoryCard({super.key, required this.bannedCategory});
 
-  final BannedCategory bannedCategory;
+  final ProductsModel bannedCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +15,10 @@ class BannedCategoryCard extends StatelessWidget {
           'مازال تحت التطوير',
           textAlign: TextAlign.right,
         )));
+
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return bannedCategory.screen;
+        }));
       },
       child: Container(
         alignment: Alignment.center,

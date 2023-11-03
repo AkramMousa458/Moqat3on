@@ -75,17 +75,24 @@ class _HomeScreenState extends State<HomeScreen> {
         scanAreaScale: .7,
         scanLineColor: Colors.red,
         onCapture: (data) {
-          setState(() {
-            scanResult = fetchProduct(
-                data,
-                CodesLists.countryCodes,
-                CodesLists.companyCodes8,
-                CodesLists.companyCodes7,
-                CodesLists.companyCodes6,
-                CodesLists.companyCodes5,
-                CodesLists.companyCodes4);
-            Navigator.of(context).pop();
-          });
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+            data,
+            textAlign: TextAlign.right,
+          )));
+          if (int.parse(data) != -1) {
+            setState(() {
+              scanResult = fetchProduct(
+                  data,
+                  CodesLists.countryCodes,
+                  CodesLists.companyCodes8,
+                  CodesLists.companyCodes7,
+                  CodesLists.companyCodes6,
+                  CodesLists.companyCodes5,
+                  CodesLists.companyCodes4);
+              Navigator.of(context).pop();
+            });
+          }
         },
       ),
     );
@@ -105,6 +112,17 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.black,
         elevation: 0,
         centerTitle: true,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        foregroundColor: Colors.black,
+        splashColor: Colors.black87,
+        backgroundColor: Colors.white,
+        tooltip: 'Contact us or report issue',
+        child: const Icon(
+          Icons.contact_support_outlined,
+          size: 32,
+        ),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -138,7 +156,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 : const SizedBox(height: 40),
             GestureDetector(
               onTap: () async {
-                // scanBarcode();
                 _showBarcodeScanner();
               },
               child: Image.asset('assets/images/Barcode.png',
@@ -146,10 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 40),
             GestureDetector(
-              onTap: () async {
-                _showBarcodeScanner();
-                // scanBarcode();
-              },
+              onTap: _showBarcodeScanner,
               child: const CustomButton(text: 'التأكد من المنتج'),
             ),
             const Padding(
