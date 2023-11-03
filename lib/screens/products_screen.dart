@@ -1,48 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:scanner/models/banned_category_model.dart';
-import 'package:scanner/screens/home_screen.dart';
-import 'package:scanner/widgets/banned_category_card.dart';
+import 'package:scanner/models/product_model.dart';
+import 'package:scanner/widgets/head_title.dart';
+import 'package:scanner/widgets/product_card.dart';
 
 class ProductsScreen extends StatelessWidget {
-  ProductsScreen({super.key});
+  const ProductsScreen({super.key, required this.bannedProducts, required this.replaceProducts});
 
-  final List<ProductsModel> bannedProductList = [
-    ProductsModel(
-      name: 'كنتاكي',
-      img: 'assets/categories/مطاعم.jpg',
-      screen: const HomeScreen(),
-    ),
-    ProductsModel(
-      name: 'ماك',
-      img: 'assets/categories/جبن.jpg',
-      screen: const HomeScreen(),
-    ),
-    ProductsModel(
-      name: 'ساب واي',
-      img: 'assets/categories/مشروبات.jpg',
-      screen: const HomeScreen(),
-    ),
-    ProductsModel(
-      name: 'برجر كنج',
-      img: 'assets/categories/حلويات.jpg',
-      screen: const HomeScreen(),
-    ),
-    ProductsModel(
-      name: 'بيتزا هات',
-      img: 'assets/categories/منتجات تجميل.jpg',
-      screen: const HomeScreen(),
-    ),
-    ProductsModel(
-      name: 'دومنوز بيتزا',
-      img: 'assets/categories/منتجات تنظيف.jpg',
-      screen: const HomeScreen(),
-    ),
-    ProductsModel(
-      name: 'ستار باكس',
-      img: 'assets/categories/هايبر.jpg',
-      screen: const HomeScreen(),
-    ),
-  ];
+  final List<ProductModel> bannedProducts, replaceProducts;  
 
   @override
   Widget build(BuildContext context) {
@@ -65,31 +29,22 @@ class ProductsScreen extends StatelessWidget {
           width: MediaQuery.sizeOf(context).width,
           height: MediaQuery.sizeOf(context).height,
           child: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     return Column(
                       children: <Widget>[
-                        Container(
-                          height: 50,
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: const Text(
-                            ': المقاطعة',
-                            style: TextStyle(
-                                fontSize: 25,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                        const HeadTitle(text: ': المقاطة', color: Colors.red),
                         ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: bannedProductList.length,
+                          itemCount: bannedProducts.length,
                           itemBuilder: (BuildContext context, int subIndex) {
-                            return BannedCategoryCard(
-                                bannedCategory: bannedProductList[subIndex]);
+                            return ProductCard(
+                              productModel: bannedProducts[subIndex],
+                            );
                           },
                         ),
                       ],
@@ -103,25 +58,21 @@ class ProductsScreen extends StatelessWidget {
                   (BuildContext context, int index) {
                     return Column(
                       children: <Widget>[
-                        Container(
-                          height: 50,
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: const Text(
-                            ': البدائل',
-                            style: TextStyle(
-                                fontSize: 25,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
+                        const Divider(
+                          color: Color.fromARGB(221, 134, 134, 134),
+                          endIndent: 16,
+                          indent: 16,
+                          thickness: 1,
                         ),
+                        const HeadTitle(text: ': بعض البدائل', color: Colors.green),
                         ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: bannedProductList.length,
+                          itemCount: replaceProducts.length,
                           itemBuilder: (BuildContext context, int subIndex) {
-                            return BannedCategoryCard(
-                                bannedCategory: bannedProductList[subIndex]);
+                            return ProductCard(
+                              productModel: replaceProducts[subIndex],
+                            );
                           },
                         ),
                       ],
@@ -135,25 +86,3 @@ class ProductsScreen extends StatelessWidget {
         ));
   }
 }
- // Container(
-          //   decoration: const BoxDecoration(
-          //       image: DecorationImage(
-          //     image: AssetImage('assets/images/red_bg.jpg'),
-          //     fit: BoxFit.cover,
-          //   )),
-          //   child: GridView.builder(
-          //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          //       crossAxisCount: 2,
-          //       crossAxisSpacing: 20,
-          //       childAspectRatio: 1,
-          //       mainAxisSpacing: 20,
-          //     ),
-          //     padding: const EdgeInsets.all(25),
-          //     itemCount: bannedCategortList.length,
-          //     itemBuilder: (context, index) {
-          //       return BannedCategoryCard(
-          //         bannedCategory: bannedCategortList[index],
-          //       );
-          //     },
-          //   ),
-          // ),

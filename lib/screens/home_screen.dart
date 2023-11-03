@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scan/scan.dart';
 import 'package:scanner/methods/fetch_product.dart';
-import 'package:scanner/methods/lists.dart';
-import 'package:scanner/screens/products_out_category_screen.dart';
+import 'package:scanner/methods/codes_lists.dart';
+import 'package:scanner/screens/category_screen.dart';
 import 'package:scanner/widgets/custom_button.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -177,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
             GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ProductsOutCategoryScreen();
+                  return CategoryScreen();
                 }));
               },
               child: const CustomButton(text: 'قوائم المقاطعة'),
