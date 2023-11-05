@@ -89,10 +89,3 @@ final List<ProductModel> drinksReplaceProductList = [
     img: 'assets/products/مشروبات/فروتي.jpg',
   ),
 ];
-
-// final List<ProductModel> drinksReplaceProductList = [
-//   ProductModel(
-//     name: 'سبيرو سباتس',
-//     img: 'assets/products/مشروبات/سبيرو سباتس.jpg',
-//   ),
-// ];

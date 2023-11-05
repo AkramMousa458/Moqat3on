@@ -3,7 +3,9 @@ import 'package:scan/scan.dart';
 import 'package:scanner/constants.dart';
 import 'package:scanner/methods/fetch_product.dart';
 import 'package:scanner/lists/codes_lists.dart';
+import 'package:scanner/methods/snak_bar.dart';
 import 'package:scanner/screens/category_screen.dart';
+import 'package:scanner/screens/info_screen.dart';
 import 'package:scanner/widgets/custom_button.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -76,23 +78,27 @@ class _HomeScreenState extends State<HomeScreen> {
         scanAreaScale: .7,
         scanLineColor: Colors.red,
         onCapture: (data) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(
-            data,
-            textAlign: TextAlign.right,
-          )));
+          snakBar(context: context, text: data);
           if (int.parse(data) != -1) {
-            setState(() {
-              scanResult = fetchProduct(
-                  data,
-                  CodesLists.countryCodes,
-                  CodesLists.companyCodes8,
-                  CodesLists.companyCodes7,
-                  CodesLists.companyCodes6,
-                  CodesLists.companyCodes5,
-                  CodesLists.companyCodes4);
-              Navigator.of(context).pop();
-            });
+            try {
+              setState(() {
+                scanResult = fetchProduct(
+                    data,
+                    CodesLists.countryCodes,
+                    CodesLists.companyCodes8,
+                    CodesLists.companyCodes7,
+                    CodesLists.companyCodes6,
+                    CodesLists.companyCodes5,
+                    CodesLists.companyCodes4);
+                Navigator.of(context).pop();
+              });
+            } on Exception catch (e) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(
+                e.toString(),
+                textAlign: TextAlign.right,
+              )));
+            }
           }
         },
       ),
@@ -115,7 +121,11 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return const InfoScreen();
+          }));
+        },
         foregroundColor: Colors.black,
         splashColor: Colors.black87,
         backgroundColor: Colors.white,

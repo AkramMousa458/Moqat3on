@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   scan: ^1.6.0
+  device_preview: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -66,11 +67,11 @@ flutter:
     - assets/products/مطاعم/
     - assets/products/متاجر/
     - assets/products/جبن والبان/
-    - assets/products/حلويات/
+    - assets/products/شيبسي/
+    - assets/products/شيكولاتة وايس كريم/
     - assets/products/مشروبات/
     - assets/products/شاي وقهوة/
     - assets/products/مياه/
-    - assets/products/منتجات تجميل/
     - assets/products/منتجات تنظيف/
 
   # An image asset can refer to one or more resolution-specific "variants", see

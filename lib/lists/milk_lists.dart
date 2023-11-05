@@ -18,6 +18,10 @@ List<ProductModel> milkBannedProductList = [
     img: 'assets/products/جبن والبان/دانون.jpg',
   ),
   ProductModel(
+    name: 'نيدو',
+    img: 'assets/products/جبن والبان/نيدو.jpg',
+  ),
+  ProductModel(
     name: 'لاكتيل',
     img: 'assets/products/جبن والبان/لاكتيل.jpg',
   ),

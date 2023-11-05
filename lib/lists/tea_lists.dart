@@ -1,5 +1,6 @@
 import 'package:scanner/models/product_model.dart';
 
+
 List<ProductModel> teaBannedProductList = [
   ProductModel(
     name: 'ليبتون',

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:scanner/lists/chips_lists.dart';
+import 'package:scanner/lists/chocolate_lists.dart';
+import 'package:scanner/lists/clean_lists.dart';
 import 'package:scanner/lists/drinks_lists.dart';
 import 'package:scanner/lists/milk_lists.dart';
 import 'package:scanner/lists/markets_lists.dart';
@@ -50,25 +53,25 @@ class CategoryScreen extends StatelessWidget {
           replaceProducts: waterReplaceProductList),
     ),
     BannedCategoryModel(
-      name: 'حلويات',
-      img: 'assets/categories/حلويات.jpg',
+      name: 'شيبسي',
+      img: 'assets/categories/شيبسي.jpg',
       screen: ProductsScreen(
-          bannedProducts: marketsBannedProductList,
-          replaceProducts: marketsReplaceProductList),
+          bannedProducts: chipsBannedProductList,
+          replaceProducts: chipsReplaceProductList),
     ),
     BannedCategoryModel(
-      name: 'منتجات تجميل',
-      img: 'assets/categories/منتجات تجميل.jpg',
+      name: 'شيكولاتة وايس كريم',
+      img: 'assets/categories/شيكولاتة وايس كريم.jpg',
       screen: ProductsScreen(
-          bannedProducts: marketsBannedProductList,
-          replaceProducts: marketsReplaceProductList),
+          bannedProducts: chocolateBannedProductList,
+          replaceProducts: chocolateReplaceProductList),
     ),
     BannedCategoryModel(
       name: 'منتجات تنظيف',
       img: 'assets/categories/منتجات تنظيف.jpg',
       screen: ProductsScreen(
-          bannedProducts: marketsBannedProductList,
-          replaceProducts: marketsReplaceProductList),
+          bannedProducts: cleanBannedProductList,
+          replaceProducts: cleanReplaceProductList),
     ),
     BannedCategoryModel(
       name: 'متاجر',
