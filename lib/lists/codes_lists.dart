@@ -33,6 +33,7 @@ class CodesLists {
 
   static List<int> companyCodes5 = [
     10683,
+    20278, //americana
   ];
 
   static List<int> companyCodes6 = [
@@ -44,7 +45,9 @@ class CodesLists {
     300671 //kellogg's
     ,
     300193,
-    300609, //nestla
+    300609 //nestla
+    ,
+    300046 //americana
   ];
 
   static List<int> companyCodes7 = [
@@ -54,6 +57,8 @@ class CodesLists {
     4010081 //nestla
     ,
     4008822 //clear
+    ,
+    4002308, 4008429 //americana
   ];
 
   static List<int> companyCodes8 = [

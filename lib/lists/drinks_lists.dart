@@ -54,6 +54,10 @@ final List<ProductModel> drinksBannedProductList = [
     img: 'assets/products/مشروبات/ريدبول.jpg',
   ),
   ProductModel(
+    name: 'تانج',
+    img: 'assets/products/مشروبات/تانج.jpg',
+  ),
+  ProductModel(
     name: 'موسي',
     img: 'assets/products/مشروبات/موسي.jpg',
   ),
@@ -79,6 +83,10 @@ final List<ProductModel> drinksReplaceProductList = [
   ProductModel(
     name: 'سيناكولا',
     img: 'assets/products/مشروبات/سيناكولا.jpg',
+  ),
+  ProductModel(
+    name: 'فروتي',
+    img: 'assets/products/مشروبات/فروتي.jpg',
   ),
 ];
 
