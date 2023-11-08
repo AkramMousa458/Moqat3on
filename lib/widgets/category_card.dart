@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/models/banned_category_model.dart';
 
+late double screenWidth;
+
 class BannedCategoryCard extends StatelessWidget {
   const BannedCategoryCard({super.key, required this.bannedCategory});
 
@@ -8,6 +10,8 @@ class BannedCategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.sizeOf(context).width;
+
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -29,8 +33,16 @@ class BannedCategoryCard extends StatelessWidget {
           maxLines: 3,
           textAlign: TextAlign.center,
           textDirection: TextDirection.rtl,
-          style: const TextStyle(
-              color: Colors.white, fontSize: 30, fontFamily: 'ReadexPro'),
+          style: TextStyle(
+              color: Colors.white,
+              fontSize: screenWidth > 1200
+                  ? 70
+                  : screenWidth > 600
+                      ? 62
+                      : screenWidth > 300
+                          ? 25
+                          : 16,
+              fontFamily: 'ReadexPro'),
         ),
       ),
     );

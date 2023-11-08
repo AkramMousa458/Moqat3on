@@ -30,10 +30,6 @@ List<ProductModel> chipsBannedProductList = [
     img: 'assets/products/شيبسي/صن بايتس.jpg',
   ),
   ProductModel(
-    name: 'بيك رولز',
-    img: 'assets/products/شيبسي/بيك رولز.jpg',
-  ),
-  ProductModel(
     name: 'بريك',
     img: 'assets/products/شيبسي/بريك.jpg',
   ),
@@ -51,6 +47,10 @@ List<ProductModel> chipsReplaceProductList = [
   ProductModel(
     name: 'بيج شيبس',
     img: 'assets/products/شيبسي/بيج شيبس.jpg',
+  ),
+  ProductModel(
+    name: 'بيك رولز',
+    img: 'assets/products/شيبسي/بيك رولز.jpg',
   ),
   ProductModel(
     name: 'برافو',
