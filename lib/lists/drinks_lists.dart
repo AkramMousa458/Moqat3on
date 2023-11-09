@@ -38,6 +38,14 @@ final List<ProductModel> drinksBannedProductList = [
     img: 'assets/products/مشروبات/مونستر انرجي.jpg',
   ),
   ProductModel(
+    name: 'كراش',
+    img: 'assets/products/مشروبات/كراش.jpg',
+  ),
+  ProductModel(
+    name: 'سبورت كولا',
+    img: 'assets/products/مشروبات/سبورت كولا.jpg',
+  ),
+  ProductModel(
     name: 'راني',
     img: 'assets/products/مشروبات/راني.jpg',
   ),

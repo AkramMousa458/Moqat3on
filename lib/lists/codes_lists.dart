@@ -50,6 +50,8 @@ class CodesLists {
     300046 //americana
     ,
     300008 //heinken
+    ,
+    300041 //senioreta
   ];
 
   static List<int> companyCodes7 = [

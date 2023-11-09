@@ -37,6 +37,10 @@ List<ProductModel> chipsBannedProductList = [
     name: 'برنجلز',
     img: 'assets/products/شيبسي/برنجلز.jpg',
   ),
+  ProductModel(
+    name: 'كيلوجز نودلز',
+    img: 'assets/products/شيبسي/كيلوجز نودلز.jpg',
+  ),
 ];
 
 List<ProductModel> chipsReplaceProductList = [

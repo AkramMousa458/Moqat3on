@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:scanner/screens/home_screen.dart';
 import 'package:scanner/widgets/custom_text.dart';
 import 'package:url_launcher/link.dart';
 
@@ -31,7 +32,7 @@ class InfoScreen extends StatelessWidget {
           return FloatingActionButton(
             onPressed: followLink,
             foregroundColor: Colors.black,
-            splashColor: Colors.black87,  
+            splashColor: Colors.black87,
             backgroundColor: Colors.white,
             tooltip: 'للإبلاغ عن مشكلة او إقتراح معين',
             child: const Icon(
@@ -98,13 +99,26 @@ class InfoScreen extends StatelessWidget {
                   ),
                   title: CustomText(
                     text:
+                        'يرجى التأكد من مسح الكود الخاص بالمنتج نفسه وليس الملصق الخاص بالمتجر',
+                    size: 16,
+                    color: Colors.white,
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+                const ListTile(
+                  trailing: Icon(
+                    Icons.done_outline_rounded,
+                    color: Colors.white,
+                  ),
+                  title: CustomText(
+                    text:
                         'يرجي متابعة قناة التليجرام الخاصة بالتطبيق لمتابعة التحديثات',
                     size: 16,
                     color: Colors.white,
                     textAlign: TextAlign.right,
                   ),
                 ),
-                const SizedBox(height: 80),
+                SizedBox(height: screenHeight / 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -148,6 +162,7 @@ class InfoScreen extends StatelessWidget {
                   size: 12,
                   color: Colors.white,
                 ),
+                const SizedBox(height: 40),
                 SizedBox(width: screenWidth),
               ],
             )
