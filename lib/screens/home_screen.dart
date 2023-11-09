@@ -7,6 +7,7 @@ import 'package:scanner/methods/snak_bar.dart';
 import 'package:scanner/screens/category_screen.dart';
 import 'package:scanner/screens/info_screen.dart';
 import 'package:scanner/widgets/custom_button.dart';
+import 'package:scanner/widgets/custom_text.dart';
 
 late double screenWidth;
 late double screenHeight;
@@ -111,9 +112,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Moqata3a|مقاطعة',
-          style: TextStyle(fontFamily: "ReadexPro"),
+        title: const CustomText(
+          text: 'Moqata3a|مقاطعة',
+          size: 20,
+          color: Colors.white,
         ),
         backgroundColor: Colors.black,
         elevation: 0,
@@ -128,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
         foregroundColor: Colors.black,
         splashColor: Colors.black87,
         backgroundColor: Colors.white,
-        tooltip: 'Contact us or report issue',
+        tooltip: 'بعض التعليمات',
         child: const Icon(
           Icons.contact_support_outlined,
           size: 32,
@@ -141,8 +143,6 @@ class _HomeScreenState extends State<HomeScreen> {
           fit: BoxFit.cover,
         )),
         child: ListView(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Column(
               children: [

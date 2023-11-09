@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/constants.dart';
 import 'package:scanner/screens/home_screen.dart';
-import 'package:device_preview/device_preview.dart';
 
 void main() {
-  runApp(
-    DevicePreview(
-      enabled: true,
-      builder: (context) => const Scanner(),
-    ),
-  );
-  // runApp(const Scanner());
+  runApp(const Scanner());
 }
 
 class Scanner extends StatelessWidget {

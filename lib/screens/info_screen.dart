@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scanner/methods/snak_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scanner/widgets/custom_text.dart';
 import 'package:url_launcher/link.dart';
 
@@ -16,26 +16,30 @@ class InfoScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Moqata3a|مقاطعة',
-          style: TextStyle(fontFamily: "ReadexPro"),
+        title: const CustomText(
+          text: 'Moqata3a|مقاطعة',
+          size: 20,
+          color: Colors.white,
         ),
         backgroundColor: Colors.black,
         elevation: 0,
         centerTitle: true,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          snakBar(context: context, text: 'زل الفل كدا ');
+      floatingActionButton: Link(
+        uri: Uri.parse('https://forms.gle/UZfRvfcWa1UHNKbVA'),
+        builder: (context, followLink) {
+          return FloatingActionButton(
+            onPressed: followLink,
+            foregroundColor: Colors.black,
+            splashColor: Colors.black87,  
+            backgroundColor: Colors.white,
+            tooltip: 'للإبلاغ عن مشكلة او إقتراح معين',
+            child: const Icon(
+              Icons.bug_report,
+              size: 32,
+            ),
+          );
         },
-        foregroundColor: Colors.black,
-        splashColor: Colors.black87,
-        backgroundColor: Colors.white,
-        tooltip: 'للإبلاغ عن مشكلة او إقتراح معين',
-        child: const Icon(
-          Icons.bug_report,
-          size: 32,
-        ),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -131,12 +135,18 @@ class InfoScreen extends StatelessWidget {
                             ),
                             child: IconButton(
                               onPressed: FollowLink,
-                              icon: const Icon(Icons.linked_camera_outlined),
-                              iconSize: 30,
+                              icon: const FaIcon(FontAwesomeIcons.linkedinIn),
+                              iconSize: 32,
                             ),
                           );
                         }),
                   ],
+                ),
+                const SizedBox(height: 30),
+                const CustomText(
+                  text: '🇵🇸 لا تنسوا الدعاء لإخواننا في فلسطين',
+                  size: 12,
+                  color: Colors.white,
                 ),
                 SizedBox(width: screenWidth),
               ],
