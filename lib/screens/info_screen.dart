@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scanner/screens/home_screen.dart';
+import 'package:scanner/widgets/custom_app_bar.dart';
 import 'package:scanner/widgets/custom_text.dart';
 import 'package:url_launcher/link.dart';
 
@@ -16,16 +17,7 @@ class InfoScreen extends StatelessWidget {
     isPortrait = MediaQuery.of(context).orientation;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const CustomText(
-          text: 'Moqata3a|مقاطعة',
-          size: 20,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.black,
-        elevation: 0,
-        centerTitle: true,
-      ),
+      appBar: const CustomAppBar(text: 'Moqata3a|مقاطعة'),
       floatingActionButton: Link(
         uri: Uri.parse('https://forms.gle/UZfRvfcWa1UHNKbVA'),
         builder: (context, followLink) {

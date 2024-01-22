@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/models/product_model.dart';
+import 'package:scanner/widgets/custom_app_bar.dart';
 import 'package:scanner/widgets/head_title.dart';
 import 'package:scanner/widgets/product_card.dart';
 
@@ -12,15 +13,7 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Moqata3a|مقاطعة',
-            style: TextStyle(fontFamily: "ReadexPro"),
-          ),
-          backgroundColor: const Color.fromARGB(255, 88, 15, 15),
-          elevation: 0,
-          centerTitle: true,
-        ),
+        appBar: const CustomAppBar(text: 'Moqata3a|مقاطعة'),
         body: Container(
           decoration: const BoxDecoration(
               image: DecorationImage(

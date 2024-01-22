@@ -11,6 +11,7 @@ import 'package:scanner/lists/water_lists.dart';
 import 'package:scanner/models/banned_category_model.dart';
 import 'package:scanner/screens/products_screen.dart';
 import 'package:scanner/widgets/category_card.dart';
+import 'package:scanner/widgets/custom_app_bar.dart';
 
 class CategoryScreen extends StatelessWidget {
   CategoryScreen({super.key});
@@ -85,15 +86,7 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Moqata3a|مقاطعة',
-          style: TextStyle(fontFamily: "ReadexPro"),
-        ),
-        backgroundColor: const Color.fromARGB(255, 88, 15, 15),
-        elevation: 0,
-        centerTitle: true,
-      ),
+      appBar: const CustomAppBar(text: 'Moqata3a|مقاطعة'),
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(

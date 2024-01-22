@@ -1,108 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:scan/scan.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/constants.dart';
-import 'package:scanner/methods/fetch_product.dart';
-import 'package:scanner/lists/codes_lists.dart';
+import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/methods/snak_bar.dart';
 import 'package:scanner/screens/category_screen.dart';
 import 'package:scanner/screens/info_screen.dart';
 import 'package:scanner/widgets/custom_button.dart';
+import 'package:scanner/widgets/custom_floating_button.dart';
 import 'package:scanner/widgets/custom_text.dart';
+import 'package:scanner/widgets/show_barcode_scanner.dart';
 
 late double screenWidth;
 late double screenHeight;
 late Orientation isPortrait;
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  ScanController controller = ScanController();
-  bool isScanCompleted = false;
-  String scanResult = '';
-
-  _showBarcodeScanner() {
-    return showModalBottomSheet(
-      isScrollControlled: true,
-      context: context,
-      builder: (builder) {
-        return StatefulBuilder(builder: (BuildContext context, setState) {
-          return SizedBox(
-              height: MediaQuery.of(context).size.height / 1.3,
-              child: Scaffold(
-                appBar: _buildBarcodeScannerAppBar(),
-                body: _buildBarcodeScannerBody(),
-              ));
-        });
-      },
-    );
-  }
-
-  AppBar _buildBarcodeScannerAppBar() {
-    return AppBar(
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(4.0),
-        child: Container(color: Colors.red, height: 4.0),
-      ),
-      title: const Text(
-        'امسح الباركود',
-        style: TextStyle(fontFamily: 'ReadexPro'),
-      ),
-      elevation: 0.0,
-      backgroundColor: Colors.black,
-      leading: GestureDetector(
-        onTap: () => Navigator.of(context).pop(),
-        child: const Center(
-            child: Icon(
-          Icons.close,
-          color: Colors.white,
-        )),
-      ),
-      actions: [
-        Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.only(right: 16.0),
-            child: GestureDetector(
-                onTap: () => controller.toggleTorchMode(),
-                child: const Icon(Icons.flashlight_on_rounded))),
-      ],
-    );
-  }
-
-  Widget _buildBarcodeScannerBody() {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height / 1.3,
-      child: ScanView(
-        controller: controller,
-        scanAreaScale: .7,
-        scanLineColor: Colors.red,
-        onCapture: (data) {
-          // snakBar(context: context, text: data);
-          if (int.parse(data) != -1) {
-            try {
-              setState(() {
-                scanResult = fetchProduct(
-                    data,
-                    CodesLists.countryCodes,
-                    CodesLists.companyCodes8,
-                    CodesLists.companyCodes7,
-                    CodesLists.companyCodes6,
-                    CodesLists.companyCodes5,
-                    CodesLists.companyCodes4);
-                Navigator.of(context).pop();
-              });
-            } on Exception catch (e) {
-              snakBar(context: context, text: e.toString());
-            }
-          }
-        },
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,20 +34,17 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         centerTitle: true,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return const InfoScreen();
-          }));
-        },
-        foregroundColor: Colors.black,
-        splashColor: Colors.black87,
-        backgroundColor: Colors.white,
-        tooltip: 'بعض التعليمات',
-        child: const Icon(
-          Icons.contact_support_outlined,
-          size: 32,
+      floatingActionButton: CustomFloatingButton(
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return const InfoScreen();
+            },
+          ),
         ),
+        tipText: 'بعض التعليمات',
+        iconData: Icons.contact_support_outlined,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -144,64 +54,75 @@ class _HomeScreenState extends State<HomeScreen> {
         )),
         child: ListView(
           children: [
-            Column(
-              children: [
-                SizedBox(height: screenHeight <= 640 ? 60 : 100),
-                scanResult != inText
-                    ? Text(
-                        scanResult,
-                        style: const TextStyle(
-                            color: Colors.red,
-                            fontSize: 40,
-                            fontFamily: 'ReadexPro',
-                            fontWeight: FontWeight.bold),
-                      )
-                    : Text(
-                        scanResult,
-                        style: const TextStyle(
-                            color: Colors.green,
-                            fontSize: 40,
-                            fontFamily: 'ReadexPro',
-                            fontWeight: FontWeight.bold),
+            BlocConsumer<ScanCubit, ScanState>(
+              listener: (context, state) {
+                if (state is ScanSuccsess) {
+                  Navigator.of(context).pop();
+                } else if (state is ScanFailed) {
+                  snakBar(context: context, text: state.errMessage);
+                }
+              },
+              builder: (context, state) {
+                return Column(
+                  children: [
+                    SizedBox(height: screenHeight <= 640 ? 60 : 100),
+                    BlocProvider.of<ScanCubit>(context).scanResult != inText
+                        ? Text(
+                            BlocProvider.of<ScanCubit>(context).scanResult,
+                            style: const TextStyle(
+                                color: Colors.red,
+                                fontSize: 40,
+                                fontFamily: 'ReadexPro',
+                                fontWeight: FontWeight.bold),
+                          )
+                        : Text(
+                            BlocProvider.of<ScanCubit>(context).scanResult,
+                            style: const TextStyle(
+                                color: Colors.green,
+                                fontSize: 40,
+                                fontFamily: 'ReadexPro',
+                                fontWeight: FontWeight.bold),
+                          ),
+                    BlocProvider.of<ScanCubit>(context).scanResult == ''
+                        ? const SizedBox(height: 0)
+                        : const SizedBox(height: 40),
+                    GestureDetector(
+                      onTap: () => barcodeScanner(context),
+                      child: Image.asset(
+                        'assets/images/Barcode.png',
+                        width: isPortrait == Orientation.portrait
+                            ? screenWidth - 50
+                            : screenWidth - 250,
                       ),
-                scanResult == ''
-                    ? const SizedBox(height: 0)
-                    : const SizedBox(height: 40),
-                GestureDetector(
-                  onTap: () async {
-                    _showBarcodeScanner();
-                  },
-                  child: Image.asset('assets/images/Barcode.png',
-                      width: isPortrait == Orientation.portrait
-                          ? screenWidth - 50
-                          : screenWidth - 250),
-                ),
-                const SizedBox(height: 40),
-                GestureDetector(
-                  onTap: _showBarcodeScanner,
-                  child: const CustomButton(text: 'التأكد من المنتج'),
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Text(
-                    'أو',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: "ReadexPro",
-                        fontSize: 30),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return CategoryScreen();
-                    }));
-                  },
-                  child: const CustomButton(text: 'قوائم المقاطعة'),
-                ),
-                SizedBox(width: screenWidth),
-              ],
+                    ),
+                    const SizedBox(height: 40),
+                    CustomButton(
+                      onTap: () => barcodeScanner(context),
+                      text: 'التأكد من المنتج',
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Text(
+                        'أو',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "ReadexPro",
+                            fontSize: 30),
+                      ),
+                    ),
+                    CustomButton(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return CategoryScreen();
+                        }));
+                      },
+                      text: 'قوائم المقاطعة',
+                    ),
+                    SizedBox(width: screenWidth),
+                  ],
+                );
+              },
             )
           ],
         ),

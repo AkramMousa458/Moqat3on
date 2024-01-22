@@ -1,4 +1,4 @@
-package com.example.scanner
+package com.akram.scanner.free
 
 import io.flutter.embedding.android.FlutterActivity
 
