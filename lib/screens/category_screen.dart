@@ -15,6 +15,7 @@ import 'package:scanner/widgets/custom_app_bar.dart';
 
 class CategoryScreen extends StatelessWidget {
   CategoryScreen({super.key});
+  static String routeName = '/categoryScreen';
 
   final List<BannedCategoryModel> bannedCategortList = [
     BannedCategoryModel(

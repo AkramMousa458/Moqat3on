@@ -9,7 +9,9 @@ ScanController controller = ScanController();
 AppBar barcodeScannerAppBar(BuildContext context) {
   return AppBar(
     title: CustomButton(
-      onTap: () => BlocProvider.of<ScanCubit>(context).scanfromGallery(),
+      onTap: () {
+        BlocProvider.of<ScanCubit>(context).scanfromGallery();
+      },
       text: 'فتح المعرض',
       width: 210,
       height: 50,

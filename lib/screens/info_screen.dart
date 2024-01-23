@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:scanner/screens/home_screen.dart';
 import 'package:scanner/widgets/custom_app_bar.dart';
 import 'package:scanner/widgets/custom_text.dart';
 import 'package:url_launcher/link.dart';
 
-late double screenWidth;
-late Orientation isPortrait;
 
 class InfoScreen extends StatelessWidget {
   const InfoScreen({super.key});
+  static String routeName = '/infoScreen';
 
   @override
   Widget build(BuildContext context) {
-    screenWidth = MediaQuery.sizeOf(context).width;
-    isPortrait = MediaQuery.of(context).orientation;
+    double screenWidth = MediaQuery.sizeOf(context).width;
+    double screenHeight = MediaQuery.sizeOf(context).height;
+    Orientation isPortrait = MediaQuery.of(context).orientation;
 
     return Scaffold(
       appBar: const CustomAppBar(text: 'Moqata3a|مقاطعة'),

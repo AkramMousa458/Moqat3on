@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:scanner/lists/codes_lists.dart';
-import 'package:scanner/methods/fetch_product.dart';
+import 'package:scanner/helper/fetch_product.dart';
 
 part 'scan_state.dart';
 
@@ -13,6 +13,7 @@ class ScanCubit extends Cubit<ScanState> {
   String scanResult = '';
 
   void scanfromCamera(String data) {
+    emit(ScanLoading());
     if (int.parse(data) != -1) {
       try {
         scanResult = fetchProduct(
@@ -32,6 +33,7 @@ class ScanCubit extends Cubit<ScanState> {
   }
 
   void scanfromGallery() async {
+    emit(ScanLoading());
     try {
       final pickedFile =
           await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -39,9 +41,11 @@ class ScanCubit extends Cubit<ScanState> {
         String barcode =
             await BarcodeFinder.scanFile(path: pickedFile.path) ?? '-1';
         scanfromCamera(barcode);
+      } else {
+        emit(ScanInitial());
       }
     } catch (e) {
-      emit(ScanFailed(errMessage: 'error when pick image'));
+      emit(ScanFailed(errMessage: 'تأكد من الصورة المراد مسحها'));
     }
   }
 }

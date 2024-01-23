@@ -7,7 +7,7 @@ void barcodeScanner(BuildContext context) {
     context: context,
     builder: (BuildContext builder) {
       return SizedBox(
-        height: MediaQuery.of(context).size.height / 1.3,
+        height: MediaQuery.of(context).size.height / 1.45,
         child: Scaffold(
           appBar: barcodeScannerAppBar(context),
           body: barcodeScannerBody(context),

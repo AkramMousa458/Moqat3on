@@ -8,6 +8,7 @@ class ProductsScreen extends StatelessWidget {
   const ProductsScreen(
       {super.key, required this.bannedProducts, required this.replaceProducts});
 
+  static String routeName = '/productsScreen';
   final List<ProductModel> bannedProducts, replaceProducts;
 
   @override

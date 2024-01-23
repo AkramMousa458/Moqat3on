@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/constants.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
-import 'package:scanner/methods/snak_bar.dart';
+import 'package:scanner/helper/snak_bar.dart';
 import 'package:scanner/screens/category_screen.dart';
 import 'package:scanner/screens/info_screen.dart';
 import 'package:scanner/widgets/custom_button.dart';
@@ -10,18 +10,18 @@ import 'package:scanner/widgets/custom_floating_button.dart';
 import 'package:scanner/widgets/custom_text.dart';
 import 'package:scanner/widgets/show_barcode_scanner.dart';
 
-late double screenWidth;
-late double screenHeight;
-late Orientation isPortrait;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  static String routeName = '/homeScreen';
+
   @override
   Widget build(BuildContext context) {
-    screenWidth = MediaQuery.sizeOf(context).width;
-    screenHeight = MediaQuery.sizeOf(context).height;
-    isPortrait = MediaQuery.of(context).orientation;
+    double screenWidth = MediaQuery.sizeOf(context).width;
+    double screenHeight = MediaQuery.sizeOf(context).height;
+    Orientation isPortrait = MediaQuery.of(context).orientation;
+    bool isLoading = false;
 
     return Scaffold(
       appBar: AppBar(
@@ -35,14 +35,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
       ),
       floatingActionButton: CustomFloatingButton(
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return const InfoScreen();
-            },
-          ),
-        ),
+        onPressed: () => Navigator.pushNamed(context, InfoScreen.routeName),
         tipText: 'بعض التعليمات',
         iconData: Icons.contact_support_outlined,
       ),
@@ -56,34 +49,58 @@ class HomeScreen extends StatelessWidget {
           children: [
             BlocConsumer<ScanCubit, ScanState>(
               listener: (context, state) {
-                if (state is ScanSuccsess) {
+                if (state is ScanLoading) {
+                  isLoading = true;
+                } else if (state is ScanSuccsess) {
                   Navigator.of(context).pop();
+                  isLoading = false;
                 } else if (state is ScanFailed) {
+                  isLoading = false;
+                  Navigator.pop(context);
                   snakBar(context: context, text: state.errMessage);
+                } else if (state is ScanInitial) {
+                  Navigator.pop(context);
+                  isLoading = false;
+                } else {
+                  isLoading = false;
                 }
               },
               builder: (context, state) {
                 return Column(
                   children: [
                     SizedBox(height: screenHeight <= 640 ? 60 : 100),
-                    BlocProvider.of<ScanCubit>(context).scanResult != inText
-                        ? Text(
-                            BlocProvider.of<ScanCubit>(context).scanResult,
-                            style: const TextStyle(
-                                color: Colors.red,
-                                fontSize: 40,
-                                fontFamily: 'ReadexPro',
-                                fontWeight: FontWeight.bold),
+                    isLoading
+                        ? Container(
+                            padding: const EdgeInsets.all(16.0),
+                            child: CircularProgressIndicator(
+                              strokeWidth:
+                                  4.0, // Adjust the thickness of the circle
+                              color: Colors.redAccent, // Change the color
+                              backgroundColor:
+                                  Colors.grey[200], // Set the background color
+                            ),
                           )
-                        : Text(
-                            BlocProvider.of<ScanCubit>(context).scanResult,
-                            style: const TextStyle(
-                                color: Colors.green,
-                                fontSize: 40,
-                                fontFamily: 'ReadexPro',
-                                fontWeight: FontWeight.bold),
-                          ),
-                    BlocProvider.of<ScanCubit>(context).scanResult == ''
+                        : BlocProvider.of<ScanCubit>(context).scanResult !=
+                                inText
+                            ? Text(
+                                BlocProvider.of<ScanCubit>(context).scanResult,
+                                style: const TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 40,
+                                    fontFamily: 'ReadexPro',
+                                    fontWeight: FontWeight.bold),
+                              )
+                            : Text(
+                                BlocProvider.of<ScanCubit>(context).scanResult,
+                                style: const TextStyle(
+                                    color: Colors.green,
+                                    fontSize: 40,
+                                    fontFamily: 'ReadexPro',
+                                    fontWeight: FontWeight.bold),
+                              ),
+                    BlocProvider.of<ScanCubit>(context).scanResult == '' ||
+                            BlocProvider.of<ScanCubit>(context).scanResult ==
+                                '-1'
                         ? const SizedBox(height: 0)
                         : const SizedBox(height: 40),
                     GestureDetector(
@@ -111,12 +128,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     CustomButton(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return CategoryScreen();
-                        }));
-                      },
+                      onTap: () => Navigator.pushNamed(
+                          context, CategoryScreen.routeName),
                       text: 'قوائم المقاطعة',
                     ),
                     SizedBox(width: screenWidth),
