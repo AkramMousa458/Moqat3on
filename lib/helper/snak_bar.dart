@@ -15,7 +15,7 @@ void snakBar({required BuildContext context, required String text}) {
         text,
         textAlign: TextAlign.center,
         style: const TextStyle(
-          fontSize: 22,
+          fontSize: 20,
           fontFamily: 'ReadexPro',
           color: Colors.white,
         ),

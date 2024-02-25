@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/constants.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/helper/routes.dart';
-import 'package:scanner/screens/home_screen.dart';
 import 'package:scanner/screens/splash_screen.dart';
 
 void main() {

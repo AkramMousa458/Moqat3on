@@ -17,13 +17,14 @@ class ScanCubit extends Cubit<ScanState> {
     if (int.parse(data) != -1) {
       try {
         scanResult = fetchProduct(
-            data,
-            CodesLists.countryCodes,
-            CodesLists.companyCodes8,
-            CodesLists.companyCodes7,
-            CodesLists.companyCodes6,
-            CodesLists.companyCodes5,
-            CodesLists.companyCodes4);
+          data,
+          CodesLists.countryCodes,
+          CodesLists.companyCodes8,
+          CodesLists.companyCodes7,
+          CodesLists.companyCodes6,
+          CodesLists.companyCodes5,
+          CodesLists.companyCodes4,
+        );
         emit(ScanSuccsess());
       } on Exception catch (e) {
         scanResult = '-1';
@@ -45,7 +46,8 @@ class ScanCubit extends Cubit<ScanState> {
         emit(ScanInitial());
       }
     } catch (e) {
-      emit(ScanFailed(errMessage: 'تأكد من الصورة المراد مسحها'));
+      scanResult = '';
+      emit(ScanFailed(errMessage: 'يوجد خطأ! تأكد من الصورة المراد مسحها'));
     }
   }
 }

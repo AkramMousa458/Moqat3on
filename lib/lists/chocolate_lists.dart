@@ -82,6 +82,10 @@ List<ProductModel> chocolateBannedProductList = [
     img: 'assets/products/شيكولاتة وايس كريم/كيمو كونو.jpg',
   ),
   ProductModel(
+    name: 'ماندولين',
+    img: 'assets/products/شيكولاتة وايس كريم/ماندولين.jpg',
+  ),
+  ProductModel(
     name: 'جالكسي',
     img: 'assets/products/شيكولاتة وايس كريم/جالكسي.jpg',
   ),
@@ -104,10 +108,7 @@ List<ProductModel> chocolateReplaceProductList = [
     name: 'اولكر',
     img: 'assets/products/شيكولاتة وايس كريم/اولكر.jpg',
   ),
-  ProductModel(
-    name: 'شمعدان',
-    img: 'assets/products/شيكولاتة وايس كريم/شمعدان.jpg',
-  ),
+
   ProductModel(
     name: 'اونيرو',
     img: 'assets/products/شيكولاتة وايس كريم/اونيرو.jpg',
@@ -119,10 +120,6 @@ List<ProductModel> chocolateReplaceProductList = [
   ProductModel(
     name: 'فورني',
     img: 'assets/products/شيكولاتة وايس كريم/فورني.jpg',
-  ),
-  ProductModel(
-    name: 'ماندولين',
-    img: 'assets/products/شيكولاتة وايس كريم/ماندولين.jpg',
   ),
   ProductModel(
     name: 'هوهوز',

@@ -29,11 +29,15 @@ class CodesLists {
     ,
     1031 //Chipsy
     ,
+    2201, //Mondelez-Switherland
+
+    1021, //CADBURY-Egypt
   ];
 
   static List<int> companyCodes5 = [
     10683,
     20278, //americana
+    20046, //Mondelez
   ];
 
   static List<int> companyCodes6 = [

@@ -7,9 +7,9 @@ import 'package:scanner/screens/category_screen.dart';
 import 'package:scanner/screens/info_screen.dart';
 import 'package:scanner/widgets/custom_button.dart';
 import 'package:scanner/widgets/custom_floating_button.dart';
+import 'package:scanner/widgets/custom_loading_widget.dart';
 import 'package:scanner/widgets/custom_text.dart';
 import 'package:scanner/widgets/show_barcode_scanner.dart';
-
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -70,33 +70,26 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     SizedBox(height: screenHeight <= 640 ? 60 : 100),
                     isLoading
-                        ? Container(
-                            padding: const EdgeInsets.all(16.0),
-                            child: CircularProgressIndicator(
-                              strokeWidth:
-                                  4.0, // Adjust the thickness of the circle
-                              color: Colors.redAccent, // Change the color
-                              backgroundColor:
-                                  Colors.grey[200], // Set the background color
-                            ),
-                          )
+                        ? const CustomLoadingWidget()
                         : BlocProvider.of<ScanCubit>(context).scanResult !=
                                 inText
                             ? Text(
                                 BlocProvider.of<ScanCubit>(context).scanResult,
                                 style: const TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 40,
-                                    fontFamily: 'ReadexPro',
-                                    fontWeight: FontWeight.bold),
+                                  color: Colors.red,
+                                  fontSize: 40,
+                                  fontFamily: 'ReadexPro',
+                                  fontWeight: FontWeight.bold,
+                                ),
                               )
                             : Text(
                                 BlocProvider.of<ScanCubit>(context).scanResult,
                                 style: const TextStyle(
-                                    color: Colors.green,
-                                    fontSize: 40,
-                                    fontFamily: 'ReadexPro',
-                                    fontWeight: FontWeight.bold),
+                                  color: Colors.green,
+                                  fontSize: 40,
+                                  fontFamily: 'ReadexPro',
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                     BlocProvider.of<ScanCubit>(context).scanResult == '' ||
                             BlocProvider.of<ScanCubit>(context).scanResult ==
