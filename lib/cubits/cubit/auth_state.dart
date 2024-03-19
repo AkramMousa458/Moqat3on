@@ -15,7 +15,6 @@ final class CreateAccountFailureState extends AuthState {
   CreateAccountFailureState({required this.error});
 }
 
-final class TermsAndConditionCheckBoxState extends AuthState {}
 
 final class ObscureTextState extends AuthState {}
 

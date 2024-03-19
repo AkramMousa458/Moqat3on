@@ -59,11 +59,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void termsAndConditioncheckBoxUpadte({required nValue}) {
-    termsAndConditioncheckBox = nValue;
-    emit(TermsAndConditionCheckBoxState());
-  }
-
   Future<void> signINWithEmailAndPassword() async {
     try {
       emit(SignInLoadingState());
