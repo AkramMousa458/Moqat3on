@@ -7,7 +7,7 @@ import 'package:url_launcher/link.dart';
 
 class InfoScreen extends StatelessWidget {
   const InfoScreen({super.key});
-  static String routeName = '/infoScreen';
+  
 
   @override
   Widget build(BuildContext context) {

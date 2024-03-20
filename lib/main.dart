@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/constants.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
+import 'package:scanner/firebase_options.dart';
+import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/routes.dart';
-import 'package:scanner/screens/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const Scanner());
 }
 
@@ -16,8 +23,9 @@ class Scanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ScanCubit(),
-      child: MaterialApp(
+      child: MaterialApp.router(
         theme: ThemeData(
+          //  scaffoldBackgroundColor: AppColors.lightGrey,
           fontFamily: "ReadexPro",
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.transparent,
@@ -26,8 +34,8 @@ class Scanner extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         title: kAppTitle,
-        routes: routes,
-        initialRoute: SplashScreen.routeName,
+        //  routerConfig: router,_SplashScreenState
+        routerConfig: router,
       ),
     );
   }

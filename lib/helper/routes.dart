@@ -1,11 +1,52 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:scanner/cubits/cubit/auth_cubit.dart';
+import 'package:scanner/screens/auth/login.dart';
 import 'package:scanner/screens/category_screen.dart';
 import 'package:scanner/screens/home_screen.dart';
 import 'package:scanner/screens/info_screen.dart';
 import 'package:scanner/screens/splash_screen.dart';
 
-var routes = {
- SplashScreen.routeName: (context)=> const SplashScreen(),
- HomeScreen.routeName: (context)=> const HomeScreen(),
- CategoryScreen.routeName: (context)=> CategoryScreen(),
- InfoScreen.routeName: (context)=> const InfoScreen(),
-};
+import '../screens/auth/create_account.dart';
+
+final GoRouter router = GoRouter(routes: [
+  GoRoute(
+    path: "/",
+    builder: (context, state) => const SplashScreen(),
+  ),
+
+  GoRoute(
+    path: "/login",
+    builder: (context, state) => BlocProvider(
+      create: (context) => AuthCubit(),
+      child: const Login(),
+    ),
+  ),
+  GoRoute(
+    path: "/createAccount",
+    builder: (context, state) => BlocProvider(
+      create: (context) => AuthCubit(),
+      child: const CreateAccount(),
+    ),
+  ),
+  // GoRoute(
+  //   path: "/forgotPassword",
+  //   builder: (context, state) => BlocProvider(
+  //     create: (context) => AuthCubit(),
+  //     child: const ForgotPassword(),
+  //   ),
+  // ),
+
+  GoRoute(
+    path: "/home",
+    builder: (context, state) => const HomeScreen(),
+  ),
+  GoRoute(
+    path: "/category",
+    builder: (context, state) => CategoryScreen(),
+  ),
+  GoRoute(
+    path: "/info",
+    builder: (context, state) => const InfoScreen(),
+  ),
+]);

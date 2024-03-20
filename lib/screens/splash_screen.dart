@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/screens/home_screen.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-
-  static String routeName = '/splashScreen';
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -14,10 +12,9 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(
-      const Duration(milliseconds: 1200),
-      () => Navigator.pushReplacementNamed(context, HomeScreen.routeName),
-    );
+    Future.delayed(const Duration(seconds: 2),
+        () => customReplacementNavigate(context, '/login'));
+
     super.initState();
   }
 
@@ -37,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(screenWidth/4.2),
+          padding: EdgeInsets.all(screenWidth / 4.2),
           child: Image.asset(
             'assets/images/logo.png',
           ),

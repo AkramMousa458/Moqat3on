@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/constants.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
+import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/snak_bar.dart';
 import 'package:scanner/screens/category_screen.dart';
 import 'package:scanner/screens/info_screen.dart';
@@ -14,7 +15,6 @@ import 'package:scanner/widgets/show_barcode_scanner.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  static String routeName = '/homeScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
       ),
       floatingActionButton: CustomFloatingButton(
-        onPressed: () => Navigator.pushNamed(context, InfoScreen.routeName),
+        onPressed: () => customNavigate(context,"/info"),
         tipText: 'بعض التعليمات',
         iconData: Icons.contact_support_outlined,
       ),
@@ -121,8 +121,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     CustomButton(
-                      onTap: () => Navigator.pushNamed(
-                          context, CategoryScreen.routeName),
+                      onTap: () => 
+                        customNavigate(context,"/category"),
                       text: 'قوائم المقاطعة',
                     ),
                     SizedBox(width: screenWidth),

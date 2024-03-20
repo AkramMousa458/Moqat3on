@@ -8,6 +8,7 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
+  String? userName;
 
   String? emailAddress;
 
@@ -17,7 +18,7 @@ class AuthCubit extends Cubit<AuthState> {
   GlobalKey<FormState> formKeyLogin = GlobalKey<FormState>();
   GlobalKey<FormState> formKeyRestPassword = GlobalKey<FormState>();
 
-  bool termsAndConditioncheckBox = false;
+
 
   bool obscureText = true;
 

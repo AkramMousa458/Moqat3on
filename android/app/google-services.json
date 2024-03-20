@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "796795235888",
+    "project_id": "moqat3on",
+    "storage_bucket": "moqat3on.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796795235888:android:8cc535f5800a8f431647f5",
+        "android_client_info": {
+          "package_name": "com.akram.scanner.free"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "796795235888-8g5k0im2erl88c4p274v255334gmmjta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6R-vhvUwRGvR4M3KIKP5SVi61i9NUow0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "796795235888-8g5k0im2erl88c4p274v255334gmmjta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
