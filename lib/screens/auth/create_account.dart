@@ -29,11 +29,12 @@ class CreateAccount extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(top: 10, left: 50, right: 50),
                     child: Image.asset(
-                      "assets/images/logo.png",
-                      width: 200,
-                      height: 200,
+                      "assets/images/hand.png",
+                      width: 150,
+                      height: 150,
                     ),
                   ),
+                  const SizedBox(height: 24),
                   const CustomCreateAccountForm(),
                   const SizedBox(height: 30),
                   CustomTextHaveAccount(
