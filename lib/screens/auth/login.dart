@@ -9,30 +9,46 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 40, left: 100, right: 50),
-              child: Image.asset(
-                "assets/images/logo.png",
-                width: 200,
-                height: 200,
-              ),
+      body: Stack(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: Image.asset(
+              "assets/images/login.jpg",
+              fit: BoxFit.cover,
             ),
-            const CustomLoginForm(),
-            const SizedBox(
-              height: 16,
+          ),
+          Container(
+            color: Colors.black.withOpacity(0.7),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 70, left: 50, right: 50),
+                  child: Image.asset(
+                    "assets/images/hand.png",
+                    width: 150,
+                    height: 150,
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                const CustomLoginForm(),
+                const SizedBox(
+                  height: 24,
+                ),
+                CustomTextHaveAccount(
+                  onTap: () {
+                    customNavigate(context, "/createAccount");
+                  },
+                  textAlready: " Don't have an account?",
+                  textlogin: " Sign Up",
+                ),
+              ],
             ),
-            CustomTextHaveAccount(
-              onTap: () {
-                customNavigate(context, "/createAccount");
-              },
-              textAlready: " Don't have an account?",
-              textlogin: " Sign Up",
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

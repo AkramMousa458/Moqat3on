@@ -3,7 +3,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:scanner/helper/navigation.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -17,8 +18,7 @@ class AuthCubit extends Cubit<AuthState> {
   GlobalKey<FormState> formKeySignUp = GlobalKey<FormState>();
   GlobalKey<FormState> formKeyLogin = GlobalKey<FormState>();
   GlobalKey<FormState> formKeyRestPassword = GlobalKey<FormState>();
-
-
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   bool obscureText = true;
 
@@ -95,5 +95,26 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       emit(RestPasswordFailureState(error: e.toString()));
     }
+  }
+
+  Future signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    if (googleUser != null) {
+      return;
+    }
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }

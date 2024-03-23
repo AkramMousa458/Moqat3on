@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 abstract class AppColors {
   static Color offwhite = const Color(0xffF8F4F9);
+  static Color red = Colors.red;
+
   static Color primaryColor = Colors.green;
   static Color deepGrey = const Color(0xff6F6460);
   static Color grey = const Color(0xffC4C4C4);

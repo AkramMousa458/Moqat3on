@@ -9,32 +9,44 @@ class CreateAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 100, right: 50),
-                  child: Image.asset(
-                    "assets/images/logo.png",
-                    width: 200,
-                    height: 200,
-                  ),
-                ),
-                const CustomCreateAccountForm(),
-                const SizedBox(height: 30),
-                CustomTextHaveAccount(
-                  onTap: () {
-                    customNavigate(context, '/login');
-                  },
-                  textAlready: "  Don't have an account?",
-                  textlogin: " Sign In",
-                ),
-              ],
+      body: Center(
+        child: Stack(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: Image.asset(
+                "assets/images/login.jpg",
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
+            Container(
+              color: Colors.black.withOpacity(0.7),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 50, right: 50),
+                    child: Image.asset(
+                      "assets/images/logo.png",
+                      width: 200,
+                      height: 200,
+                    ),
+                  ),
+                  const CustomCreateAccountForm(),
+                  const SizedBox(height: 30),
+                  CustomTextHaveAccount(
+                    onTap: () {
+                      customNavigate(context, '/login');
+                    },
+                    textAlready: "  Don't have an account?",
+                    textlogin: " Sign In",
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

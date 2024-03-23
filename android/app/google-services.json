@@ -29,6 +29,13 @@
             {
               "client_id": "796795235888-8g5k0im2erl88c4p274v255334gmmjta.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "796795235888-t61162vbi6m36i1khuo341p2neqk8p8j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.scanner.RunnerTests"
+              }
             }
           ]
         }

@@ -2,6 +2,7 @@
     package="com.akram.scanner.free">
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:label="Moqata3a|مقاطعة"
         android:icon="@mipmap/ic_launcher"
