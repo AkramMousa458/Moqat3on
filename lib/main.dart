@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/constants.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/firebase_options.dart';
-import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 

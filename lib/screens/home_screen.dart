@@ -4,8 +4,6 @@ import 'package:scanner/constants.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/snak_bar.dart';
-import 'package:scanner/screens/category_screen.dart';
-import 'package:scanner/screens/info_screen.dart';
 import 'package:scanner/widgets/custom_button.dart';
 import 'package:scanner/widgets/custom_floating_button.dart';
 import 'package:scanner/widgets/custom_loading_widget.dart';
@@ -14,7 +12,6 @@ import 'package:scanner/widgets/show_barcode_scanner.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +32,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
       ),
       floatingActionButton: CustomFloatingButton(
-        onPressed: () => customNavigate(context,"/info"),
+        onPressed: () => customNavigate(context, "/info"),
         tipText: 'بعض التعليمات',
         iconData: Icons.contact_support_outlined,
       ),
@@ -121,8 +118,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     CustomButton(
-                      onTap: () => 
-                        customNavigate(context,"/category"),
+                      onTap: () => customNavigate(context, "/category"),
                       text: 'قوائم المقاطعة',
                     ),
                     SizedBox(width: screenWidth),

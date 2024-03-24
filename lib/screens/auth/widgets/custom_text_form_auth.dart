@@ -45,7 +45,7 @@ class CustomTextFormFAuth extends StatelessWidget {
 
   OutlineInputBorder customOutLineInputBorder() => OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide(
+        borderSide: const BorderSide(
           color: AppColors.lightGrey,
         ),
       );
