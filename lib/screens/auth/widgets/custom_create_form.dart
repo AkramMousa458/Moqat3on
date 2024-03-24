@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/cubits/cubit/auth_cubit.dart';
+import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/screens/auth/widgets/custom_button.dart';
 import 'package:scanner/screens/auth/widgets/custom_sign_google.dart';
@@ -45,9 +46,12 @@ class CustomCreateAccountForm extends StatelessWidget {
                       onPressed: () {
                         authCubit.toggleObscureText();
                       },
-                      icon: Icon(authCubit.obscureText == true
-                          ? Icons.visibility_off
-                          : Icons.visibility),
+                      icon: Icon(
+                        authCubit.obscureText == true
+                            ? Icons.visibility_off
+                            : Icons.visibility_outlined,
+                        color: AppColors.lightGrey,
+                      ),
                     ),
                     labelText: "Password",
                     onChanged: (password) {

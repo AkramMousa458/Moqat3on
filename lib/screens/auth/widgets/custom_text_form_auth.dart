@@ -27,12 +27,13 @@ class CustomTextFormFAuth extends StatelessWidget {
           }
           return null;
         },
+        cursorColor: AppColors.lightGrey,
+        style: const TextStyle(color: AppColors.lightGrey),
         obscureText: obscureText,
         onChanged: onChanged,
         decoration: InputDecoration(
           labelText: labelText,
           suffixIcon: suffixIcon,
-          suffixStyle: TextStyle(color: AppColors.lightGrey),
           labelStyle: TextStyle(color: AppColors.primaryColor),
           border: customOutLineInputBorder(),
           enabledBorder: customOutLineInputBorder(),

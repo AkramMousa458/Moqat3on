@@ -22,29 +22,33 @@ class CreateAccount extends StatelessWidget {
             ),
             Container(
               color: Colors.black.withOpacity(0.7),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 50, right: 50),
-                    child: Image.asset(
-                      "assets/images/hand.png",
-                      width: 150,
-                      height: 150,
+              height: MediaQuery.of(context).size.height,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 70, left: 50, right: 50),
+                      child: Image.asset(
+                        "assets/images/hand.png",
+                        width: 150,
+                        height: 150,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  const CustomCreateAccountForm(),
-                  const SizedBox(height: 30),
-                  CustomTextHaveAccount(
-                    onTap: () {
-                      customNavigate(context, '/login');
-                    },
-                    textAlready: "  Don't have an account?",
-                    textlogin: " Sign In",
-                  ),
-                ],
+                    const SizedBox(height: 24),
+                    const CustomCreateAccountForm(),
+                    const SizedBox(height: 30),
+                    CustomTextHaveAccount(
+                      onTap: () {
+                        customNavigate(context, '/login');
+                      },
+                      textAlready: "  Don't have an account?",
+                      textlogin: " Sign In",
+                    ),
+                    const SizedBox(height: 50),
+                  ],
+                ),
               ),
             ),
           ],

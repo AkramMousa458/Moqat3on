@@ -20,32 +20,39 @@ class Login extends StatelessWidget {
             ),
           ),
           Container(
+            height: MediaQuery.of(context).size.height,
             color: Colors.black.withOpacity(0.7),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 70, left: 50, right: 50),
-                  child: Image.asset(
-                    "assets/images/hand.png",
-                    width: 150,
-                    height: 150,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 70, left: 50, right: 50),
+                    child: Image.asset(
+                      "assets/images/hand.png",
+                      width: 150,
+                      height: 150,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                const CustomLoginForm(),
-                const SizedBox(
-                  height: 24,
-                ),
-                CustomTextHaveAccount(
-                  onTap: () {
-                    customNavigate(context, "/createAccount");
-                  },
-                  textAlready: " Don't have an account?",
-                  textlogin: " Sign Up",
-                ),
-              ],
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  const CustomLoginForm(),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  CustomTextHaveAccount(
+                    onTap: () {
+                      customNavigate(context, "/createAccount");
+                    },
+                    textAlready: " Don't have an account?",
+                    textlogin: " Sign Up",
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                ],
+              ),
             ),
           ),
         ],

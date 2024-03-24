@@ -46,7 +46,7 @@ class CustomLoginForm extends StatelessWidget {
                     icon: Icon(
                       authCubit.obscureText == true
                           ? Icons.visibility_off
-                          : Icons.visibility,
+                          : Icons.visibility_outlined,
                       color: AppColors.lightGrey,
                     ),
                   ),
