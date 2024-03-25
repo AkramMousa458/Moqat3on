@@ -138,6 +138,7 @@ import 'package:scanner/helper/colors.dart';
 import 'package:scanner/screens/home/widgets/custom_categories_scroll_view.dart';
 import 'package:scanner/screens/home/widgets/custom_products_grid_view.dart';
 import 'package:scanner/screens/home/widgets/custom_search_text_field.dart';
+import 'package:scanner/widgets/show_barcode_scanner.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -145,7 +146,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lightGrey,
+      backgroundColor: AppColors.offwhite,
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.only(left: 16),
@@ -170,11 +171,40 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          barcodeScanner(context);
+        },
+        elevation: 1,
+        backgroundColor: AppColors.redBlck,
+        child:
+            const Icon(Icons.camera_alt_rounded, color: Colors.white, size: 28),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_filled,
+              color: AppColors.redBlck,
+            ),
+            label: 'Home',
+            backgroundColor: AppColors.redBlck,
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(
+              Icons.supervised_user_circle_rounded,
+            ),
+            label: 'Profile',
+          ),
+        ],
+        selectedLabelStyle: TextStyle(color: AppColors.redBlck),
+      ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 16),
         child: ListView(
           children: [
-            CustomSearchTextField(oonChanged: (value) {}),
+            CustomSearchTextField(onChanged: (value) {}),
             const CustomCategoriesScrollView(),
             const CustomProductsGridView(),
           ],
@@ -183,4 +213,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

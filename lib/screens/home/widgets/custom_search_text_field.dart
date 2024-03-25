@@ -4,15 +4,15 @@ import 'package:scanner/helper/colors.dart';
 class CustomSearchTextField extends StatelessWidget {
   const CustomSearchTextField({
     super.key,
-    required this.oonChanged,
+    required this.onChanged,
   });
 
-  final Function(String) oonChanged;
+  final Function(String) onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: oonChanged,
+      onChanged: onChanged,
       textAlign: TextAlign.right,
       style: const TextStyle(
         height: 0.8,

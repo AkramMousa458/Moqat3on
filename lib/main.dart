@@ -26,6 +26,7 @@ class Scanner extends StatelessWidget {
       create: (context) => ScanCubit(),
       child: MaterialApp.router(
         theme: ThemeData(
+          // useMaterial3: false,
           fontFamily: "Cairo",
           // fontFamily: "ReadexPro",
           // textTheme: GoogleFonts.cairoTextTheme().copyWith(

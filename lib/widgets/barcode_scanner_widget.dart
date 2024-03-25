@@ -13,6 +13,7 @@ AppBar barcodeScannerAppBar(BuildContext context) {
         BlocProvider.of<ScanCubit>(context).scanfromGallery();
       },
       text: 'فتح المعرض',
+      
       width: 210,
       height: 50,
       textSize: 22,
