@@ -5,6 +5,7 @@ import 'package:scanner/screens/auth/login_screen.dart';
 import 'package:scanner/screens/category_screen.dart';
 import 'package:scanner/screens/home/home_screen.dart';
 import 'package:scanner/screens/info_screen.dart';
+import 'package:scanner/screens/products_profiles/products.dart';
 import 'package:scanner/screens/splash_screen.dart';
 
 import '../screens/auth/create_account.dart';
@@ -40,6 +41,10 @@ final GoRouter router = GoRouter(routes: [
   GoRoute(
     path: "/home",
     builder: (context, state) => const HomeScreen(),
+  ),
+  GoRoute(
+    path: "/products",
+    builder: (context, state) => const ProductsProfiles(),
   ),
   GoRoute(
     path: "/category",

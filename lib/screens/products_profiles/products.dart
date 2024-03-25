@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 
-class CompanyProfiles extends StatefulWidget {
-  const CompanyProfiles({Key? key}) : super(key: key);
+class ProductsProfiles extends StatefulWidget {
+  const ProductsProfiles({Key? key}) : super(key: key);
 
   @override
-  State<CompanyProfiles> createState() => _CompanyProfilesState();
+  State<ProductsProfiles> createState() => _ProductsProfilesState();
 }
 
-class _CompanyProfilesState extends State<CompanyProfiles> {
+class _ProductsProfilesState extends State<ProductsProfiles> {
   double rating = 0.0;
 
   @override
@@ -164,7 +164,7 @@ class CustomItemProducts extends StatelessWidget {
                       color: Colors.black,
                     ),
                     Text(
-                      "كنتاكي",
+                      "بازوكا",
                       style: CustomTextStyle.stylesFont300Size16,
                     ),
                   ],
