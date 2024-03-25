@@ -44,50 +44,50 @@
 //         )),
 //         child: ListView(
 //           children: [
-//             BlocConsumer<ScanCubit, ScanState>(
-//               listener: (context, state) {
-//                 if (state is ScanLoading) {
-//                   isLoading = true;
-//                 } else if (state is ScanSuccsess) {
-//                   Navigator.of(context).pop();
-//                   isLoading = false;
-//                 } else if (state is ScanFailed) {
-//                   isLoading = false;
-//                   Navigator.pop(context);
-//                   snakBar(context: context, text: state.errMessage);
-//                 } else if (state is ScanInitial) {
-//                   Navigator.pop(context);
-//                   isLoading = false;
-//                 } else {
-//                   isLoading = false;
-//                 }
-//               },
+// BlocConsumer<ScanCubit, ScanState>(
+//   listener: (context, state) {
+//     if (state is ScanLoading) {
+//       isLoading = true;
+//     } else if (state is ScanSuccsess) {
+//       Navigator.of(context).pop();
+//       isLoading = false;
+//     } else if (state is ScanFailed) {
+//       isLoading = false;
+//       Navigator.pop(context);
+//       snakBar(context: context, text: state.errMessage);
+//     } else if (state is ScanInitial) {
+//       Navigator.pop(context);
+//       isLoading = false;
+//     } else {
+//       isLoading = false;
+//     }
+//   },
 //               builder: (context, state) {
 //                 return Column(
 //                   children: [
 //                     SizedBox(height: screenHeight <= 640 ? 60 : 100),
 //                     isLoading
 //                         ? const CustomLoadingWidget()
-//                         : BlocProvider.of<ScanCubit>(context).scanResult !=
-//                                 inText
-//                             ? Text(
-//                                 BlocProvider.of<ScanCubit>(context).scanResult,
-//                                 style: const TextStyle(
-//                                   color: Colors.red,
-//                                   fontSize: 40,
-//                                   fontFamily: 'ReadexPro',
-//                                   fontWeight: FontWeight.bold,
-//                                 ),
-//                               )
-//                             : Text(
-//                                 BlocProvider.of<ScanCubit>(context).scanResult,
-//                                 style: const TextStyle(
-//                                   color: Colors.green,
-//                                   fontSize: 40,
-//                                   fontFamily: 'ReadexPro',
-//                                   fontWeight: FontWeight.bold,
-//                                 ),
-//                               ),
+// : BlocProvider.of<ScanCubit>(context).scanResult !=
+//         inText
+//     ? Text(
+//         BlocProvider.of<ScanCubit>(context).scanResult,
+//         style: const TextStyle(
+//           color: Colors.red,
+//           fontSize: 40,
+//           fontFamily: 'ReadexPro',
+//           fontWeight: FontWeight.bold,
+//         ),
+//       )
+//     : Text(
+//         BlocProvider.of<ScanCubit>(context).scanResult,
+//         style: const TextStyle(
+//           color: Colors.green,
+//           fontSize: 40,
+//           fontFamily: 'ReadexPro',
+//           fontWeight: FontWeight.bold,
+//         ),
+//       ),
 //                     BlocProvider.of<ScanCubit>(context).scanResult == '' ||
 //                             BlocProvider.of<ScanCubit>(context).scanResult ==
 //                                 '-1'
@@ -134,7 +134,11 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scanner/constants.dart';
+import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/helper/colors.dart';
+import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/screens/home/widgets/custom_categories_scroll_view.dart';
 import 'package:scanner/screens/home/widgets/custom_products_grid_view.dart';
 import 'package:scanner/screens/home/widgets/custom_search_text_field.dart';
@@ -172,14 +176,40 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          barcodeScanner(context);
+      floatingActionButton: BlocListener<ScanCubit, ScanState>(
+        listener: (context, state) {
+          if (state is ScanLoading) {
+          } else if (state is ScanSuccsess) {
+            BlocProvider.of<ScanCubit>(context).scanResult != inText
+                ? showCustomSnackBar(
+                    context: context,
+                    text: BlocProvider.of<ScanCubit>(context).scanResult,
+                    status: false,
+                  )
+                : showCustomSnackBar(
+                    context: context,
+                    text: BlocProvider.of<ScanCubit>(context).scanResult,
+                    status: true,
+                  );
+            Navigator.of(context).pop();
+          } else if (state is ScanFailed) {
+            showCustomSnackBar(
+              context: context,
+              text: state.errMessage,
+              status: false,
+            );
+            Navigator.pop(context);
+          } else if (state is ScanInitial) {}
         },
-        elevation: 1,
-        backgroundColor: AppColors.redBlck,
-        child:
-            const Icon(Icons.camera_alt_rounded, color: Colors.white, size: 28),
+        child: FloatingActionButton(
+          onPressed: () {
+            barcodeScanner(context);
+          },
+          elevation: 1,
+          backgroundColor: AppColors.redBlck,
+          child: const Icon(Icons.camera_alt_rounded,
+              color: Colors.white, size: 28),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
