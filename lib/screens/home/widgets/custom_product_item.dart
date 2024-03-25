@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
+import 'package:scanner/helper/navigation.dart';
 
 class CustomProductItem extends StatelessWidget {
   const CustomProductItem({super.key});
@@ -7,7 +8,9 @@ class CustomProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        customNavigate(context, '/productScreen');
+      },
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.white,
@@ -20,8 +23,15 @@ class CustomProductItem extends StatelessWidget {
               padding: const EdgeInsets.only(top: 12),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(
-                  'https://artwork.anghcdn.co/webp/?id=17272407&size=296',
+                child:
+                    // Image.network(
+                    //   'https://artwork.anghcdn.co/webp/?id=17272407&size=296',
+                    //   width: 135,
+                    //   height: 100,
+                    //   fit: BoxFit.cover,
+                    // ),
+                    Image.asset(
+                  "assets/products/مطاعم/كنتاكي.jpg",
                   width: 135,
                   height: 100,
                   fit: BoxFit.cover,
@@ -29,7 +39,7 @@ class CustomProductItem extends StatelessWidget {
               ),
             ),
             const Text(
-              'بيبسي',
+              'كنتاكي',
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,

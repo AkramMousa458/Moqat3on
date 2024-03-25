@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 
-class CompanyProfiles extends StatefulWidget {
-  const CompanyProfiles({Key? key}) : super(key: key);
+class ProductScreen extends StatefulWidget {
+  const ProductScreen({Key? key}) : super(key: key);
 
   @override
-  State<CompanyProfiles> createState() => _CompanyProfilesState();
+  State<ProductScreen> createState() => _ProductScreenState();
 }
 
-class _CompanyProfilesState extends State<CompanyProfiles> {
+class _ProductScreenState extends State<ProductScreen> {
   double rating = 0.0;
 
   @override
