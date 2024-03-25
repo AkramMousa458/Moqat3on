@@ -6,6 +6,7 @@ import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/firebase_options.dart';
 import 'package:scanner/helper/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:scanner/screens/products_profiles/products.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +42,13 @@ class Scanner extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         title: kAppTitle,
+
+        //  routerConfig: router,_SplashScreenState
+        //  routerConfig: router,
+
+      //  home: const CompanyProfiles(),
         routerConfig: router,
+
       ),
     );
   }
