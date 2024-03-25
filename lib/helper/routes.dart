@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:scanner/cubits/cubit/auth_cubit.dart';
+import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
 import 'package:scanner/screens/auth/login.dart';
 import 'package:scanner/screens/category_screen.dart';
 import 'package:scanner/screens/home_screen.dart';

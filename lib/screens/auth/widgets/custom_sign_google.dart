@@ -1,13 +1,7 @@
-// ignore_for_file: avoid_print
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:scanner/cubits/cubit/auth_cubit.dart';
+import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
 import 'package:scanner/helper/colors.dart';
-import 'package:scanner/helper/navigation.dart';
 
 class CustomSignWithGoogle extends StatelessWidget {
   const CustomSignWithGoogle({

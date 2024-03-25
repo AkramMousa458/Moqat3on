@@ -1,5 +1,5 @@
 class ProductModel {
-  ProductModel({required this.name, required this.img});
+  ProductModel({required this.name, required this.image});
 
-  final String name, img;
+  final String name, image;
 }

@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:scanner/helper/navigation.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -18,7 +17,6 @@ class AuthCubit extends Cubit<AuthState> {
   GlobalKey<FormState> formKeySignUp = GlobalKey<FormState>();
   GlobalKey<FormState> formKeyLogin = GlobalKey<FormState>();
   GlobalKey<FormState> formKeyRestPassword = GlobalKey<FormState>();
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   bool obscureText = true;
 

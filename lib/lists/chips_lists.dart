@@ -3,77 +3,77 @@ import 'package:scanner/models/product_model.dart';
 List<ProductModel> chipsBannedProductList = [
   ProductModel(
     name: 'شيبسي',
-    img: 'assets/products/شيبسي/شيبسي.jpg',
+    image: 'assets/products/شيبسي/شيبسي.jpg',
   ),
   ProductModel(
     name: 'كرانشي',
-    img: 'assets/products/شيبسي/كرانشي.jpg',
+    image: 'assets/products/شيبسي/كرانشي.jpg',
   ),
   ProductModel(
     name: 'ليز',
-    img: 'assets/products/شيبسي/ليز.jpg',
+    image: 'assets/products/شيبسي/ليز.jpg',
   ),
   ProductModel(
     name: 'فورنو',
-    img: 'assets/products/شيبسي/فورنو.jpg',
+    image: 'assets/products/شيبسي/فورنو.jpg',
   ),
   ProductModel(
     name: 'شيتوس',
-    img: 'assets/products/شيبسي/شيتوس.jpg',
+    image: 'assets/products/شيبسي/شيتوس.jpg',
   ),
   ProductModel(
     name: 'دوريتوز',
-    img: 'assets/products/شيبسي/دوريتوز.jpg',
+    image: 'assets/products/شيبسي/دوريتوز.jpg',
   ),
   ProductModel(
     name: 'صن بايتس',
-    img: 'assets/products/شيبسي/صن بايتس.jpg',
+    image: 'assets/products/شيبسي/صن بايتس.jpg',
   ),
   ProductModel(
     name: 'بريك',
-    img: 'assets/products/شيبسي/بريك.jpg',
+    image: 'assets/products/شيبسي/بريك.jpg',
   ),
   ProductModel(
     name: 'برنجلز',
-    img: 'assets/products/شيبسي/برنجلز.jpg',
+    image: 'assets/products/شيبسي/برنجلز.jpg',
   ),
   ProductModel(
     name: 'كيلوجز نودلز',
-    img: 'assets/products/شيبسي/كيلوجز نودلز.jpg',
+    image: 'assets/products/شيبسي/كيلوجز نودلز.jpg',
   ),
 ];
 
 List<ProductModel> chipsReplaceProductList = [
   ProductModel(
     name: 'تايجر',
-    img: 'assets/products/شيبسي/تايجر.jpg',
+    image: 'assets/products/شيبسي/تايجر.jpg',
   ),
   ProductModel(
     name: 'بيج شيبس',
-    img: 'assets/products/شيبسي/بيج شيبس.jpg',
+    image: 'assets/products/شيبسي/بيج شيبس.jpg',
   ),
   ProductModel(
     name: 'بيك رولز',
-    img: 'assets/products/شيبسي/بيك رولز.jpg',
+    image: 'assets/products/شيبسي/بيك رولز.jpg',
   ),
   ProductModel(
     name: 'برافو',
-    img: 'assets/products/شيبسي/برافو.jpg',
+    image: 'assets/products/شيبسي/برافو.jpg',
   ),
   ProductModel(
     name: 'جاجوار',
-    img: 'assets/products/شيبسي/جاجوار.jpg',
+    image: 'assets/products/شيبسي/جاجوار.jpg',
   ),
   ProductModel(
     name: 'فوكس',
-    img: 'assets/products/شيبسي/فوكس.jpg',
+    image: 'assets/products/شيبسي/فوكس.jpg',
   ),
   ProductModel(
     name: 'زيجو',
-    img: 'assets/products/شيبسي/زيجو.jpg',
+    image: 'assets/products/شيبسي/زيجو.jpg',
   ),
   ProductModel(
     name: 'كارليتو',
-    img: 'assets/products/شيبسي/كارليتو.jpg',
+    image: 'assets/products/شيبسي/كارليتو.jpg',
   ),
 ];

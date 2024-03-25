@@ -5,8 +5,6 @@ import 'package:scanner/constants.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/snak_bar.dart';
-import 'package:scanner/screens/category_screen.dart';
-import 'package:scanner/screens/info_screen.dart';
 import 'package:scanner/widgets/custom_button.dart';
 import 'package:scanner/widgets/custom_floating_button.dart';
 import 'package:scanner/widgets/custom_loading_widget.dart';
