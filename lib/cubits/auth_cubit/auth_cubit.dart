@@ -98,7 +98,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    if (googleUser != null) {
+    if (googleUser == null) {
       return;
     }
 

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/navigation.dart';
 
@@ -16,17 +17,26 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
+  checkUserLoginStatus(context);
+    super.initState();
+  }
+
+
+  void checkUserLoginStatus(context) async {
+ final FirebaseAuth auth = FirebaseAuth.instance;
+
     Future.delayed(const Duration(seconds: 2), () {
-      firebaseAuth.authStateChanges().listen((user) {
-        if (user == null) {
-          customGoNavigate(context, '/login');
+      // التحقق من حالة المستخدم
+       User? user = auth.currentUser;
+        if (user != null) {
+          // المستخدم مسجل الدخول، انتقل إلى الصفحة الرئيسية
+          customReplacementNavigate(context, '/home');
         } else {
-          customGoNavigate(context, '/home');
+          // المستخدم غير مسجل الدخول، انتقل إلى صفحة تسجيل الدخول
+          customReplacementNavigate(context, '/login');
         }
       });
-    });
-
-    super.initState();
+    
   }
 
   @override
