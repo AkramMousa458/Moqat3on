@@ -56,8 +56,6 @@ class CustomLoginForm extends StatelessWidget {
                   }),
               //    const CustomTextForgotPassword(),
               const SizedBox(height: 30),
-              const CustomSignWithGoogle(),
-              const SizedBox(height: 24),
               state is SignInLoadingState
                   ? const Center(child: CircularProgressIndicator())
                   : CustomButtonApp(
@@ -68,6 +66,8 @@ class CustomLoginForm extends StatelessWidget {
                       },
                       text: "Sign In",
                     ),
+              const SizedBox(height: 24),
+              const CustomSignWithGoogle(),
             ],
           ),
         );

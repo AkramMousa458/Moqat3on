@@ -3,8 +3,8 @@ import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/screens/auth/widgets/custom_login_form.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_have_account.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

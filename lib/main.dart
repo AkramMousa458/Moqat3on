@@ -1,3 +1,4 @@
+// import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/constants.dart';
@@ -13,6 +14,7 @@ void main() async {
   );
 
   runApp(const Scanner());
+  // runApp(DevicePreview(builder: (context) => const Scanner()));
 }
 
 class Scanner extends StatelessWidget {
@@ -24,8 +26,13 @@ class Scanner extends StatelessWidget {
       create: (context) => ScanCubit(),
       child: MaterialApp.router(
         theme: ThemeData(
-          //  scaffoldBackgroundColor: AppColors.lightGrey,
-          fontFamily: "ReadexPro",
+          fontFamily: "Cairo",
+          // fontFamily: "ReadexPro",
+          // textTheme: GoogleFonts.cairoTextTheme().copyWith(
+          //   bodyMedium: GoogleFonts.cairo(
+          //     textStyle: const TextStyle(fontWeight: FontWeight.bold),
+          //   ),
+          // ),
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -33,7 +40,6 @@ class Scanner extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         title: kAppTitle,
-        //  routerConfig: router,_SplashScreenState
         routerConfig: router,
       ),
     );

@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/navigation.dart';
 
@@ -9,10 +12,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2),
-        () => customReplacementNavigate(context, '/login'));
+    Future.delayed(const Duration(seconds: 2), () {
+      firebaseAuth.authStateChanges().listen((user) {
+        if (user == null) {
+          customGoNavigate(context, '/login');
+        } else {
+          customGoNavigate(context, '/home');
+        }
+      });
+    });
 
     super.initState();
   }
