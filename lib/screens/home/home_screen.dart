@@ -136,6 +136,7 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/screens/home/widgets/custom_categories_scroll_view.dart';
+import 'package:scanner/screens/home/widgets/custom_products_grid_view.dart';
 import 'package:scanner/screens/home/widgets/custom_search_text_field.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -144,6 +145,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.lightGrey,
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.only(left: 16),
@@ -151,7 +153,7 @@ class HomeScreen extends StatelessWidget {
         ),
         title: const Text(
           'مقاطعة',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
         ),
         centerTitle: true,
         actions: [
@@ -170,15 +172,15 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        child: Column(
+        child: ListView(
           children: [
             CustomSearchTextField(oonChanged: (value) {}),
-            const CustomCategoriesScrollView()
+            const CustomCategoriesScrollView(),
+            const CustomProductsGridView(),
           ],
         ),
       ),
     );
   }
 }
-
 
