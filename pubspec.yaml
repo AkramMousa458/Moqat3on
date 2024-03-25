@@ -33,6 +33,7 @@ dependencies:
   change_app_package_name: ^1.1.0
   cloud_firestore: 4.15.8
   cupertino_icons: ^1.0.2
+  device_preview: ^1.1.0
   firebase_auth: ^4.17.8
   firebase_core: ^2.27.0
   flutter:
@@ -89,6 +90,9 @@ flutter:
     - family: ReadexPro
       fonts:
         - asset: fonts/ReadexPro-Regular.ttf
-          # weight: 700
+    - family: Cairo
+      fonts:
+        - asset: fonts/cairo/Cairo-Regular.ttf
+        - asset: fonts/cairo/Cairo-Bold.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
