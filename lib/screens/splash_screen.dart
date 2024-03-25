@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/screens/home_screen.dart';
@@ -12,10 +13,26 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2),
-        () => customReplacementNavigate(context, '/login'));
-
+  checkUserLoginStatus(context);
     super.initState();
+  }
+
+
+  void checkUserLoginStatus(context) async {
+ final FirebaseAuth auth = FirebaseAuth.instance;
+
+    Future.delayed(const Duration(seconds: 2), () {
+      // التحقق من حالة المستخدم
+       User? user = auth.currentUser;
+        if (user != null) {
+          // المستخدم مسجل الدخول، انتقل إلى الصفحة الرئيسية
+          customReplacementNavigate(context, '/home');
+        } else {
+          // المستخدم غير مسجل الدخول، انتقل إلى صفحة تسجيل الدخول
+          customReplacementNavigate(context, '/login');
+        }
+      });
+    
   }
 
   @override

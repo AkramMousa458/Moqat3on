@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/constants.dart';
@@ -15,7 +16,6 @@ import 'package:scanner/widgets/show_barcode_scanner.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.sizeOf(context).width;
@@ -25,6 +25,14 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+              customNavigate(context, "/login");
+            },
+            icon: Icon(
+              Icons.logout,
+            )),
         title: const CustomText(
           text: 'Moqata3a|مقاطعة',
           size: 20,
@@ -35,7 +43,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
       ),
       floatingActionButton: CustomFloatingButton(
-        onPressed: () => customNavigate(context,"/info"),
+        onPressed: () => customNavigate(context, "/info"),
         tipText: 'بعض التعليمات',
         iconData: Icons.contact_support_outlined,
       ),
@@ -121,8 +129,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     CustomButton(
-                      onTap: () => 
-                        customNavigate(context,"/category"),
+                      onTap: () => customNavigate(context, "/category"),
                       text: 'قوائم المقاطعة',
                     ),
                     SizedBox(width: screenWidth),
