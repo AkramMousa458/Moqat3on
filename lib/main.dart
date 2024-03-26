@@ -4,16 +4,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/constants.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/firebase_options.dart';
+import 'package:scanner/helper/firebase_notification.dart';
+import 'package:scanner/helper/local_notification.dart';
 import 'package:scanner/helper/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:scanner/screens/products_profiles/product_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  await FirebaseNotification.initNotificaitons();
+  await LocalNotification.initNotification();
   runApp(const Scanner());
   // runApp(DevicePreview(builder: (context) => const Scanner()));
 }
@@ -46,9 +48,8 @@ class Scanner extends StatelessWidget {
         //  routerConfig: router,_SplashScreenState
         //  routerConfig: router,
 
-      //  home: const CompanyProfiles(),
+        //  home: const CompanyProfiles(),
         routerConfig: router,
-
       ),
     );
   }

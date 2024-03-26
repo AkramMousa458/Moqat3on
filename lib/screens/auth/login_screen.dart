@@ -22,6 +22,8 @@ class LoginScreen extends StatelessWidget {
           Container(
             height: MediaQuery.of(context).size.height,
             color: Colors.black.withOpacity(0.7),
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height / 12),
             child: SingleChildScrollView(
               child: Column(
                 children: [

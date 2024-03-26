@@ -122,7 +122,7 @@ class AllProducts extends StatelessWidget {
         childAspectRatio: 0.7,
       ),
       itemBuilder: (context, index) {
-        return CustomItemProducts();
+        return const CustomItemProducts();
       },
     );
   }
