@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
       User? user = auth.currentUser;
       if (user != null) {
         // المستخدم مسجل الدخول، انتقل إلى الصفحة الرئيسية
-        customReplacementNavigate(context, '/home');
+        customReplacementNavigate(context, '/navigator');
       } else {
         // المستخدم غير مسجل الدخول، انتقل إلى صفحة تسجيل الدخول
         customReplacementNavigate(context, '/login');
