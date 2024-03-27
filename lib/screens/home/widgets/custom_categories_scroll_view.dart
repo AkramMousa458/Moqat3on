@@ -11,6 +11,7 @@ class CustomCategoriesScrollView extends StatelessWidget {
     return SizedBox(
       height: 80,
       child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemCount: 15,
         itemBuilder: (context, index) {

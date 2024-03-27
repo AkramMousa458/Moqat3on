@@ -5,8 +5,10 @@ import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/screens/auth/login_screen.dart';
 import 'package:scanner/screens/category_screen.dart';
 import 'package:scanner/screens/home/home_screen.dart';
+import 'package:scanner/screens/home/navigator_widget.dart';
 import 'package:scanner/screens/info_screen.dart';
 import 'package:scanner/screens/products_profiles/product_screen.dart';
+import 'package:scanner/screens/profile/profile_screen.dart';
 import 'package:scanner/screens/splash_screen.dart';
 
 import '../screens/auth/create_account.dart';
@@ -46,6 +48,14 @@ final GoRouter router = GoRouter(
         create: (context) => ScanCubit(),
         child: const HomeScreen(),
       ),
+    ),
+    GoRoute(
+      path: "/profile",
+      builder: (context, state) => const ProfileScreen(),
+    ),
+    GoRoute(
+      path: "/navigator",
+      builder: (context, state) => const NavigatorWidget(),
     ),
     GoRoute(
       path: "/category",
