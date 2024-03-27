@@ -15,19 +15,19 @@ class GetProductsCubit extends Cubit<GetProductsState> {
     emit(GetProductsLoading());
     try {
       QuerySnapshot querySnapshot =
-          await firestore.collection("Products").get();
+          await firestore.collection("products").get();
       allProductsList.clear();
       allProductsList = querySnapshot.docs
           .map((doc) => ProductModel.fromSnapshot(doc))
           .toList();
-      for (var element in allProductsList) {
-        print('----------------------------------------');
-        print('Name : ${element.name}');
-        print('Contry : ${element.country}');
-        print('boycottReason : ${element.boycottReason}');
-        print('boycott : ${element.boycott}');
-        print('----------------------------------------');
-      }
+      // for (var element in allProductsList) {
+      //   print('----------------------------------------');
+      //   print('Name : ${element.name}');
+      //   print('Contry : ${element.country}');
+      //   print('boycottReason : ${element.boycottReason}');
+      //   print('boycott : ${element.boycott}');
+      //   print('----------------------------------------');
+      // }
       
       
       emit(GetProductsSuccess(allProducts: allProductsList));

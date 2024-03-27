@@ -26,7 +26,7 @@ class ProductModel {
       boycott: data['boycott'] ?? '',
       boycottReason: data['boycottReason'] ?? '',
       country: data['country'] ?? '',
-      image: data['image'] ?? '',
+      image: data['image'] ?? 'https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg',
       ratign: data['ratign'] ??  0.0,
     );
   }

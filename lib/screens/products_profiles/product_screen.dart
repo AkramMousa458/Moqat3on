@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
+import 'package:scanner/models/product_model.dart';
 import 'package:scanner/screens/products_profiles/widgets/custom_products_alternative.dart';
 import 'package:scanner/screens/products_profiles/widgets/custom_rating_bar.dart';
 import 'package:scanner/widgets/custom_appbar_app.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({Key? key}) : super(key: key);
-
+  const ProductScreen({Key? key, required this.productModel}) : super(key: key);
+  final ProductModel productModel;
   @override
   State<ProductScreen> createState() => _ProductScreenState();
 }
@@ -35,25 +36,27 @@ class _ProductScreenState extends State<ProductScreen> {
                 width: 200,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  image: const DecorationImage(
-                    image: AssetImage("assets/products/مطاعم/كنتاكي.jpg"),
+                  image: DecorationImage(
+                    image: NetworkImage(widget.productModel!.image),
                   ),
                 ),
               ),
               sizeHeight(10),
               Column(
                 children: [
-                  Text("كنتاكي",
-                      style: TextStyle(
-                          fontSize: 25,
-                          color: AppColors.black,
-                          fontWeight: FontWeight.bold)),
+                  Text(
+                    widget.productModel!.name,
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: AppColors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
                   sizeHeight(10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        " نعم ",
+                        widget.productModel!.boycott,
                         style:
                             TextStyle(color: AppColors.redBlck, fontSize: 20),
                       ),
@@ -71,7 +74,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "  امريكه  ",
+                        widget.productModel!.country,
                         style:
                             TextStyle(color: AppColors.redBlck, fontSize: 16),
                       ),
@@ -97,7 +100,7 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               sizeHeight(8),
               Text(
-                text,
+                widget.productModel!.boycottReason,
                 style:
                     CustomTextStyle.stylesFont500Size14.copyWith(height: 1.8),
                 textDirection: TextDirection.rtl,
