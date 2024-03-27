@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scanner/cubits/add_product_cubit/add_product_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
@@ -13,6 +15,7 @@ class CustomProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        BlocProvider.of<AddProductCubit>(context).addProduct(productModel);
         customNavigate(context, '/productScreen');
       },
       child: Column(

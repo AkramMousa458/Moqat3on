@@ -15,13 +15,14 @@ class AddProductCubit extends Cubit<AddProductState> {
     try {
       // Add the appointment to the "appointments" collection
       await firestore.collection('products').add({
-        'boycott': product.boycott,
-        'boycottReason': product.boycottReason,
-        'country': product.country,
-        'name': product.name,
-        'category': product.category,
-        'image': product.image,
-        'rating': product.ratign,
+        'boycott': "نعم",
+        'boycottReason': "بيريل هو دعم للجيش الاسرئيلي",
+        'country': "مصر",
+        'name': "بيريل",
+        'category': "drink",
+        'image':
+            "https://clockit.io/wp-content/uploads/2023/08/mcdonalds-shift-hours-1000x1000.jpg",
+        'rating': 0.0
       });
       emit(AddProductSuccsess());
     } catch (e) {
