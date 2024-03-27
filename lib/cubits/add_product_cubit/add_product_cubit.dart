@@ -10,13 +10,18 @@ class AddProductCubit extends Cubit<AddProductState> {
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<void> addProdt(ProductModel product) async {
+  Future<void> addProduct(ProductModel product) async {
     emit(AddProductLoading());
     try {
       // Add the appointment to the "appointments" collection
       await firestore.collection('products').add({
+        'boycott': product.boycott,
+        'boycottReason': product.boycottReason,
+        'country': product.country,
         'name': product.name,
+        'category': product.category,
         'image': product.image,
+        'rating': product.ratign,
       });
       emit(AddProductSuccsess());
     } catch (e) {

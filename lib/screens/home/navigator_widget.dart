@@ -134,8 +134,12 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:scanner/cubits/add_product_cubit/add_product_cubit.dart';
+import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/helper/colors.dart';
+import 'package:scanner/models/product_model.dart';
 import 'package:scanner/screens/home/home_screen.dart';
 import 'package:scanner/screens/profile/profile_screen.dart';
 
@@ -164,6 +168,7 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
     ),
     const ProfileScreen()
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -182,7 +187,19 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
           Padding(
             padding: const EdgeInsets.only(right: 16),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                // BlocProvider.of<AddProductCubit>(context).addProduct(
+                //   ProductModel(
+                //     name: name,
+                //     category: category,
+                //     boycott: boycott,
+                //     boycottReason: boycottReason,
+                //     country: country,
+                //     image: image,
+                //     ratign: ratign,
+                //   ),
+                // );
+              },
               icon: Icon(
                 Icons.menu_open_rounded,
                 size: 30,

@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
+import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/screens/auth/login_screen.dart';
 import 'package:scanner/screens/category_screen.dart';
@@ -44,10 +45,7 @@ final GoRouter router = GoRouter(
 
     GoRoute(
       path: "/home",
-      builder: (context, state) => BlocProvider(
-        create: (context) => ScanCubit(),
-        child: const HomeScreen(),
-      ),
+      builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
       path: "/profile",
@@ -57,10 +55,10 @@ final GoRouter router = GoRouter(
       path: "/navigator",
       builder: (context, state) => const NavigatorWidget(),
     ),
-    GoRoute(
-      path: "/category",
-      builder: (context, state) => CategoryScreen(),
-    ),
+    // GoRoute(
+    //   path: "/category",
+    //   builder: (context, state) => CategoryScreen(),
+    // ),
     GoRoute(
       path: "/productScreen",
       builder: (context, state) => const ProductScreen(),

@@ -14,7 +14,8 @@ class SearchCubit extends Cubit<SearchState> {
     emit(SearchLoading());// Sort users based on relevance to search query
     
     try {
-      chipsBannedProductList.sort((a, b) {
+      // chipsBannedProductList.sort((a, b) {
+      filteredList.sort((a, b) {
         // Calculate relevance of each user to the search query
         int relevanceA = _calculateRelevance(a, searchQuery);
         int relevanceB = _calculateRelevance(b, searchQuery);

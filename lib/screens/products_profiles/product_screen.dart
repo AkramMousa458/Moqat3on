@@ -58,7 +58,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             TextStyle(color: AppColors.redBlck, fontSize: 20),
                       ),
                       const Text(
-                        " : مقطاعه ",
+                        " : مقطاعة ",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -111,7 +111,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 endIndent: 30,
               ),
               Text(
-                "منتجات صناعه محليه بديل افضل",
+                "منتجات صناعة محلية بديل أفضل",
                 style: CustomTextStyle.stylesFont300Size16.copyWith(
                   color: Colors.green.shade600,
                   fontWeight: FontWeight.bold,

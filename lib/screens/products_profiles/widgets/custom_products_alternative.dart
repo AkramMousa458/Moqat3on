@@ -19,7 +19,8 @@ class ProductsAlternative extends StatelessWidget {
         childAspectRatio: 0.6,
       ),
       itemBuilder: (context, index) {
-        return const CustomProductItem();
+        return const Text('test');
+        // return const CustomProductItem();
       },
     );
   }

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
+import 'package:scanner/models/product_model.dart';
 
 class CustomProductItem extends StatelessWidget {
-  const CustomProductItem({super.key});
+  const CustomProductItem({super.key, required this.productModel});
+
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class CustomProductItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                   child:
                       // Image.network(
-                      //   'https://artwork.anghcdn.co/webp/?id=17272407&size=296',
+                      //   productModel.image ?? 'https://cdn1.img.sputnikarabic.ae/img/103348/26/1033482628_0:125:3071:1861_1920x0_80_0_0_78d5288220f5aee2dd0ccd6248eedf1e.jpg.webp',
                       //   width: 135,
                       //   height: 100,
                       //   fit: BoxFit.cover,
@@ -54,7 +57,7 @@ class CustomProductItem extends StatelessWidget {
                     ),
                     const Spacer(),
                     Text(
-                      'كنتاكي',
+                      productModel.name,
                       style: CustomTextStyle.stylesFont500Size16.copyWith(
                         color: AppColors.black,
                         fontWeight: FontWeight.bold,

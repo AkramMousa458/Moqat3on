@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/constants.dart';
+import 'package:scanner/cubits/add_product_cubit/add_product_cubit.dart';
+import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/firebase_options.dart';
 import 'package:scanner/helper/firebase_notification.dart';
@@ -16,6 +18,7 @@ void main() async {
   );
   await FirebaseNotification.initNotificaitons();
   await LocalNotification.initNotification();
+
   runApp(const Scanner());
   // runApp(DevicePreview(builder: (context) => const Scanner()));
 }
@@ -25,8 +28,18 @@ class Scanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ScanCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ScanCubit(),
+        ),
+        BlocProvider(
+          create: (context) => GetProductsCubit()..getAllProducts(),
+        ),
+        BlocProvider(
+          create: (context) => AddProductCubit(),
+        ),
+      ],
       child: MaterialApp.router(
         theme: ThemeData(
           // useMaterial3: false,

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
+import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/screens/home/widgets/custom_product_item.dart';
+import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class CustomProductsGridView extends StatelessWidget {
   const CustomProductsGridView({
@@ -8,18 +12,32 @@ class CustomProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 16.0,
-        crossAxisSpacing: 16.0,
-        childAspectRatio: 0.9,
-      ),
-      itemCount: 20,
-      itemBuilder: (BuildContext context, int index) {
-        return const CustomProductItem();
+    return BlocBuilder<GetProductsCubit, GetProductsState>(
+      builder: (context, state) {
+        if (state is GetProductsFailure) {
+          showCustomSnackBar(
+              context: context, text: state.errMessage, status: false);
+          return const SizedBox(width: 10);
+        } else if (state is GetProductsSuccess) {
+          return GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 16.0,
+              crossAxisSpacing: 16.0,
+              childAspectRatio: 0.9,
+            ),
+            itemCount: state.allProducts.length,
+            itemBuilder: (BuildContext context, int index) {
+              return CustomProductItem(
+                productModel: state.allProducts[index],
+              );
+            },
+          );
+        } else {
+          return const Center(child: CustomLoadingWidget());
+        }
       },
     );
   }
