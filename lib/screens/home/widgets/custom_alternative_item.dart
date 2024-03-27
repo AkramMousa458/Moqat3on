@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scanner/cubits/add_product_cubit/add_product_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/product_model.dart';
 
-class CustomProductItem extends StatelessWidget {
-  const CustomProductItem({super.key, required this.productModel});
+class CustomAlternativeItem extends StatelessWidget {
+  const CustomAlternativeItem({super.key, required this.productModel});
 
   final ProductModel productModel;
 
@@ -15,10 +13,7 @@ class CustomProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        BlocProvider.of<AddProductCubit>(context).addProduct(productModel);
-        customNavigate(context, '/productScreen');
-        // Navigator.pushNamed(context, ProductScreen.routeName,
-        //     arguments: productModel);
+        customReplacementNavigate(context, '/productScreen');
       },
       child: Column(
         children: [
@@ -43,29 +38,27 @@ class CustomProductItem extends StatelessWidget {
                     height: 100,
                     fit: BoxFit.cover,
                   ),
-                  //     Image.asset(
-                  //   "assets/products/مطاعم/كنتاكي.jpg",
-                  //   width: 135,
-                  //   height: 110,
-                  //   fit: BoxFit.cover,
-                  // ),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Icon(
                       Icons.star_outline,
                       color: Colors.black,
                     ),
-                    const Spacer(),
+                    // const Spacer(),
                     Expanded(
+                      flex: 2,
                       child: Text(
                         productModel.name,
+                        textAlign: TextAlign.right,
                         overflow: TextOverflow.ellipsis,
                         style: CustomTextStyle.stylesFont500Size16.copyWith(
                           color: AppColors.black,
+                          fontSize: 11,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

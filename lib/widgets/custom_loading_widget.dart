@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:scanner/helper/colors.dart';
 
 class CustomLoadingWidget extends StatelessWidget {
   const CustomLoadingWidget({
@@ -12,8 +13,8 @@ class CustomLoadingWidget extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: CircularProgressIndicator(
           strokeWidth:
-              4.0, // Adjust the thickness of the circle
-          color: Colors.redAccent, // Change the color
+              2.0, // Adjust the thickness of the circle
+          color: AppColors.redBlck, // Change the color
           backgroundColor:
               Colors.grey[200], // Set the background color
         ),
