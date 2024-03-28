@@ -18,7 +18,7 @@ class CustomLoginForm extends StatelessWidget {
       listener: (context, state) {
         if (state is SignInSccessState) {
           FirebaseAuth.instance.currentUser!.emailVerified
-              ? customReplacementNavigate(context, '/home')
+              ? customReplacementNavigate(context, '/navigator')
               : showSnackBar(context, 'Succes please verify your email');
         } else if (state is SignInFailureState) {
           showSnackBar(context, state.error.toString());

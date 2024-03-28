@@ -9,7 +9,7 @@ import 'package:scanner/screens/home/widgets/custom_products_grid_view.dart';
 import 'package:scanner/screens/home/widgets/custom_search_text_field.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

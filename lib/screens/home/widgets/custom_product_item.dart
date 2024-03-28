@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scanner/cubits/add_product_cubit/add_product_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
@@ -48,14 +49,21 @@ class CustomProductItem extends StatelessWidget {
               ),
               Row(
                 children: [
-                  const Icon(
-                    Icons.star_outline,
-                    color: Colors.black,
-                  ),
-                  const Spacer(),
+                  productModel.boycott == 'نعم'
+                      ? Icon(
+                          FontAwesomeIcons.ban,
+                          color: AppColors.redBlck,
+                        )
+                      : Icon(
+                          FontAwesomeIcons.check,
+                          color: AppColors.primaryColor,
+                        ),
+                  // const Spacer(),
                   Expanded(
+                    flex: 1,
                     child: Text(
                       productModel.name,
+                      textAlign: TextAlign.right,
                       overflow: TextOverflow.ellipsis,
                       style: CustomTextStyle.stylesFont500Size16.copyWith(
                         color: AppColors.black,

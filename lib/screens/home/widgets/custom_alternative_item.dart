@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
@@ -45,13 +46,17 @@ class CustomAlternativeItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(
-                      Icons.star_outline,
-                      color: Colors.black,
-                    ),
+                    productModel.boycott == 'نعم'
+                        ? Icon(
+                            FontAwesomeIcons.ban,
+                            color: AppColors.redBlck,
+                          )
+                        : Icon(
+                            FontAwesomeIcons.check,
+                            color: AppColors.primaryColor,
+                          ),
                     // const Spacer(),
                     Expanded(
-                      flex: 2,
                       child: Text(
                         productModel.name,
                         textAlign: TextAlign.right,
