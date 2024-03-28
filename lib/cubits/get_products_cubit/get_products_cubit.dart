@@ -20,19 +20,25 @@ class GetProductsCubit extends Cubit<GetProductsState> {
       allProductsList = querySnapshot.docs
           .map((doc) => ProductModel.fromSnapshot(doc))
           .toList();
-      // for (var element in allProductsList) {
-      //   print('----------------------------------------');
-      //   print('Name : ${element.name}');
-      //   print('Contry : ${element.country}');
-      //   print('boycottReason : ${element.boycottReason}');
-      //   print('boycott : ${element.boycott}');
-      //   print('----------------------------------------');
-      // }
-      
-      
       emit(GetProductsSuccess(allProducts: allProductsList));
     } catch (e) {
-      emit(GetProductsFailure(errMessage: "Failed to fetch doctors: $e"));
+      emit(GetProductsFailure(errMessage: "Failed to fetch products: $e"));
+    }
+  }
+
+  Future<void> getProductsByCategory(String category) async {
+    emit(GetProductsLoading());
+    try {
+      QuerySnapshot querySnapshot = await firestore
+          .collection("products")
+          .where("category", isEqualTo: category)
+          .get();
+      List<ProductModel> filteredProductsList = querySnapshot.docs
+          .map((doc) => ProductModel.fromSnapshot(doc))
+          .toList();
+      emit(GetProductsSuccess(allProducts: filteredProductsList));
+    } catch (e) {
+      emit(GetProductsFailure(errMessage: "Failed to fetch products: $e"));
     }
   }
 }

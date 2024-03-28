@@ -7,8 +7,13 @@ import 'package:scanner/screens/products_profiles/widgets/custom_rating_bar.dart
 import 'package:scanner/widgets/custom_appbar_app.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({Key? key, required this.productModel}) : super(key: key);
+  const ProductScreen({
+    Key? key,
+    required this.productModel,
+  }) : super(key: key);
+
   final ProductModel productModel;
+
   @override
   State<ProductScreen> createState() => _ProductScreenState();
 }
@@ -37,7 +42,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   image: DecorationImage(
-                    image: NetworkImage(widget.productModel!.image),
+                    image: NetworkImage(widget.productModel.image),
                   ),
                 ),
               ),
@@ -45,7 +50,7 @@ class _ProductScreenState extends State<ProductScreen> {
               Column(
                 children: [
                   Text(
-                    widget.productModel!.name,
+                    widget.productModel.name,
                     style: TextStyle(
                         fontSize: 25,
                         color: AppColors.black,
@@ -56,7 +61,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        widget.productModel!.boycott,
+                        widget.productModel.boycott,
                         style:
                             TextStyle(color: AppColors.redBlck, fontSize: 20),
                       ),
@@ -74,7 +79,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        widget.productModel!.country,
+                        widget.productModel.country,
                         style:
                             TextStyle(color: AppColors.redBlck, fontSize: 16),
                       ),
@@ -94,13 +99,18 @@ class _ProductScreenState extends State<ProductScreen> {
                 ],
               ),
               sizeHeight(20),
-              Text(
-                " : سبب المقاطعة ",
-                style: CustomTextStyle.stylesFont400Size22,
-              ),
+              widget.productModel.boycott == "نعم"
+                  ? Text(
+                      " : سبب المقاطعة ",
+                      style: CustomTextStyle.stylesFont400Size22,
+                    )
+                  : Text(
+                      " : افضل بديل",
+                      style: CustomTextStyle.stylesFont400Size22,
+                    ),
               sizeHeight(8),
               Text(
-                widget.productModel!.boycottReason,
+                widget.productModel.boycottReason,
                 style:
                     CustomTextStyle.stylesFont500Size14.copyWith(height: 1.8),
                 textDirection: TextDirection.rtl,

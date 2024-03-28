@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:scanner/cubits/add_product_cubit/add_product_cubit.dart';
 import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
+import 'package:scanner/helper/navigation.dart';
+import 'package:scanner/helper/routes.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/screens/home/widgets/custom_product_item.dart';
+import 'package:scanner/screens/products_profiles/product_screen.dart';
+import 'package:scanner/screens/products_screen.dart';
 import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class CustomProductsGridView extends StatelessWidget {
@@ -30,8 +36,18 @@ class CustomProductsGridView extends StatelessWidget {
             ),
             itemCount: state.allProducts.length,
             itemBuilder: (BuildContext context, int index) {
-              return CustomProductItem(
-                productModel: state.allProducts[index],
+              return GestureDetector(
+                onTap: () {
+                  BlocProvider.of<AddProductCubit>(context)
+                      .addProduct(state.allProducts[index]);
+                  GoRouter.of(context).push(
+                    AppString.kproductScreen,
+                    extra: state.allProducts[index],
+                  );
+                },
+                child: CustomProductItem(
+                  productModel: state.allProducts[index],
+                ),
               );
             },
           );

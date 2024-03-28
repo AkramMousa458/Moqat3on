@@ -13,70 +13,62 @@ class CustomProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        BlocProvider.of<AddProductCubit>(context).addProduct(productModel);
-        customNavigate(context, '/productScreen');
-        // Navigator.pushNamed(context, ProductScreen.routeName,
-        //     arguments: productModel);
-      },
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.only(
-              top: 12,
-              left: 10,
-              right: 10,
-              bottom: 12,
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: Image.network(
-                    productModel.image,
-                    width: 135,
-                    height: 100,
-                    fit: BoxFit.cover,
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.only(
+            top: 12,
+            left: 10,
+            right: 10,
+            bottom: 12,
+          ),
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.network(
+                  productModel.image,
+                  width: 135,
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
+                //     Image.asset(
+                //   "assets/products/مطاعم/كنتاكي.jpg",
+                //   width: 135,
+                //   height: 110,
+                //   fit: BoxFit.cover,
+                // ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.star_outline,
+                    color: Colors.black,
                   ),
-                  //     Image.asset(
-                  //   "assets/products/مطاعم/كنتاكي.jpg",
-                  //   width: 135,
-                  //   height: 110,
-                  //   fit: BoxFit.cover,
-                  // ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.star_outline,
-                      color: Colors.black,
-                    ),
-                    const Spacer(),
-                    Expanded(
-                      child: Text(
-                        productModel.name,
-                        overflow: TextOverflow.ellipsis,
-                        style: CustomTextStyle.stylesFont500Size16.copyWith(
-                          color: AppColors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  const Spacer(),
+                  Expanded(
+                    child: Text(
+                      productModel.name,
+                      overflow: TextOverflow.ellipsis,
+                      style: CustomTextStyle.stylesFont500Size16.copyWith(
+                        color: AppColors.black,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -15,13 +15,13 @@ class AddProductCubit extends Cubit<AddProductState> {
     try {
       // Add the appointment to the "appointments" collection
       await firestore.collection('products').add({
-        'boycott': "نعم",
-        'boycottReason': "بيريل هو دعم للجيش الاسرئيلي",
+        'boycott': "لا",
+        'boycottReason': "جهينه هي افضل المنتجات البديله",
         'country': "مصر",
-        'name': "بيريل",
-        'category': "drink",
+        'name': "جهينه",
+        'category': "جبن وألبان",
         'image':
-            "https://clockit.io/wp-content/uploads/2023/08/mcdonalds-shift-hours-1000x1000.jpg",
+            "https://gulf365.net/content/uploads/2024/03/27/f2fdad7f9a.jpg",
         'rating': 0.0
       });
       emit(AddProductSuccsess());

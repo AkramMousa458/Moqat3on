@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
+import 'package:scanner/models/product_model.dart';
 import 'package:scanner/screens/home/widgets/custom_categories_scroll_item.dart';
 
 class CustomCategoriesScrollView extends StatefulWidget {
@@ -16,16 +19,20 @@ class _CustomCategoriesScrollViewState
   List<String> itemText = [
     "الكل",
     "مطعاعم وكافيهات",
-    "جبن وألبان",
     "مشروبات",
-    " ملابس",
+    "جبن وألبان",
+    "ملابس",
     "منظفات",
   ];
 
   int selectedIndex = 0;
+  ProductModel? productModel;
 
   @override
   Widget build(BuildContext context) {
+    final getProductsCubit = BlocProvider.of<GetProductsCubit>(
+        context); // Access the GetProductsCubit instance
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: SizedBox(
@@ -43,7 +50,11 @@ class _CustomCategoriesScrollViewState
                 setState(() {
                   selectedIndex = index;
                 });
-                print(itemText[index]);
+                if (index == 0) {
+                  getProductsCubit.getAllProducts();
+                } else {
+                  getProductsCubit.getProductsByCategory(itemText[index]);
+                }
               },
               child: CustomCategoriesScrollItem(
                 text: itemText[index],

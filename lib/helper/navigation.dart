@@ -4,7 +4,10 @@ void customReplacementNavigate(context, String name) {
   GoRouter.of(context).pushReplacement(name);
 }
 
-void customNavigate(context, String name) {
+void customNavigate(
+  context,
+  String name,
+) {
   GoRouter.of(context).push(name);
 }
 

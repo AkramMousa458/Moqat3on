@@ -61,18 +61,9 @@ final GoRouter router = GoRouter(
     //   builder: (context, state) => CategoryScreen(),
     // ),
     GoRoute(
-      path: "/productScreen",
+      path: AppString.kproductScreen,
       builder: (context, state) => ProductScreen(
-        productModel: ProductModel(
-          name: 'هارت اتاك',
-          category: 'restaurant',
-          boycott: 'لا',
-          boycottReason: 'هارت أتاك هو افضل المطاعم البديله',
-          country: 'مصر',
-          image:
-              'https://scontent.fcai20-3.fna.fbcdn.net/v/t39.30808-6/392932485_644622561119795_4867512621439910492_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=l-c7D-mvhMIAX8OWATz&_nc_ht=scontent.fcai20-3.fna&oh=00_AfBC7cZ062T6-RN30rrtUkTGMQCMDXSdtvl_6SvsKtkyaQ&oe=660898E4',
-          ratign: 4.3,
-        ),
+        productModel: state.extra as ProductModel,
       ),
     ),
     GoRoute(
@@ -81,3 +72,7 @@ final GoRouter router = GoRouter(
     ),
   ],
 );
+
+class AppString {
+  static const kproductScreen = "/product";
+}

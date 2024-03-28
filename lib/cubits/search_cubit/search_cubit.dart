@@ -10,21 +10,25 @@ class SearchCubit extends Cubit<SearchState> {
 
   List<ProductModel> filteredList = [];
 
-  void searchUsers(String searchQuery) {
-    emit(SearchLoading());// Sort users based on relevance to search query
-    
+  void searchUsers(String searchQuery, List<ProductModel> productList) {
+    emit(SearchLoading());
+
     try {
-      // chipsBannedProductList.sort((a, b) {
+      // Filter products based on search query
+      for (var product in productList) {
+        if (_calculateRelevance(product, searchQuery) > 0) {
+          filteredList.add(product);
+        }
+      }
+
+      // Sort filteredList based on relevance
       filteredList.sort((a, b) {
-        // Calculate relevance of each user to the search query
         int relevanceA = _calculateRelevance(a, searchQuery);
         int relevanceB = _calculateRelevance(b, searchQuery);
-
-        emit(SearchSuccess());
-        // Sort based on relevance
         return relevanceB.compareTo(relevanceA);
-
       });
+
+      emit(SearchSuccess());
     } catch (e) {
       emit(SearchFailure(
           errMessage: 'Error in search product: ${e.toString()}'));
@@ -32,13 +36,13 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   int _calculateRelevance(ProductModel product, String searchQuery) {
-    String fullName = '${product.name} ${product.name}';
+    String productName = product.name.toLowerCase();
     String searchQueryLowerCase = searchQuery.toLowerCase();
 
-    if (fullName.toLowerCase().contains(searchQueryLowerCase)) {
-      return 1;
+    if (productName.contains(searchQueryLowerCase)) {
+      return 1; // Return 1 if the search query is found in the product name
     } else {
-      return 0;
+      return 0; // Return 0 if the search query is not found in the product name
     }
   }
 }

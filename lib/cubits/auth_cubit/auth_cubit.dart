@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +29,8 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signUpWithEmailAndPassword() async {
     try {
       emit(CreateAccountLoadingState());
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress!,
         password: password!,
       );
@@ -40,6 +42,7 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       emit(CreateAccountFailureState(error: e.toString()));
     }
+    // FirebaseFirestore.instance.collection('users').doc(userCredential.)
   }
 
   void _signUpException(FirebaseAuthException e) {
