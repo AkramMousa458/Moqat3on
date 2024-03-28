@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
+import 'package:scanner/screens/products_profiles/widgets/custom_products_alternative.dart';
+import 'package:scanner/screens/products_profiles/widgets/custom_rating_bar.dart';
+import 'package:scanner/widgets/custom_appbar_app.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({Key? key}) : super(key: key);
@@ -15,65 +18,76 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "كنتاكي",
-          style: TextStyle(color: Colors.black, fontSize: 25),
-        ),
-        centerTitle: true,
-      ),
+      backgroundColor: AppColors.offwhite,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 8, top: 16),
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 8,
+          ),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: 150,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      image: const DecorationImage(
-                        image: AssetImage("assets/products/مطاعم/كنتاكي.jpg"),
-                      ),
-                    ),
+              const CustomAppBAr(),
+              sizeHeight(20),
+              Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  image: const DecorationImage(
+                    image: AssetImage("assets/products/مطاعم/كنتاكي.jpg"),
                   ),
-                  Column(
+                ),
+              ),
+              sizeHeight(10),
+              Column(
+                children: [
+                  Text("كنتاكي",
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: AppColors.black,
+                          fontWeight: FontWeight.bold)),
+                  sizeHeight(10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Text(
-                        " بلد المنشاء : امريكه  ",
-                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      Text(
+                        " نعم ",
+                        style:
+                            TextStyle(color: AppColors.redBlck, fontSize: 20),
                       ),
-                      sizeHeight(12),
                       const Text(
-                        "مقطاعه : نعم",
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        " : مقطاعه ",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
                       ),
-                      sizeHeight(10),
-                      RatingBar(
-                          initialRating: rating,
-                          minRating: 1,
-                          maxRating: 5,
-                          onRatingUpdate: (newRating) =>
-                              setState(() => rating = newRating),
-                          itemCount: 5,
-                          itemSize: 25.0,
-                          glowColor: Colors.red,
-                          allowHalfRating: true,
-                          ratingWidget: RatingWidget(
-                            empty: const Icon(Icons.star_border,
-                                color: Colors.amber),
-                            full: const Icon(Icons.star, color: Colors.amber),
-                            half: const Icon(Icons.star_half,
-                                color: Colors.amber),
-                          )),
-                      sizeHeight(5),
-                      Text(' التقييمات :  $rating'),
                     ],
                   ),
+                  sizeHeight(12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "  امريكه  ",
+                        style:
+                            TextStyle(color: AppColors.redBlck, fontSize: 16),
+                      ),
+                      const Text(
+                        " : بلد المنشاء  ",
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  sizeHeight(10),
+                  CustomRatingBar(
+                    onRatingUpdate: (value) {
+                      rating = value;
+                    },
+                    rating: rating,
+                  )
                 ],
               ),
               sizeHeight(20),
@@ -90,12 +104,21 @@ class _ProductScreenState extends State<ProductScreen> {
                 textAlign: TextAlign.center,
               ),
               sizeHeight(12),
+              Divider(
+                color: AppColors.black.withOpacity(0.5),
+                thickness: 1,
+                indent: 30,
+                endIndent: 30,
+              ),
               Text(
-                ".............''البدائل ''.............",
-                style: CustomTextStyle.stylesFont400Size22,
+                "منتجات صناعه محليه بديل افضل",
+                style: CustomTextStyle.stylesFont300Size16.copyWith(
+                  color: Colors.green.shade600,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               sizeHeight(16),
-              const AllProducts(),
+              const ProductsAlternative(),
             ],
           ),
         ),
@@ -104,79 +127,55 @@ class _ProductScreenState extends State<ProductScreen> {
   }
 }
 
-class AllProducts extends StatelessWidget {
-  const AllProducts({
-    super.key,
-  });
+// class CustomItemProducts extends StatelessWidget {
+//   const CustomItemProducts({
+//     super.key,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: 5,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        childAspectRatio: 0.7,
-      ),
-      itemBuilder: (context, index) {
-        return const CustomItemProducts();
-      },
-    );
-  }
-}
-
-class CustomItemProducts extends StatelessWidget {
-  const CustomItemProducts({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 135,
-          decoration: BoxDecoration(
-            color: Colors.black12,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Image.asset(
-                  'assets/products/مطاعم/بازوكا.jpg',
-                  height: 100,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 5, right: 5, top: 3),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Icon(
-                      Icons.star_outline,
-                      color: Colors.black,
-                    ),
-                    Text(
-                      "كنتاكي",
-                      style: CustomTextStyle.stylesFont300Size16,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         Container(
+//           height: 135,
+//           decoration: BoxDecoration(
+//             color: Colors.black12,
+//             borderRadius: BorderRadius.circular(16),
+//           ),
+//           child: Column(
+//             children: [
+//               ClipRRect(
+//                 borderRadius: BorderRadius.circular(16),
+//                 child: Image.asset(
+//                   'assets/products/مطاعم/بازوكا.jpg',
+//                   height: 100,
+//                   width: double.infinity,
+//                   fit: BoxFit.cover,
+//                 ),
+//               ),
+//               Padding(
+//                 padding: const EdgeInsets.only(left: 5, right: 5, top: 3),
+//                 child: Row(
+//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                   children: [
+//                     const Icon(
+//                       Icons.star_outline,
+//                       color: Colors.black,
+//                     ),
+//                     Text(
+//                       "كنتاكي",
+//                       style: CustomTextStyle.stylesFont300Size16,
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 const String text =
     " تدعم KFC من خلال التبرعات الماليه بشكل مباشر الصندوق القومي اليهودي  وارسال وجبات غذاء لجيش الاسرئيلي  ";

@@ -1,24 +1,24 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:scanner/screens/home/widgets/custom_product_item.dart';
 
-class CustomProductsGridView extends StatelessWidget {
-  const CustomProductsGridView({
+class ProductsAlternative extends StatelessWidget {
+  const ProductsAlternative({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: 5,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 16.0,
-        crossAxisSpacing: 16.0,
-        childAspectRatio: 0.9,
+        crossAxisCount: 3,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 0.6,
       ),
-      itemCount: 20,
-      itemBuilder: (BuildContext context, int index) {
+      itemBuilder: (context, index) {
         return const CustomProductItem();
       },
     );
