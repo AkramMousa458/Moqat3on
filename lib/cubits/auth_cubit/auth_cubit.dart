@@ -34,15 +34,22 @@ class AuthCubit extends Cubit<AuthState> {
         email: emailAddress!,
         password: password!,
       );
-
       await verificationEmail();
       emit(CreateAccountSccessState());
+
+      // Move the code that accesses userCredential inside the try block
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user!.email)
+          .set({
+        'name': userName,
+        'email': emailAddress,
+      });
     } on FirebaseAuthException catch (e) {
       _signUpException(e);
     } catch (e) {
       emit(CreateAccountFailureState(error: e.toString()));
     }
-    // FirebaseFirestore.instance.collection('users').doc(userCredential.)
   }
 
   void _signUpException(FirebaseAuthException e) {

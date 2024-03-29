@@ -16,28 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    checkUserLoginStatus(context);
-    // Future.delayed(Duration.zero, () {
-    //   BlocProvider.of<GetProductsCubit>(context).getAllProducts();
-    // });
+    Future.delayed(const Duration(seconds: 2), () {
+      customReplacementNavigate(context, '/navigator');
+    });
 
     super.initState();
-  }
-
-  void checkUserLoginStatus(context) async {
-    final FirebaseAuth auth = FirebaseAuth.instance;
-
-    Future.delayed(const Duration(seconds: 2), () {
-      // التحقق من حالة المستخدم
-      User? user = auth.currentUser;
-      if (user != null) {
-        // المستخدم مسجل الدخول، انتقل إلى الصفحة الرئيسية
-        customReplacementNavigate(context, '/navigator');
-      } else {
-        // المستخدم غير مسجل الدخول، انتقل إلى صفحة تسجيل الدخول
-        customReplacementNavigate(context, '/login');
-      }
-    });
   }
 
   @override

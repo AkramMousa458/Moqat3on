@@ -140,6 +140,7 @@ import 'package:scanner/cubits/add_product_cubit/add_product_cubit.dart';
 import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/models/product_model.dart';
+import 'package:scanner/screens/about_screen.dart';
 import 'package:scanner/screens/home/home_screen.dart';
 import 'package:scanner/screens/profile/profile_screen.dart';
 
@@ -162,10 +163,7 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
       FontAwesomeIcons.barcode,
       size: 150,
     ),
-    const Icon(
-      FontAwesomeIcons.circleInfo,
-      size: 150,
-    ),
+    const AboutScreen(),
     const ProfileScreen()
   ];
 
