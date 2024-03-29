@@ -21,7 +21,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final currenUser = FirebaseAuth.instance.currentUser!;
+  final currenUser = FirebaseAuth.instance.currentUser;
 
   // all users
   final userCollection = FirebaseFirestore.instance.collection('users');
@@ -75,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     // updata in firestore
     if (newValue.trim().isNotEmpty) {
-      await userCollection.doc(currenUser.email).update({field: newValue});
+      await userCollection.doc(currenUser?.email).update({field: newValue});
     }
   }
 
@@ -94,11 +94,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
               icon: const Icon(Icons.arrow_back_ios_new)),
         ),
-        body: currenUser != null
+        body: currenUser?.email != null
             ? StreamBuilder<DocumentSnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection('users')
-                    .doc(currenUser.email)
+                    .doc(currenUser?.email)
                     .snapshots(),
                 builder: (context,
                     AsyncSnapshot<DocumentSnapshot<Object?>> snapshot) {
