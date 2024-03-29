@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
             child: ListView(
               physics: const BouncingScrollPhysics(),
               children: [
-                CustomSearchTextField(onChanged: (value) {
+                CustomSearchTextField(onChanged: (value) async {
                   print('Search query: $value');
                   print(
                       'All products list: ${addProductCubit.allProductsList}');

@@ -62,11 +62,14 @@ class _ScanScreenState extends State<ScanScreen> {
               BlocConsumer<ScanCubit, ScanState>(
                 listener: (context, state) {
                   if (state is ScanSuccsess) {
-                    BlocProvider.of<ScanCubit>(context).scanResult != inText
-                        ? showCustomSnackBar(
-                            context: context, text: inText, status: false)
-                        : showCustomSnackBar(
-                            context: context, text: outText, status: false);
+                    String result =
+                        BlocProvider.of<ScanCubit>(context).scanResult;
+                    showCustomSnackBar(
+                      context: context,
+                      text: result,
+                      status: result == inText ? true : false,
+                    );
+
                     Navigator.of(context).pop();
                   } else if (state is ScanFailed) {
                     Navigator.pop(context);
