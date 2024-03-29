@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:scanner/helper/colors.dart';
-import 'package:scanner/helper/navigation.dart';
+import 'package:scanner/helper/routes.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/product_model.dart';
 
@@ -14,7 +15,10 @@ class CustomAlternativeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        customReplacementNavigate(context, '/productScreen');
+        GoRouter.of(context).pushReplacement(
+          AppString.kproductScreen,
+          extra: productModel,
+        );
       },
       child: Column(
         children: [

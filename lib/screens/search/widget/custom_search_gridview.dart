@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
+import 'package:scanner/cubits/search_cubit/search_cubit.dart';
 import 'package:scanner/helper/routes.dart';
-import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/screens/home/widgets/custom_product_item.dart';
 import 'package:scanner/widgets/custom_loading_widget.dart';
 
-class CustomProductsGridView extends StatelessWidget {
-  const CustomProductsGridView({
+class CustomSearchGridView extends StatelessWidget {
+  const CustomSearchGridView({
     super.key,
   });
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetProductsCubit, GetProductsState>(
+    final SearchCubit searchCubit = BlocProvider.of<SearchCubit>(context);
+
+    return BlocBuilder<SearchCubit, SearchState>(
       builder: (context, state) {
-        if (state is GetProductsFailure) {
-          showCustomSnackBar(
-              context: context, text: state.errMessage, status: false);
-          return const SizedBox(width: 10);
-        } else if (state is GetProductsSuccess) {
+        if (state is SearchFailure) {
+          return const Center(
+            child: Text('المنتج غير متوفر'),
+          );
+        } else if (state is SearchSuccess) {
           return GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -30,23 +30,24 @@ class CustomProductsGridView extends StatelessWidget {
               crossAxisSpacing: 16.0,
               childAspectRatio: 0.9,
             ),
-            itemCount: state.allProducts.length,
+            itemCount: searchCubit.filteredList.length,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () {
-                  // BlocProvider.of<AddProductCubit>(context)
-                  //     .addProduct(state.allProducts[index]);
                   GoRouter.of(context).push(
                     AppString.kproductScreen,
-                    extra: state.allProducts[index],
+                    extra: searchCubit.filteredList[index],
                   );
                 },
                 child: CustomProductItem(
-                  productModel: state.allProducts[index],
+                  productModel: searchCubit.filteredList[index],
                 ),
               );
             },
           );
+        } else if (state is SearchInitial) {
+          
+          return const SizedBox();
         } else {
           return const Center(child: CustomLoadingWidget());
         }

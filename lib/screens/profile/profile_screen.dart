@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:scanner/helper/colors.dart';
+import 'package:scanner/helper/show_alert_box.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/screens/home/widgets/custom_categories_scroll_item.dart';
 import 'package:scanner/screens/profile/widgets/check_signup_profile.dart';
@@ -87,11 +88,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(
           title: const Text("الملف الشخصي"),
           centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                GoRouter.of(context).pop();
-              },
-              icon: const Icon(Icons.arrow_back_ios_new)),
         ),
         body: currenUser != null
             ? StreamBuilder<DocumentSnapshot>(
@@ -138,11 +134,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              setState(() {
-                                isColor = 1;
-                                FirebaseAuth.instance.signOut();
-                                GoRouter.of(context).go('/');
-                              });
+                              setState(
+                                () {
+                                  isColor = 1;
+                                  showAlertBox(
+                                    context: context,
+                                    bodyText: 'متأكد هل تريد تسجيل الخروج',
+                                    confirmText: 'نعم',
+                                    confirmAction: () {
+                                      FirebaseAuth.instance.signOut();
+                                      GoRouter.of(context).go('/');
+                                    },
+                                  );
+                                },
+                              );
                             },
                             child: CustomCategoriesScrollItem(
                               width: 120,

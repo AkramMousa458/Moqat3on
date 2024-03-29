@@ -12,5 +12,6 @@ final class ScanFailed extends ScanState {
   final String errMessage;
 }
 
-final class ScanSuccsess extends ScanState {}
-
+final class ScanSuccsessCamera extends ScanState {}
+final class ScanSuccsessGallery extends ScanState {}
+final class ScanSuccsessNumber extends ScanState {}
