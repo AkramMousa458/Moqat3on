@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:scanner/helper/colors.dart';
-import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/screens/home/widgets/custom_categories_scroll_item.dart';
 import 'package:scanner/screens/profile/widgets/check_signup_profile.dart';

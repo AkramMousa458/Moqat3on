@@ -59,7 +59,7 @@ class _CustomCategoriesScrollViewState
               child: CustomCategoriesScrollItem(
                 text: itemText[index],
                 isColor: index == selectedIndex,
-                width: 100,
+                // width: 100,
               ),
             );
           },

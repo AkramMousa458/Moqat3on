@@ -134,15 +134,12 @@
 // }
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:scanner/cubits/add_product_cubit/add_product_cubit.dart';
-import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/helper/colors.dart';
-import 'package:scanner/models/product_model.dart';
 import 'package:scanner/screens/about_screen.dart';
 import 'package:scanner/screens/home/home_screen.dart';
 import 'package:scanner/screens/profile/profile_screen.dart';
+import 'package:scanner/screens/scan/scan_screen.dart';
 
 class NavigatorWidget extends StatefulWidget {
   const NavigatorWidget({super.key});
@@ -159,10 +156,7 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
       FontAwesomeIcons.clockRotateLeft,
       size: 150,
     ),
-    const Icon(
-      FontAwesomeIcons.barcode,
-      size: 150,
-    ),
+    const ScanScreen(),
     const AboutScreen(),
     const ProfileScreen()
   ];
@@ -181,114 +175,70 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
         ),
         centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: IconButton(
-              onPressed: () {
-                // BlocProvider.of<AddProductCubit>(context).addProduct(
-                //   ProductModel(
-                //     name: name,
-                //     category: category,
-                //     boycott: boycott,
-                //     boycottReason: boycottReason,
-                //     country: country,
-                //     image: image,
-                //     ratign: ratign,
-                //   ),
-                // );
-              },
-              icon: Icon(
-                Icons.menu_open_rounded,
-                size: 30,
-                color: AppColors.redBlck,
-              ),
-            ),
-          ),
-        ],
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButton: BlocListener<ScanCubit, ScanState>(
-      //   listener: (context, state) {
-      //     if (state is ScanLoading) {
-      //     } else if (state is ScanSuccsess) {
-      //       BlocProvider.of<ScanCubit>(context).scanResult != inText
-      //           ? showCustomSnackBar(
-      //               context: context,
-      //               text: BlocProvider.of<ScanCubit>(context).scanResult,
-      //               status: false,
-      //             )
-      //           : showCustomSnackBar(
-      //               context: context,
-      //               text: BlocProvider.of<ScanCubit>(context).scanResult,
-      //               status: true,
-      //             );
-      //       Navigator.of(context).pop();
-      //     } else if (state is ScanFailed) {
-      //       showCustomSnackBar(
-      //         context: context,
-      //         text: state.errMessage,
-      //         status: false,
-      //       );
-      //       Navigator.pop(context);
-      //     } else if (state is ScanInitial) {}
-      //   },
-      //   child: FloatingActionButton(
-      //     onPressed: () {
-      //       barcodeScanner(context);
-      //     },
-      //     elevation: 1,
-      //     backgroundColor: AppColors.redBlck,
-      //     child: const Icon(
-      //       Icons.camera_alt_rounded,
-      //       color: Colors.white,
-      //       size: 28,
-      //     ),
-      //   ),
-      // ),
       bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         showUnselectedLabels: false,
-        iconSize: 25,
+        iconSize: 23,
+        elevation: 1,
         selectedItemColor: AppColors.redBlck,
         unselectedItemColor: AppColors.deepGrey,
-        type: BottomNavigationBarType.shifting,
+        type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         onTap: (value) {
           _selectedIndex = value;
           setState(() {});
         },
-        items: const [
-          BottomNavigationBarItem(
+        items: [
+          const BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.houseChimney),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.clockRotateLeft),
-            label: 'History',
+          const BottomNavigationBarItem(
+            icon: Icon(FontAwesomeIcons.handHoldingDollar),
+            label: 'التبرع',
           ),
           BottomNavigationBarItem(
-            icon: Stack(
-              children: [
-                Positioned(
-                  bottom: 0,
-                  top: 0,
-                  right: 0,
-                  left: 0,
-                  child: Icon(FontAwesomeIcons.barcode, size: 20),
+            icon: Container(
+              width: 50,
+              height: 50,
+              padding: EdgeInsets.zero,
+              margin: EdgeInsets.zero,
+              decoration: BoxDecoration(
+                color: AppColors.redBlck,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(100),
                 ),
-                Icon(FontAwesomeIcons.expand, size: 45),
-              ],
+              ),
+              child: Center(
+                child: Icon(
+                  FontAwesomeIcons.expand,
+                  color: AppColors.white,
+                  size: 30,
+                ),
+              ),
             ),
-            label: 'Scan',
+            // Stack(
+            //   children: [
+            //     Positioned(
+            //       bottom: 0,
+            //       top: 0,
+            //       right: 0,
+            //       left: 0,
+            //       child: Icon(FontAwesomeIcons.barcode, size: 20),
+            //     ),
+            //     Icon(FontAwesomeIcons.expand, size: 45),
+            //   ],
+            // ),
+            label: 'مسح',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.circleInfo),
-            label: 'Info',
+            label: 'عننا',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.circleUser),
-            label: 'Profile',
+            label: 'البروفايل',
           ),
         ],
       ),

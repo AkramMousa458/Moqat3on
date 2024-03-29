@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scanner/lists/chips_lists.dart';
 import 'package:scanner/models/product_model.dart';
 
 part 'search_state.dart';

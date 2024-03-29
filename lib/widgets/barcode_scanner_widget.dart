@@ -2,21 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scan/scan.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
-import 'package:scanner/widgets/custom_button.dart';
+import 'package:scanner/helper/colors.dart';
 
 ScanController controller = ScanController();
 
 AppBar barcodeScannerAppBar(BuildContext context) {
   return AppBar(
-    title: CustomButton(
-      onTap: () {
-        BlocProvider.of<ScanCubit>(context).scanfromGallery();
-      },
-      text: 'فتح المعرض',
-      
-      width: 210,
-      height: 50,
-      textSize: 22,
+    title: Text(
+      'مسح المنتج',
+      style: TextStyle(color: AppColors.white),
     ),
     elevation: 0.0,
     centerTitle: true,
