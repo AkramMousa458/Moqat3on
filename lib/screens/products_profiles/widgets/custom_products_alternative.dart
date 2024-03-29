@@ -2,10 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
-import 'package:scanner/models/product_model.dart';
 import 'package:scanner/screens/home/widgets/custom_alternative_item.dart';
-import 'package:scanner/screens/home/widgets/custom_product_item.dart';
-import 'package:scanner/screens/products_profiles/product_screen.dart';
 import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class ProductsAlternative extends StatelessWidget {

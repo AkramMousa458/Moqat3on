@@ -1,11 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
-import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
-import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/models/product_model.dart';
 import 'package:scanner/screens/auth/login_screen.dart';
-import 'package:scanner/screens/category_screen.dart';
 import 'package:scanner/screens/home/home_screen.dart';
 import 'package:scanner/screens/home/navigator_widget.dart';
 import 'package:scanner/screens/info_screen.dart';

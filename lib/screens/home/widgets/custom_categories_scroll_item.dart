@@ -1,19 +1,23 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
 
 class CustomCategoriesScrollItem extends StatelessWidget {
-  CustomCategoriesScrollItem({
+  const CustomCategoriesScrollItem({
     super.key,
     required this.text,
     required this.isColor,
-    this.width = 0.0,
+    this.fontSize = 16,
+    this.fontWeight = FontWeight.normal,
+    this.width,
+    this.height,
   });
 
   final String text;
   final bool isColor;
-  double width;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final double? width;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,17 +26,20 @@ class CustomCategoriesScrollItem extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           width: width,
+          height: height,
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: isColor ? AppColors.redBlck : null,
             border: Border.all(color: AppColors.redBlck),
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(11),
           ),
           child: Text(
             text,
             textDirection: TextDirection.rtl,
             textAlign: TextAlign.center,
             style: TextStyle(
+              fontSize: fontSize,
+              fontWeight: fontWeight,
               color: isColor ? AppColors.offwhite : AppColors.redBlck,
             ),
           ),
