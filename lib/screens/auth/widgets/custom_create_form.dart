@@ -5,7 +5,6 @@ import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/screens/auth/widgets/custom_button.dart';
-import 'package:scanner/screens/auth/widgets/custom_sign_google.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_form_auth.dart';
 
 class CustomCreateAccountForm extends StatelessWidget {
@@ -59,7 +58,7 @@ class CustomCreateAccountForm extends StatelessWidget {
                       authCubit.password = password;
                     }),
                 const SizedBox(height: 30),
-                const CustomSignWithGoogle(),
+                // const CustomSignWithGoogle(),
                 const SizedBox(height: 24),
                 CustomButtonApp(
                   onPressed: () async {

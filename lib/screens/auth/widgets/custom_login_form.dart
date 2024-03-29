@@ -6,7 +6,6 @@ import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/show_snackbar.dart';
 import 'package:scanner/screens/auth/widgets/custom_button.dart';
-import 'package:scanner/screens/auth/widgets/custom_sign_google.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_form_auth.dart';
 
 class CustomLoginForm extends StatelessWidget {
@@ -67,7 +66,7 @@ class CustomLoginForm extends StatelessWidget {
                       text: "Sign In",
                     ),
               const SizedBox(height: 24),
-              const CustomSignWithGoogle(),
+              // const CustomSignWithGoogle(),
             ],
           ),
         );

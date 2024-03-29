@@ -12,6 +12,7 @@ class SearchCubit extends Cubit<SearchState> {
   void searchProducts(String searchQuery, List<ProductModel> productList) {
     emit(SearchLoading());
     try {
+      emptyList();
       // Filter products based on search query
       for (var product in productList) {
         if (_calculateRelevance(product, searchQuery) > 0) {
