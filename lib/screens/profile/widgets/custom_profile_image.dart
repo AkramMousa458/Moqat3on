@@ -14,7 +14,6 @@ class CustomProfileImage extends StatelessWidget {
         shape: BoxShape.circle,
         image: DecorationImage(
           image: AssetImage("assets/images/profiles.png"),
-          //fit: BoxFit.fill,
         ),
       ),
     );

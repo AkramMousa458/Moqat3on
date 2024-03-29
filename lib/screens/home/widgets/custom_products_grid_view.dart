@@ -34,8 +34,7 @@ class CustomProductsGridView extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () {
-                  // BlocProvider.of<AddProductCubit>(context)
-                  //     .addProduct(state.allProducts[index]);
+      
                   GoRouter.of(context).push(
                     AppString.kproductScreen,
                     extra: state.allProducts[index],

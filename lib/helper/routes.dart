@@ -35,13 +35,6 @@ final GoRouter router = GoRouter(
         child: const CreateAccount(),
       ),
     ),
-    // GoRoute(
-    //   path: "/forgotPassword",
-    //   builder: (context, state) => BlocProvider(
-    //     create: (context) => AuthCubit(),
-    //     child: const ForgotPassword(),
-    //   ),
-    // ),
 
     GoRoute(
       path: "/home",
@@ -59,10 +52,6 @@ final GoRouter router = GoRouter(
       path: "/navigator",
       builder: (context, state) => const NavigatorWidget(),
     ),
-    // GoRoute(
-    //   path: "/category",
-    //   builder: (context, state) => CategoryScreen(),
-    // ),
     GoRoute(
       path: AppString.kproductScreen,
       builder: (context, state) => ProductScreen(

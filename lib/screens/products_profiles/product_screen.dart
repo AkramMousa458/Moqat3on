@@ -103,11 +103,11 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               sizeHeight(20),
               widget.productModel.boycott == "نعم"
-                  ? Text(
+                  ? const Text(
                       " : سبب المقاطعة ",
                       style: CustomTextStyle.stylesFont400Size22,
                     )
-                  : Text(
+                  : const Text(
                       " : افضل بديل",
                       style: CustomTextStyle.stylesFont400Size22,
                     ),

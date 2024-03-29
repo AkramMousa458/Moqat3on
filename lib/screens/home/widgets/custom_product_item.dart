@@ -34,12 +34,6 @@ class CustomProductItem extends StatelessWidget {
                   height: 100,
                   fit: BoxFit.cover,
                 ),
-                //     Image.asset(
-                //   "assets/products/مطاعم/كنتاكي.jpg",
-                //   width: 135,
-                //   height: 110,
-                //   fit: BoxFit.cover,
-                // ),
               ),
               const SizedBox(
                 height: 10,
@@ -55,7 +49,6 @@ class CustomProductItem extends StatelessWidget {
                           FontAwesomeIcons.check,
                           color: AppColors.primaryColor,
                         ),
-                  // const Spacer(),
                   Expanded(
                     flex: 1,
                     child: Text(

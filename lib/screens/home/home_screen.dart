@@ -22,14 +22,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 CustomSearchTextField(
                   goSearch: true,
-
                   onChanged: (value) {},
-                  // onChanged: (value) async {
-                  //   print('Search query: $value');
-                  //   print(
-                  //       'All products list: ${addProductCubit.allProductsList}');
-                  //   bloc.searchUsers(value, addProductCubit.allProductsList);
-                  // },
                 ),
                 const CustomCategoriesScrollView(),
                 const CustomProductsGridView(),

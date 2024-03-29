@@ -216,18 +216,6 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
                 ),
               ),
             ),
-            // Stack(
-            //   children: [
-            //     Positioned(
-            //       bottom: 0,
-            //       top: 0,
-            //       right: 0,
-            //       left: 0,
-            //       child: Icon(FontAwesomeIcons.barcode, size: 20),
-            //     ),
-            //     Icon(FontAwesomeIcons.expand, size: 45),
-            //   ],
-            // ),
             label: 'مسح',
           ),
           const BottomNavigationBarItem(
