@@ -137,6 +137,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/screens/about_screen.dart';
+import 'package:scanner/screens/home/donate_screen.dart';
 import 'package:scanner/screens/home/home_screen.dart';
 import 'package:scanner/screens/profile/profile_screen.dart';
 import 'package:scanner/screens/scan/scan_screen.dart';
@@ -152,10 +153,7 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
   int _selectedIndex = 0;
   final _pages = [
     const HomeScreen(),
-    const Icon(
-      FontAwesomeIcons.clockRotateLeft,
-      size: 150,
-    ),
+    DonateScreen(),
     const ScanScreen(),
     const AboutScreen(),
     const ProfileScreen()
