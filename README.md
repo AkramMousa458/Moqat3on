@@ -36,7 +36,7 @@ Detailed instructions for using each functionality are provided within the appli
 **Technical Specifications**
 
 - **Platform:** Android and iOS
-- **Programming Languages:** Java (Android), Swift (iOS)
+- **Programming Languages:** Dart
 - **Database:** Firebase
 - **Barcode Scanning:** ZBar library (Android), AVFoundation framework (iOS)
 
