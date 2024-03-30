@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/cubits/search_cubit/search_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/screens/home/widgets/custom_categories_scroll_view.dart';
@@ -12,24 +11,19 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final addProductCubit = BlocProvider.of<GetProductsCubit>(context);
-
     return BlocProvider<SearchCubit>(
       create: (context) => SearchCubit(),
       child: Builder(
         builder: (context) {
-          final SearchCubit bloc = BlocProvider.of<SearchCubit>(context);
           return Material(
             color: AppColors.offwhite,
             child: ListView(
               physics: const BouncingScrollPhysics(),
               children: [
-                CustomSearchTextField(onChanged: (value) async {
-                  print('Search query: $value');
-                  print(
-                      'All products list: ${addProductCubit.allProductsList}');
-                  bloc.searchUsers(value, addProductCubit.allProductsList);
-                }),
+                CustomSearchTextField(
+                  goSearch: true,
+                  onChanged: (value) {},
+                ),
                 const CustomCategoriesScrollView(),
                 const CustomProductsGridView(),
                 const SizedBox(height: 30),

@@ -7,6 +7,7 @@ import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/screens/home/widgets/custom_categories_scroll_item.dart';
 import 'package:scanner/screens/scan/widgets/scan_choose_button.dart';
+import 'package:scanner/screens/scan/widgets/scan_text_field.dart';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({super.key});
@@ -17,6 +18,7 @@ class ScanScreen extends StatefulWidget {
 
 class _ScanScreenState extends State<ScanScreen> {
   bool scanPhoto = true, scanNumber = false;
+  String barcode = '';
   @override
   Widget build(BuildContext context) {
     return Builder(
@@ -61,7 +63,7 @@ class _ScanScreenState extends State<ScanScreen> {
               ),
               BlocConsumer<ScanCubit, ScanState>(
                 listener: (context, state) {
-                  if (state is ScanSuccsess) {
+                  if (state is ScanSuccsessCamera) {
                     String result =
                         BlocProvider.of<ScanCubit>(context).scanResult;
                     showCustomSnackBar(
@@ -69,8 +71,23 @@ class _ScanScreenState extends State<ScanScreen> {
                       text: result,
                       status: result == inText ? true : false,
                     );
-
                     Navigator.of(context).pop();
+                  } else if (state is ScanSuccsessGallery) {
+                    String result =
+                        BlocProvider.of<ScanCubit>(context).scanResult;
+                    showCustomSnackBar(
+                      context: context,
+                      text: result,
+                      status: result == inText ? true : false,
+                    );
+                  } else if (state is ScanSuccsessNumber) {
+                    String result =
+                        BlocProvider.of<ScanCubit>(context).scanResult;
+                    showCustomSnackBar(
+                      context: context,
+                      text: result,
+                      status: result == inText ? true : false,
+                    );
                   } else if (state is ScanFailed) {
                     Navigator.pop(context);
                     showCustomSnackBar(
@@ -102,8 +119,54 @@ class _ScanScreenState extends State<ScanScreen> {
                               ),
                             ],
                           )
-                        : const Column(
-                            children: [],
+                        : Column(
+                            children: [
+                              const SizedBox(height: 50),
+                              Text(
+                                'من فضلك ادخل ال 13 رقم الخاص بالباركود من اليسار الى اليمين',
+                                textDirection: TextDirection.rtl,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.redBlck,
+                                ),
+                              ),
+                              ScanTextField(
+                                labelText: 'ادخل الباركود',
+                                onChanged: (value) {
+                                  barcode = value;
+                                },
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal:
+                                        MediaQuery.sizeOf(context).width / 5),
+                                child: InkWell(
+                                  onTap: () {
+                                    if (barcode.length < 13) {
+                                      showCustomSnackBar(
+                                        context: context,
+                                        text: 'تأكد ان رقم الباركود 13 رقم',
+                                        status: false,
+                                      );
+                                    } else {
+                                      BlocProvider.of<ScanCubit>(context)
+                                          .scanfromNumber(barcode);
+                                    }
+                                  },
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(14),
+                                  ),
+                                  child: const CustomCategoriesScrollItem(
+                                    text: 'بحث عن المنتج',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    isColor: true,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                   );
                 },

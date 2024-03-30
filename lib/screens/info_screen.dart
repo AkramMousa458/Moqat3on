@@ -116,10 +116,10 @@ class InfoScreen extends StatelessWidget {
                     Link(
                         uri: Uri.parse('https://t.me/Moqata3aApp'),
                         target: LinkTarget.blank,
-                        // ignore: non_constant_identifier_names, avoid_types_as_parameter_names
-                        builder: (context, FollowLink) {
+                        // ignore: avoid_types_as_parameter_names
+                        builder: (context, followLink) {
                           return IconButton(
-                            onPressed: FollowLink,
+                            onPressed: followLink,
                             icon: const Icon(Icons.telegram),
                             iconSize: 72,
                             color: Colors.white,

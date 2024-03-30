@@ -47,10 +47,6 @@ class FirebaseNotification {
           description: message.notification?.body ??
               'يوجد تحديث للأبلكيشن, لا تنسي لكي تكون علي علم بكل المنتجات المقاطعة',
         ));
-        // showCustomSnackBar(
-        //     context: context,
-        //     text: '${message.notification?.body}',
-        //     status: true);
         if (kDebugMode) {
           print('Title : ${message.notification?.title}');
           print('Text : ${message.notification?.body}');

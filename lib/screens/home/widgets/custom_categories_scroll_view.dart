@@ -31,7 +31,7 @@ class _CustomCategoriesScrollViewState
   @override
   Widget build(BuildContext context) {
     final getProductsCubit = BlocProvider.of<GetProductsCubit>(
-        context); // Access the GetProductsCubit instance
+        context); 
 
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -59,7 +59,6 @@ class _CustomCategoriesScrollViewState
               child: CustomCategoriesScrollItem(
                 text: itemText[index],
                 isColor: index == selectedIndex,
-                // width: 100,
               ),
             );
           },

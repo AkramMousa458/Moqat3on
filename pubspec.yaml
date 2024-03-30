@@ -50,7 +50,7 @@ dependencies:
   scan: ^1.6.0
   top_snackbar_flutter: ^3.1.0
   url_launcher: ^6.2.1
-  webview_flutter: ^4.7.0
+  webview_flutter: 4.5.0
  
 
 dev_dependencies:
@@ -70,18 +70,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - android\app\src\main\res\mipmap-xxxhdpi\ic_launcher.png
+    - android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
     - assets/images/
-    - assets/categories/
-    - assets/products/مطاعم/
-    - assets/products/متاجر/
-    - assets/products/جبن والبان/
-    - assets/products/شيبسي/
-    - assets/products/شيكولاتة وايس كريم/
-    - assets/products/مشروبات/
-    - assets/products/شاي وقهوة/
-    - assets/products/مياه/
-    - assets/products/منتجات تنظيف/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

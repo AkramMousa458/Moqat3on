@@ -48,7 +48,7 @@ class LocalNotification {
 
   static void _startPeriodicNotifications() {
     _timer?.cancel();
-    _timer = Timer.periodic(const Duration(hours: 2), (timer) async {
+    _timer = Timer.periodic(const Duration(seconds: 30), (timer) async {
       DuaaModel duaa = getRandomDuaa();
       await createNotification(
         notification: CustomNotificationModel(

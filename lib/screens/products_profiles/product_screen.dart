@@ -52,9 +52,10 @@ class _ProductScreenState extends State<ProductScreen> {
                   Text(
                     widget.productModel.name,
                     style: TextStyle(
-                        fontSize: 25,
-                        color: AppColors.black,
-                        fontWeight: FontWeight.bold),
+                      fontSize: 25,
+                      color: AppColors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   sizeHeight(10),
                   Row(
@@ -68,9 +69,10 @@ class _ProductScreenState extends State<ProductScreen> {
                       const Text(
                         " : مقطاعة ",
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500),
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ],
                   ),
@@ -93,6 +95,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   CustomRatingBar(
                     onRatingUpdate: (value) {
                       rating = value;
+                      setState(() {});
                     },
                     rating: rating,
                   )
@@ -100,11 +103,11 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               sizeHeight(20),
               widget.productModel.boycott == "نعم"
-                  ? Text(
+                  ? const Text(
                       " : سبب المقاطعة ",
                       style: CustomTextStyle.stylesFont400Size22,
                     )
-                  : Text(
+                  : const Text(
                       " : افضل بديل",
                       style: CustomTextStyle.stylesFont400Size22,
                     ),
@@ -131,7 +134,9 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
               ),
               sizeHeight(16),
-              const ProductsAlternative(),
+              ProductsAlternative(
+                productModel: widget.productModel,
+              ),
             ],
           ),
         ),
@@ -139,56 +144,3 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 }
-
-// class CustomItemProducts extends StatelessWidget {
-//   const CustomItemProducts({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         Container(
-//           height: 135,
-//           decoration: BoxDecoration(
-//             color: Colors.black12,
-//             borderRadius: BorderRadius.circular(16),
-//           ),
-//           child: Column(
-//             children: [
-//               ClipRRect(
-//                 borderRadius: BorderRadius.circular(16),
-//                 child: Image.asset(
-//                   'assets/products/مطاعم/بازوكا.jpg',
-//                   height: 100,
-//                   width: double.infinity,
-//                   fit: BoxFit.cover,
-//                 ),
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.only(left: 5, right: 5, top: 3),
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                   children: [
-//                     const Icon(
-//                       Icons.star_outline,
-//                       color: Colors.black,
-//                     ),
-//                     Text(
-//                       "كنتاكي",
-//                       style: CustomTextStyle.stylesFont300Size16,
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
-const String text =
-    " تدعم KFC من خلال التبرعات الماليه بشكل مباشر الصندوق القومي اليهودي  وارسال وجبات غذاء لجيش الاسرئيلي  ";

@@ -14,8 +14,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2), () {
-      customReplacementNavigate(context, '/navigator');
+    firebaseAuth.authStateChanges().listen((user) {
+      if (user == null) {
+        Future.delayed(const Duration(seconds: 2), () {
+          customReplacementNavigate(context, '/login');
+        });
+      } else {
+        Future.delayed(const Duration(seconds: 2), () {
+          customReplacementNavigate(context, '/navigator');
+        });
+      }
     });
 
     super.initState();

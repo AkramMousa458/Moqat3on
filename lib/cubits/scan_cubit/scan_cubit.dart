@@ -25,7 +25,7 @@ class ScanCubit extends Cubit<ScanState> {
           CodesLists.companyCodes5,
           CodesLists.companyCodes4,
         );
-        emit(ScanSuccsess());
+        emit(ScanSuccsessCamera());
       } on Exception catch (e) {
         scanResult = '-1';
         emit(ScanFailed(errMessage: e.toString()));
@@ -41,7 +41,23 @@ class ScanCubit extends Cubit<ScanState> {
       if (pickedFile != null) {
         String barcode =
             await BarcodeFinder.scanFile(path: pickedFile.path) ?? '-1';
-        scanfromCamera(barcode);
+        if (int.parse(barcode) != -1) {
+          try {
+            scanResult = fetchProduct(
+              barcode,
+              CodesLists.countryCodes,
+              CodesLists.companyCodes8,
+              CodesLists.companyCodes7,
+              CodesLists.companyCodes6,
+              CodesLists.companyCodes5,
+              CodesLists.companyCodes4,
+            );
+            emit(ScanSuccsessGallery());
+          } on Exception catch (e) {
+            scanResult = '-1';
+            emit(ScanFailed(errMessage: e.toString()));
+          }
+        }
       } else {
         emit(ScanInitial());
       }
@@ -50,4 +66,27 @@ class ScanCubit extends Cubit<ScanState> {
       emit(ScanFailed(errMessage: 'يوجد خطأ! تأكد من الصورة المراد مسحها'));
     }
   }
+
+  void scanfromNumber(String data) {
+    emit(ScanLoading());
+    if (int.parse(data) != -1) {
+      try {
+        scanResult = fetchProduct(
+          data,
+          CodesLists.countryCodes,
+          CodesLists.companyCodes8,
+          CodesLists.companyCodes7,
+          CodesLists.companyCodes6,
+          CodesLists.companyCodes5,
+          CodesLists.companyCodes4,
+        );
+        emit(ScanSuccsessNumber());
+      } on Exception catch (e) {
+        scanResult = '-1';
+        emit(ScanFailed(errMessage: e.toString()));
+      }
+    }
+  }
+
+  
 }

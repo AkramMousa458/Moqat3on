@@ -9,10 +9,10 @@ class SearchCubit extends Cubit<SearchState> {
 
   List<ProductModel> filteredList = [];
 
-  void searchUsers(String searchQuery, List<ProductModel> productList) {
+  void searchProducts(String searchQuery, List<ProductModel> productList) {
     emit(SearchLoading());
-
     try {
+      emptyList();
       // Filter products based on search query
       for (var product in productList) {
         if (_calculateRelevance(product, searchQuery) > 0) {
@@ -43,5 +43,10 @@ class SearchCubit extends Cubit<SearchState> {
     } else {
       return 0; // Return 0 if the search query is not found in the product name
     }
+  }
+
+  void emptyList() {
+    filteredList.clear();
+    emit(SearchSuccess());
   }
 }
