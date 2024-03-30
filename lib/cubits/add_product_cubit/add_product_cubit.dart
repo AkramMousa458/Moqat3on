@@ -15,13 +15,13 @@ class AddProductCubit extends Cubit<AddProductState> {
     try {
       // Add the appointment to the "appointments" collection
       await firestore.collection('products').add({
-        'boycott': "لا",
-        'boycottReason': "جهينه هي افضل المنتجات البديله",
+        'boycott': "نعم",
+        'boycottReason': "فيروز  دعم لسرئيل  ",
         'country': "مصر",
-        'name': "جهينه",
-        'category': "جبن وألبان",
+        'name': "فيروز ",
+        'category': "مشروبات",
         'image':
-            "https://gulf365.net/content/uploads/2024/03/27/f2fdad7f9a.jpg",
+            "https://cdnprod.mafretailproxy.com/sys-master-root/h9f/h8a/49521874403358/480Wx480H_3845_main.jpg",
         'rating': 0.0
       });
       emit(AddProductSuccsess());
