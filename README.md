@@ -24,7 +24,6 @@ The application offers several key functionalities:
 - **Registration and Login:** Users can securely create accounts or log in to access the application's features.
 - **Searching Products:** Users can search for boycotted products and find ethical alternatives.
 - **Company Profile:** Detailed profiles of companies provide insights into their products and stances regarding the Palestinian cause.
-- **Comments on Products:** Users can leave reviews and comments on alternative products, encouraging community engagement.
 - **Barcode Scanning:** Barcode scanning feature allows users to quickly verify product status.
 - **Donation:** Users can easily make donations to trusted entities supporting Palestinians.
 - **Reporting Products:** Users can report products not listed or inaccurately categorized.
