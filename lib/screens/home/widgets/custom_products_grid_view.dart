@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:scanner/cubits/add_product_cubit/add_product_cubit.dart';
 import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/helper/routes.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';

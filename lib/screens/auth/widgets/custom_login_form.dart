@@ -7,6 +7,7 @@ import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/show_snackbar.dart';
 import 'package:scanner/screens/auth/widgets/custom_button.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_form_auth.dart';
+import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class CustomLoginForm extends StatelessWidget {
   const CustomLoginForm({super.key});
@@ -56,7 +57,7 @@ class CustomLoginForm extends StatelessWidget {
               //    const CustomTextForgotPassword(),
               const SizedBox(height: 30),
               state is SignInLoadingState
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(child: CustomLoadingWidget())
                   : CustomButtonApp(
                       onPressed: () async {
                         if (authCubit.formKeyLogin.currentState!.validate()) {

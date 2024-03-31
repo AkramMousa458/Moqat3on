@@ -190,7 +190,7 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
         items: [
           const BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.houseChimney),
-            label: 'Home',
+            label: 'الرئيسية',
           ),
           const BottomNavigationBarItem(
             icon: Icon(FontAwesomeIcons.handHoldingDollar),

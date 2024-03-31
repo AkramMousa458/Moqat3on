@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
 
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/show_alert_box.dart';
@@ -12,6 +14,7 @@ import 'package:scanner/screens/home/widgets/custom_categories_scroll_item.dart'
 import 'package:scanner/screens/profile/widgets/check_signup_profile.dart';
 import 'package:scanner/screens/profile/widgets/cusomt_profile_name.dart';
 import 'package:scanner/screens/profile/widgets/custom_profile_image.dart';
+import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -84,24 +87,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.offwhite,
-        appBar: AppBar(
-          title: const Text("الملف الشخصي"),
-          centerTitle: true,
-        ),
-        body: currenUser?.email != null
-            ? StreamBuilder<DocumentSnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection('users')
-                    .doc(currenUser?.email)
-                    .snapshots(),
-                builder: (context,
-                    AsyncSnapshot<DocumentSnapshot<Object?>> snapshot) {
-                  if (snapshot.hasData && snapshot.data!.data() != null) {
-                    final userData =
-                        snapshot.data!.data() as Map<String, dynamic>;
+      backgroundColor: AppColors.offwhite,
+      appBar: AppBar(
+        title: const Text("الملف الشخصي"),
+        centerTitle: true,
+      ),
+      body: currenUser?.email != null
+          ? StreamBuilder<DocumentSnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(currenUser?.email)
+                  .snapshots(),
+              builder:
+                  (context, AsyncSnapshot<DocumentSnapshot<Object?>> snapshot) {
+                if (snapshot.hasData && snapshot.data!.data() != null) {
+                  final userData =
+                      snapshot.data!.data() as Map<String, dynamic>;
 
-                    return ListView(children: [
+                  return ListView(
+                    children: [
                       const SizedBox(height: 20),
                       const CustomProfileImage(),
                       const SizedBox(height: 16),
@@ -120,11 +124,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              setState(() {
-                                isColor = 0;
-                                editField("email");
-                                editField('name');
-                              });
+                              setState(
+                                () {
+                                  isColor = 0;
+                                  editField("email");
+                                  editField('name');
+                                },
+                              );
                             },
                             child: CustomCategoriesScrollItem(
                               width: 120,
@@ -157,17 +163,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ],
                       ),
-                    ]);
-                  } else if (snapshot.hasError) {
-                    return Center(
-                      child: Text("Error:${snapshot.error}"),
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                })
-            : const CheckSignUpProfile());
+                    ],
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text("Error:${snapshot.error}"),
+                  );
+                } else {
+                  return const Center(
+                    child: CustomLoadingWidget(),
+                  );
+                }
+              })
+          : const CheckSignUpProfile(),
+    );
   }
 }

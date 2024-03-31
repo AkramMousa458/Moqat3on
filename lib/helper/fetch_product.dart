@@ -58,7 +58,7 @@ String fetchProduct(
       }
     }
   } on Exception {
-    result = 'failed';
+    result = 'San failed';
   }
   return result;
 }

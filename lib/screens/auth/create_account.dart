@@ -21,7 +21,7 @@ class CreateAccount extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.black.withOpacity(0.7),
+              color: Colors.black.withOpacity(0.8),
               height: MediaQuery.of(context).size.height,
               child: SingleChildScrollView(
                 child: Column(
@@ -41,7 +41,7 @@ class CreateAccount extends StatelessWidget {
                     const SizedBox(height: 30),
                     CustomTextHaveAccount(
                       onTap: () {
-                        customNavigate(context, '/login');
+                        customGoNavigate(context, '/login');
                       },
                       textAlready: "  Don't have an account?",
                       textlogin: " Sign In",

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -73,7 +74,6 @@ class AuthCubit extends Cubit<AuthState> {
         email: emailAddress!,
         password: password!,
       );
-
       emit(SignInSccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -122,5 +122,17 @@ class AuthCubit extends Cubit<AuthState> {
 
     // Once signed in, return the UserCredential
     await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  void skipUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setBool('isSkiped', true);
+  }
+
+  Future<bool> getSkip() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    return prefs.getBool('isSkiped') ?? false;
   }
 }

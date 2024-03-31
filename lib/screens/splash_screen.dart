@@ -11,7 +11,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-
+  late bool isSkiped;
   @override
   void initState() {
     firebaseAuth.authStateChanges().listen((user) {
