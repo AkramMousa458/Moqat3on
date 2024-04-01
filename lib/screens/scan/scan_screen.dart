@@ -31,166 +31,162 @@ class _ScanScreenState extends State<ScanScreen> {
   @override
   Widget build(BuildContext context) {
     GetBarcodesCubit barcodesCubit = BlocProvider.of<GetBarcodesCubit>(context);
-    return Builder(
-      builder: (context) {
-        return Material(
-          color: AppColors.offwhite,
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
+    return Scaffold(
+      backgroundColor: AppColors.offwhite,
+      body: ListView(
+        physics: const BouncingScrollPhysics(),
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        scanNumber = true;
-                        scanPhoto = false;
-                      });
-                    },
-                    child: CustomCategoriesScrollItem(
-                      text: 'إدخال باركود',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      isColor: scanNumber,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        scanPhoto = true;
-                        scanNumber = false;
-                      });
-                    },
-                    child: CustomCategoriesScrollItem(
-                      text: 'مسح صورة',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      isColor: scanPhoto,
-                    ),
-                  ),
-                ],
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    scanNumber = true;
+                    scanPhoto = false;
+                  });
+                },
+                child: CustomCategoriesScrollItem(
+                  text: 'إدخال باركود',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  isColor: scanNumber,
+                ),
               ),
-              BlocConsumer<ScanCubit, ScanState>(
-                listener: (context, state) {
-                  if (state is ScanSuccsessCamera) {
-                    String result =
-                        BlocProvider.of<ScanCubit>(context).scanResult;
-                    showCustomSnackBar(
-                      context: context,
-                      text: result,
-                      status: result == inText ? true : false,
-                    );
-                    Navigator.of(context).pop();
-                  } else if (state is ScanSuccsessGallery) {
-                    String result =
-                        BlocProvider.of<ScanCubit>(context).scanResult;
-                    showCustomSnackBar(
-                      context: context,
-                      text: result,
-                      status: result == inText ? true : false,
-                    );
-                  } else if (state is ScanSuccsessNumber) {
-                    String result =
-                        BlocProvider.of<ScanCubit>(context).scanResult;
-                    showCustomSnackBar(
-                      context: context,
-                      text: result,
-                      status: result == inText ? true : false,
-                    );
-                  } else if (state is ScanFailed) {
-                    Navigator.pop(context);
-                    showCustomSnackBar(
-                      context: context,
-                      text: state.errMessage,
-                      status: false,
-                    );
-                  }
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    scanPhoto = true;
+                    scanNumber = false;
+                  });
                 },
-                builder: (context, state) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 45,
-                    ),
-                    child: scanPhoto
-                        ? const Column(
-                            children: [
-                              ScanChooseButton(
-                                text: 'إستخدام الكـاميرا',
-                                iconData: FontAwesomeIcons.cameraRetro,
-                                isCamera: true,
-                              ),
-                              SizedBox(height: 10),
-                              ScanChooseButton(
-                                text: 'إختيار من المعرض',
-                                iconData: FontAwesomeIcons.image,
-                                isCamera: false,
-                              ),
-                            ],
-                          )
-                        : Column(
-                            children: [
-                              const SizedBox(height: 50),
-                              Text(
-                                'من فضلك ادخل ال 13 رقم الخاص بالباركود من اليسار الى اليمين',
-                                textDirection: TextDirection.rtl,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.redBlck,
-                                ),
-                              ),
-                              ScanTextField(
-                                labelText: 'ادخل الباركود',
-                                onChanged: (value) {
-                                  barcode = value;
-                                },
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal:
-                                        MediaQuery.sizeOf(context).width / 5),
-                                child: InkWell(
-                                  onTap: () {
-                                    if (barcode.length < 13) {
-                                      showCustomSnackBar(
-                                        context: context,
-                                        text: 'تأكد ان رقم الباركود 13 رقم',
-                                        status: false,
-                                      );
-                                    } else {
-                                      BlocProvider.of<ScanCubit>(context)
-                                          .scanfromNumber(
-                                        countriesBarcodes:
-                                            barcodesCubit.countriesBarcodesList,
-                                        companiesBarcodes:
-                                            barcodesCubit.companiesBarcodesList,
-                                        data: barcode,
-                                      );
-                                    }
-                                  },
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(14),
-                                  ),
-                                  child: const CustomCategoriesScrollItem(
-                                    text: 'بحث عن المنتج',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    isColor: true,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                  );
-                },
-              )
+                child: CustomCategoriesScrollItem(
+                  text: 'مسح صورة',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  isColor: scanPhoto,
+                ),
+              ),
             ],
           ),
-        );
-      },
+          BlocConsumer<ScanCubit, ScanState>(
+            listener: (context, state) {
+              if (state is ScanSuccsessCamera) {
+                String result =
+                    BlocProvider.of<ScanCubit>(context).scanResult;
+                showCustomSnackBar(
+                  context: context,
+                  text: result,
+                  status: result == inText ? true : false,
+                );
+                Navigator.of(context).pop();
+              } else if (state is ScanSuccsessGallery) {
+                String result =
+                    BlocProvider.of<ScanCubit>(context).scanResult;
+                showCustomSnackBar(
+                  context: context,
+                  text: result,
+                  status: result == inText ? true : false,
+                );
+              } else if (state is ScanSuccsessNumber) {
+                String result =
+                    BlocProvider.of<ScanCubit>(context).scanResult;
+                showCustomSnackBar(
+                  context: context,
+                  text: result,
+                  status: result == inText ? true : false,
+                );
+              } else if (state is ScanFailed) {
+                Navigator.pop(context);
+                showCustomSnackBar(
+                  context: context,
+                  text: state.errMessage,
+                  status: false,
+                );
+              }
+            },
+            builder: (context, state) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 45,
+                ),
+                child: scanPhoto
+                    ? const Column(
+                        children: [
+                          ScanChooseButton(
+                            text: 'إستخدام الكـاميرا',
+                            iconData: FontAwesomeIcons.cameraRetro,
+                            isCamera: true,
+                          ),
+                          SizedBox(height: 10),
+                          ScanChooseButton(
+                            text: 'إختيار من المعرض',
+                            iconData: FontAwesomeIcons.image,
+                            isCamera: false,
+                          ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          const SizedBox(height: 50),
+                          Text(
+                            'من فضلك ادخل ال 13 رقم الخاص بالباركود من اليسار الى اليمين',
+                            textDirection: TextDirection.rtl,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 19,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.redBlck,
+                            ),
+                          ),
+                          ScanTextField(
+                            labelText: 'ادخل الباركود',
+                            onChanged: (value) {
+                              barcode = value;
+                            },
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.sizeOf(context).width / 5),
+                            child: InkWell(
+                              onTap: () {
+                                if (barcode.length < 13) {
+                                  showCustomSnackBar(
+                                    context: context,
+                                    text: 'تأكد ان رقم الباركود 13 رقم',
+                                    status: false,
+                                  );
+                                } else {
+                                  BlocProvider.of<ScanCubit>(context)
+                                      .scanfromNumber(
+                                    countriesBarcodes:
+                                        barcodesCubit.countriesBarcodesList,
+                                    companiesBarcodes:
+                                        barcodesCubit.companiesBarcodesList,
+                                    data: barcode,
+                                  );
+                                }
+                              },
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(14),
+                              ),
+                              child: const CustomCategoriesScrollItem(
+                                text: 'بحث عن المنتج',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                isColor: true,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+              );
+            },
+          )
+        ],
+      ),
     );
   }
 }

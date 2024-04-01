@@ -47,12 +47,9 @@ class Scanner extends StatelessWidget {
         BlocProvider(
           create: (context) => GetBarcodesCubit()
         ),
-        BlocProvider(
-          create: (context) => AddDonateCubit()
-        ),
-        BlocProvider(
-          create: (context) => GetDonateCubit()..getDonate()
-        ),
+        // BlocProvider(
+        //   create: (context) => AddDonateCubit()
+        // ),
       ],
       child: MaterialApp.router(
         theme: ThemeData(

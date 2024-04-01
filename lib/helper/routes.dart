@@ -20,7 +20,6 @@ final GoRouter router = GoRouter(
       path: "/",
       builder: (context, state) => const SplashScreen(),
     ),
-
     GoRoute(
       path: "/login",
       builder: (context, state) => BlocProvider(
@@ -35,7 +34,6 @@ final GoRouter router = GoRouter(
         child: const CreateAccount(),
       ),
     ),
-
     GoRoute(
       path: "/home",
       builder: (context, state) => const HomeScreen(),
@@ -59,8 +57,9 @@ final GoRouter router = GoRouter(
       ),
     ),
     GoRoute(
-        path: "/checkSignUp",
-        builder: (context, state) => const CheckSignUpProfile()),
+      path: "/checkSignUp",
+      builder: (context, state) => const CheckSignUpProfile(),
+    ),
     GoRoute(
       path: "/info",
       builder: (context, state) => const InfoScreen(),

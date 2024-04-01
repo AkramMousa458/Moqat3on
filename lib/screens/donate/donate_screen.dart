@@ -11,49 +11,52 @@ class DonateScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.offwhite,
-      appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: Text(
-            "اختر جهة التبرع",
-            style: CustomTextStyle.stylesFont600Size28.copyWith(
-              color: AppColors.redBlck,
-              fontWeight: FontWeight.w800,
+    return BlocProvider(
+      create: (context) => GetDonateCubit()..getDonate(),
+      child: Scaffold(
+        backgroundColor: AppColors.offwhite,
+        appBar: AppBar(
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Text(
+              "اختر جهة التبرع",
+              style: CustomTextStyle.stylesFont600Size28.copyWith(
+                color: AppColors.redBlck,
+                fontWeight: FontWeight.w800,
+              ),
             ),
           ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: BlocBuilder<GetDonateCubit, GetDonateState>(
-        builder: (context, state) {
-          if (state is GetDonateFailure) {
-            return Center(
-              child: Text(state.errMessage),
-            );
-          } else if (state is GetDonateSuccess) {
-            return GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                childAspectRatio: 0.85,
-              ),
-              itemCount: state.donateList.length,
-              itemBuilder: (context, index) {
-                return CustomDonateWidget(
-                  donateModel: state.donateList[index],
-                );
-              },
-            );
-          } else {
-            return const Center(
-              child: CustomLoadingWidget(),
-            );
-          }
-        },
+        body: BlocBuilder<GetDonateCubit, GetDonateState>(
+          builder: (context, state) {
+            if (state is GetDonateFailure) {
+              return Center(
+                child: Text(state.errMessage),
+              );
+            } else if (state is GetDonateSuccess) {
+              return GridView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                  childAspectRatio: 0.85,
+                ),
+                itemCount: state.donateList.length,
+                itemBuilder: (context, index) {
+                  return CustomDonateWidget(
+                    donateModel: state.donateList[index],
+                  );
+                },
+              );
+            } else {
+              return const Center(
+                child: CustomLoadingWidget(),
+              );
+            }
+          },
+        ),
       ),
     );
   }
