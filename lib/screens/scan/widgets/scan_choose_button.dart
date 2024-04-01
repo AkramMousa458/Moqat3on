@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scanner/cubits/get_barcodes_cubit/get_barcodes_cubit.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/widgets/show_barcode_scanner.dart';
@@ -8,7 +9,8 @@ class ScanChooseButton extends StatelessWidget {
   const ScanChooseButton({
     super.key,
     required this.text,
-    required this.iconData, required this.isCamera,
+    required this.iconData,
+    required this.isCamera,
   });
 
   final String text;
@@ -17,10 +19,16 @@ class ScanChooseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetBarcodesCubit barcodesCubit = BlocProvider.of<GetBarcodesCubit>(context);
     return MaterialButton(
       materialTapTargetSize: MaterialTapTargetSize.padded,
       onPressed: () {
-        isCamera?  barcodeScanner(context) : BlocProvider.of<ScanCubit>(context).scanfromGallery();
+        isCamera
+            ? barcodeScanner(context)
+            : BlocProvider.of<ScanCubit>(context).scanfromGallery(
+                countriesBarcodes: barcodesCubit.countriesBarcodesList,
+                companiesBarcodes: barcodesCubit.companiesBarcodesList,
+              );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),

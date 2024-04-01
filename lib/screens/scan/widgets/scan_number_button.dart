@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scanner/cubits/get_barcodes_cubit/get_barcodes_cubit.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/screens/home/widgets/custom_categories_scroll_item.dart';
@@ -14,6 +15,7 @@ class ScanNumberButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetBarcodesCubit barcodesCubit = BlocProvider.of<GetBarcodesCubit>(context);
     return InkWell(
       onTap: () {
         if (barcode.length < 13) {
@@ -23,7 +25,11 @@ class ScanNumberButton extends StatelessWidget {
             status: false,
           );
         } else {
-          BlocProvider.of<ScanCubit>(context).scanfromNumber(barcode);
+          BlocProvider.of<ScanCubit>(context).scanfromNumber(
+            countriesBarcodes: barcodesCubit.countriesBarcodesList,
+            companiesBarcodes: barcodesCubit.companiesBarcodesList,
+            data: barcode,
+          );
         }
       },
       borderRadius: const BorderRadius.all(

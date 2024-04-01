@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scan/scan.dart';
+import 'package:scanner/cubits/get_barcodes_cubit/get_barcodes_cubit.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 
@@ -44,6 +45,8 @@ AppBar barcodeScannerAppBar(BuildContext context) {
 }
 
 Widget barcodeScannerBody(BuildContext context) {
+  GetBarcodesCubit barcodesCubit = BlocProvider.of<GetBarcodesCubit>(context);
+  BlocProvider.of<GetBarcodesCubit>(context).companiesBarcodesList;
   return SizedBox(
     height: MediaQuery.of(context).size.height / 1.3,
     child: ScanView(
@@ -51,7 +54,11 @@ Widget barcodeScannerBody(BuildContext context) {
       scanAreaScale: .7,
       scanLineColor: Colors.red,
       onCapture: (data) {
-        BlocProvider.of<ScanCubit>(context).scanfromCamera(data);
+        BlocProvider.of<ScanCubit>(context).scanfromCamera(
+          countriesBarcodes: barcodesCubit.countriesBarcodesList,
+          companiesBarcodes: barcodesCubit.companiesBarcodesList,
+          data: data,
+        );
       },
     ),
   );

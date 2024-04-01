@@ -2,8 +2,9 @@ import 'package:barcode_finder/barcode_finder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:scanner/lists/codes_lists.dart';
 import 'package:scanner/helper/fetch_product.dart';
+import 'package:scanner/models/company_barcode_model.dart';
+import 'package:scanner/models/country_barcode_model.dart';
 
 part 'scan_state.dart';
 
@@ -12,18 +13,16 @@ class ScanCubit extends Cubit<ScanState> {
 
   String scanResult = '';
 
-  void scanfromCamera(String data) {
+  void scanfromCamera(
+      {required List<CountryBarcodeModel> countriesBarcodes,
+      required List<CompanyBarcodeModel> companiesBarcodes,
+      required String data}) {
     emit(ScanLoading());
     if (int.parse(data) != -1) {
       try {
         scanResult = fetchProduct(
-          data,
-          CodesLists.countryCodes,
-          CodesLists.companyCodes8,
-          CodesLists.companyCodes7,
-          CodesLists.companyCodes6,
-          CodesLists.companyCodes5,
-          CodesLists.companyCodes4,
+          productCode: data, countriesBarcodes: countriesBarcodes,
+          companiesBarcodes: companiesBarcodes,
         );
         emit(ScanSuccsessCamera());
       } on Exception catch (e) {
@@ -33,7 +32,10 @@ class ScanCubit extends Cubit<ScanState> {
     }
   }
 
-  void scanfromGallery() async {
+  void scanfromGallery({
+    required List<CountryBarcodeModel> countriesBarcodes,
+    required List<CompanyBarcodeModel> companiesBarcodes,
+  }) async {
     emit(ScanLoading());
     try {
       final pickedFile =
@@ -44,13 +46,9 @@ class ScanCubit extends Cubit<ScanState> {
         if (int.parse(barcode) != -1) {
           try {
             scanResult = fetchProduct(
-              barcode,
-              CodesLists.countryCodes,
-              CodesLists.companyCodes8,
-              CodesLists.companyCodes7,
-              CodesLists.companyCodes6,
-              CodesLists.companyCodes5,
-              CodesLists.companyCodes4,
+              productCode: barcode,
+              countriesBarcodes: countriesBarcodes,
+              companiesBarcodes: companiesBarcodes,
             );
             emit(ScanSuccsessGallery());
           } on Exception catch (e) {
@@ -67,18 +65,18 @@ class ScanCubit extends Cubit<ScanState> {
     }
   }
 
-  void scanfromNumber(String data) {
+  void scanfromNumber({
+    required List<CountryBarcodeModel> countriesBarcodes,
+    required List<CompanyBarcodeModel> companiesBarcodes,
+    required String data,
+  }) {
     emit(ScanLoading());
     if (int.parse(data) != -1) {
       try {
         scanResult = fetchProduct(
-          data,
-          CodesLists.countryCodes,
-          CodesLists.companyCodes8,
-          CodesLists.companyCodes7,
-          CodesLists.companyCodes6,
-          CodesLists.companyCodes5,
-          CodesLists.companyCodes4,
+          productCode: data,
+          countriesBarcodes: countriesBarcodes,
+          companiesBarcodes: companiesBarcodes,
         );
         emit(ScanSuccsessNumber());
       } on Exception catch (e) {
@@ -87,6 +85,4 @@ class ScanCubit extends Cubit<ScanState> {
       }
     }
   }
-
-  
 }

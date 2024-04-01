@@ -14,8 +14,10 @@ class CustomDonateWidget extends StatelessWidget {
     return MaterialButton(
       padding: EdgeInsets.zero,
       onPressed: () {
-        launchUrl(Uri.parse(donateModel.url),
-            mode: LaunchMode.externalApplication);
+        launchUrl(
+          Uri.parse(donateModel.url),
+          mode: LaunchMode.externalApplication,
+        );
       },
       child: Container(
         alignment: Alignment.center,
@@ -27,9 +29,10 @@ class CustomDonateWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.asset(
+            Image.network(
               donateModel.image,
-              cacheHeight: 50,
+              cacheHeight: 55,
+              fit: BoxFit.cover,
             ),
             sizeHeight(5),
             Text(
@@ -41,11 +44,10 @@ class CustomDonateWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 0),
-              child: const CustomCategoriesScrollItem(
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 0),
+              child: CustomCategoriesScrollItem(
                 text: "تبرع الان",
-                // width: 90,
                 isColor: true,
               ),
             )

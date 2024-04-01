@@ -12,17 +12,23 @@ class DonateScreen extends StatelessWidget {
     List<DonateModel> donateList = [
       DonateModel(
         text: 'الهلال الأحمر الفلسطيني',
-        image: 'assets/images/donate.png',
+        image:
+            'https://upload.wikimedia.org/wikipedia/commons/3/33/Palestine_RCS.png',
+        // image: 'assets/images/donate.png',
         url: "https://www.palestinercs.org/ar",
       ),
       DonateModel(
         text: 'مصر الخير',
-        image: "assets/images/donate.png",
+        image:
+            'https://play-lh.googleusercontent.com/_X3gNAEOidmqLgvMNscNsVFPG5GzRqZJ3TKKS4ty13WxDy0Guz2QdCA9a1K3HNXXDNEB=w240-h480-rw',
+        // image: "assets/images/donate.png",
         url: 'https://mekeg.org/ar/causes/support-gaza',
       ),
       DonateModel(
-        text: 'بيت الزكاة',
-        image: 'assets/images/donate2.png',
+        text: 'بيت الزكاة المصري',
+        image:
+            'https://upload.wikimedia.org/wikipedia/ar/2/20/%D8%A8%D9%8A%D8%AA_%D8%A7%D9%84%D8%B2%D9%83%D8%A7%D8%A9_%D9%88%D8%A7%D9%84%D8%B5%D8%AF%D9%82%D8%A7%D8%AA_%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A.png',
+        // image: 'assets/images/donate2.png',
         url: 'https://baitzakat.org.eg/donationChannels/#5',
       )
     ];

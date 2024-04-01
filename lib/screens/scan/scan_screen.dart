@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scanner/constants.dart';
+import 'package:scanner/cubits/get_barcodes_cubit/get_barcodes_cubit.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
@@ -17,10 +18,19 @@ class ScanScreen extends StatefulWidget {
 }
 
 class _ScanScreenState extends State<ScanScreen> {
+  @override
+  void initState() {
+    BlocProvider.of<GetBarcodesCubit>(context)
+      ..getCompaniesBarcodes()
+      ..getCountriesBarcodes();
+    super.initState();
+  }
+
   bool scanPhoto = true, scanNumber = false;
   String barcode = '';
   @override
   Widget build(BuildContext context) {
+    GetBarcodesCubit barcodesCubit = BlocProvider.of<GetBarcodesCubit>(context);
     return Builder(
       builder: (context) {
         return Material(
@@ -152,7 +162,13 @@ class _ScanScreenState extends State<ScanScreen> {
                                       );
                                     } else {
                                       BlocProvider.of<ScanCubit>(context)
-                                          .scanfromNumber(barcode);
+                                          .scanfromNumber(
+                                        countriesBarcodes:
+                                            barcodesCubit.countriesBarcodesList,
+                                        companiesBarcodes:
+                                            barcodesCubit.companiesBarcodesList,
+                                        data: barcode,
+                                      );
                                     }
                                   },
                                   borderRadius: const BorderRadius.all(
