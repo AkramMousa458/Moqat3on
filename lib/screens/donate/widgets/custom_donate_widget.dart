@@ -13,6 +13,11 @@ class CustomDonateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       padding: EdgeInsets.zero,
+      hoverColor: AppColors.redBlck,
+      // color: AppColors.redBlck,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20), // Border radius
+      ),
       onPressed: () {
         launchUrl(
           Uri.parse(donateModel.url),

@@ -92,19 +92,20 @@ class _ProductScreenState extends State<ProductScreen> {
                     ],
                   ),
                   sizeHeight(10),
-                  CustomRatingBar(
-                    onRatingUpdate: (value) {
-                      rating = value;
-                      setState(() {});
-                    },
-                    rating: rating,
-                  )
+                  if (widget.productModel.boycott == 'لا')
+                    CustomRatingBar(
+                      onRatingUpdate: (value) {
+                        rating = value;
+                        setState(() {});
+                      },
+                      rating: rating,
+                    )
                 ],
               ),
               sizeHeight(20),
               widget.productModel.boycott == "نعم"
                   ? const Text(
-                      " : سبب المقاطعة ",
+                      " : سبب المقاطعة",
                       style: CustomTextStyle.stylesFont400Size22,
                     )
                   : const Text(

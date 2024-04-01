@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/constants.dart';
 import 'package:scanner/cubits/add_barcode_cubit/add_barcode_cubit.dart';
+import 'package:scanner/cubits/add_donate_cubit/add_donate_cubit.dart';
 import 'package:scanner/cubits/add_product_cubit/add_product_cubit.dart';
 import 'package:scanner/cubits/get_barcodes_cubit/get_barcodes_cubit.dart';
+import 'package:scanner/cubits/get_donate_cubit/get_donate_cubit.dart';
 import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/firebase_options.dart';
@@ -44,6 +46,12 @@ class Scanner extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetBarcodesCubit()
+        ),
+        BlocProvider(
+          create: (context) => AddDonateCubit()
+        ),
+        BlocProvider(
+          create: (context) => GetDonateCubit()..getDonate()
         ),
       ],
       child: MaterialApp.router(
