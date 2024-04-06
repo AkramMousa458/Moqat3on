@@ -28,7 +28,10 @@ class ProductsAlternative extends StatelessWidget {
           for (var product in state.allProducts) {
             if (product.category == productModel.category &&
                 product.boycott == 'لا') {
-              alteProducts.add(product);
+              if (product == productModel) {
+              } else {
+                alteProducts.add(product);
+              }
             }
           }
 
