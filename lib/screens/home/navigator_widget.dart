@@ -1,9 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:scanner/cubits/add_donate_cubit/add_donate_cubit.dart';
+import 'package:go_router/go_router.dart';
 import 'package:scanner/helper/colors.dart';
-import 'package:scanner/models/donate_model.dart';
 import 'package:scanner/screens/about_screen.dart';
 import 'package:scanner/screens/donate/donate_screen.dart';
 import 'package:scanner/screens/home/home_screen.dart';
@@ -31,19 +30,21 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.offwhite,
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     BlocProvider.of<AddDonateCubit>(context).addDonate(
-      //       DonateModel(
-      //         text: 'بيت الزكاة المصري',
-      //         image:
-      //             'https://upload.wikimedia.org/wikipedia/ar/2/20/%D8%A8%D9%8A%D8%AA_%D8%A7%D9%84%D8%B2%D9%83%D8%A7%D8%A9_%D9%88%D8%A7%D9%84%D8%B5%D8%AF%D9%82%D8%A7%D8%AA_%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A.png',
-      //         url: 'https://baitzakat.org.eg/donationChannels/#5',
-      //       ),
-      //     );
-      //   },
-      //   child: const Icon(Icons.add),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          FirebaseAuth.instance.signOut();
+          GoRouter.of(context).go('/');
+          // BlocProvider.of<AddDonateCubit>(context).addDonate(
+          //   DonateModel(
+          //     text: 'بيت الزكاة المصري',
+          //     image:
+          //         'https://upload.wikimedia.org/wikipedia/ar/2/20/%D8%A8%D9%8A%D8%AA_%D8%A7%D9%84%D8%B2%D9%83%D8%A7%D8%A9_%D9%88%D8%A7%D9%84%D8%B5%D8%AF%D9%82%D8%A7%D8%AA_%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A.png',
+          //     url: 'https://baitzakat.org.eg/donationChannels/#5',
+          //   ),
+          // );
+        },
+        child: const Icon(Icons.add),
+      ),
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.only(left: 16),

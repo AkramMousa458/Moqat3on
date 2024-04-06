@@ -27,6 +27,16 @@ final class SignInFailureState extends AuthState {
   SignInFailureState({required this.error});
 }
 
+final class SignInGoogleLoadingState extends AuthState {}
+
+final class SignInGoogleSccessState extends AuthState {}
+
+final class SignInGoogleFailureState extends AuthState {
+  final String error;
+  SignInGoogleFailureState({required this.error});
+}
+
+
  class RestPasswordLoadingState extends AuthState {}
 
 final class RestPasswordSccessState extends AuthState {}

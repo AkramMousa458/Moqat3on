@@ -2,12 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   String? userName;
 
   String? emailAddress;
@@ -29,21 +31,23 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(CreateAccountLoadingState());
       UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          await _auth.createUserWithEmailAndPassword(
         email: emailAddress!,
         password: password!,
       );
       await verificationEmail();
+
+      _firestore.collection('users').doc(userCredential.user!.email).set(
+        {
+          'name': userName,
+          'email': emailAddress,
+          'image':
+              'https://i.guim.co.uk/img/media/5d9ea77d27c95d327caee787ddc6af484faaa567/0_0_8192_5464/master/8192.jpg?width=1300&dpr=1&s=none'
+        },
+      );
       emit(CreateAccountSccessState());
 
       // Move the code that accesses userCredential inside the try block
-      FirebaseFirestore.instance
-          .collection('users')
-          .doc(userCredential.user!.email)
-          .set({
-        'name': userName,
-        'email': emailAddress,
-      });
     } on FirebaseAuthException catch (e) {
       _signUpException(e);
     } catch (e) {
@@ -70,7 +74,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signINWithEmailAndPassword() async {
     try {
       emit(SignInLoadingState());
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: emailAddress!,
         password: password!,
       );
@@ -89,13 +93,13 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> verificationEmail() async {
-    await FirebaseAuth.instance.currentUser!.sendEmailVerification();
+    await _auth.currentUser!.sendEmailVerification();
   }
 
   Future<void> sendResetPasswordLink() async {
     try {
       emit(RestPasswordLoadingState());
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: emailAddress!);
+      await _auth.sendPasswordResetEmail(email: emailAddress!);
 
       emit(RestPasswordSccessState());
     } catch (e) {
@@ -104,24 +108,43 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    if (googleUser == null) {
-      return;
+    emit(SignInGoogleLoadingState());
+    try {
+      GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
+      UserCredential userCredential =
+          await _auth.signInWithProvider(googleAuthProvider);
+
+      _firestore.collection('users').doc(userCredential.user!.email).set({
+        'name': userCredential.user!.displayName ??
+            userCredential.user!.email!.split('@')[0],
+        'email': userCredential.user!.email,
+        'image': userCredential.user!.photoURL ??
+            'https://i.guim.co.uk/img/media/5d9ea77d27c95d327caee787ddc6af484faaa567/0_0_8192_5464/master/8192.jpg?width=1300&dpr=1&s=none'
+      });
+
+      emit(SignInGoogleSccessState());
+    } catch (e) {
+      emit(SignInGoogleFailureState(error: e.toString()));
     }
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
+    // Trigger the authentication flow
+    // final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    // if (googleUser == null) {
+    //   return;
+    // }
 
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
+    // // Obtain the auth details from the request
+    // final GoogleSignInAuthentication googleAuth =
+    //     await googleUser.authentication;
 
-    // Once signed in, return the UserCredential
-    await FirebaseAuth.instance.signInWithCredential(credential);
+    // // Create a new credential
+    // final credential = GoogleAuthProvider.credential(
+    //   accessToken: googleAuth.accessToken,
+    //   idToken: googleAuth.idToken,
+    // );
+
+    // // Once signed in, return the UserCredential
+    // await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   void skipUser() async {

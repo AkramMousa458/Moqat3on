@@ -102,7 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   return ListView(
                     children: [
                       const SizedBox(height: 20),
-                      const CustomProfileImage(),
+                      CustomProfileImage(url: userData["image"]),
                       const SizedBox(height: 16),
                       CustomProfileName(
                         text: userData['name']!,
@@ -169,7 +169,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: CustomLoadingWidget(),
                   );
                 }
-              })
+              },
+            )
           : const CheckSignUpProfile(),
     );
   }

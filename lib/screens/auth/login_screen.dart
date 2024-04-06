@@ -67,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                         customGoNavigate(context, "/createAccount");
                       },
                       textAlready: "ليس لديك حساب؟",
-                      textlogin: " تسجيل حساب جديد",
+                      textlogin: "تسجيل حساب جديد ",
                     ),
                     const SizedBox(
                       height: 50,

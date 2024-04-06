@@ -7,6 +7,7 @@ import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/helper/show_snackbar.dart';
 import 'package:scanner/screens/auth/widgets/custom_button.dart';
+import 'package:scanner/screens/auth/widgets/custom_sign_google.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_form_auth.dart';
 import 'package:scanner/widgets/custom_loading_widget.dart';
 
@@ -20,14 +21,21 @@ class CustomLoginForm extends StatelessWidget {
         if (state is SignInSccessState) {
           FirebaseAuth.instance.currentUser!.emailVerified
               ? customGoNavigate(context, '/navigator')
-              : showBottomSnackBar(
-                  context, 'يرجي فحص الجيميل للتفعيل أولاََ');
+              : showBottomSnackBar(context, 'يرجي فحص الجيميل للتفعيل أولاََ');
         } else if (state is SignInFailureState) {
           showCustomSnackBar(
             context: context,
             text: state.error.toString(),
             status: false,
           );
+        } else if (state is SignInGoogleFailureState) {
+          showCustomSnackBar(
+            context: context,
+            text: state.error.toString(),
+            status: false,
+          );
+        } else if (state is SignInGoogleSccessState) {
+          customGoNavigate(context, '/navigator');
         }
       },
       builder: (context, state) {
@@ -73,7 +81,9 @@ class CustomLoginForm extends StatelessWidget {
                       text: "تسجيل الدخول",
                     ),
               const SizedBox(height: 24),
-              // const CustomSignWithGoogle(),
+              state is SignInGoogleLoadingState
+                  ? const Center(child: CustomLoadingWidget())
+                  : const CustomSignWithGoogle(),
             ],
           ),
         );

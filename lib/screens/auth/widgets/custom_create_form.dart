@@ -6,7 +6,9 @@ import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/helper/show_snackbar.dart';
 import 'package:scanner/screens/auth/widgets/custom_button.dart';
+import 'package:scanner/screens/auth/widgets/custom_sign_google.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_form_auth.dart';
+import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class CustomCreateAccountForm extends StatelessWidget {
   const CustomCreateAccountForm({super.key});
@@ -32,49 +34,54 @@ class CustomCreateAccountForm extends StatelessWidget {
       builder: (context, state) {
         AuthCubit authCubit = BlocProvider.of<AuthCubit>(context);
         return Form(
-            key: authCubit.formKeySignUp,
-            child: Column(
-              children: [
-                CustomTextFormFAuth(
-                    labelText: 'User name',
-                    onChanged: (name) {
-                      authCubit.userName = name;
-                    }),
-                CustomTextFormFAuth(
-                    labelText: 'Email Address',
-                    onChanged: (email) {
-                      authCubit.emailAddress = email;
-                    }),
-                CustomTextFormFAuth(
-                    obscureText: authCubit.obscureText,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        authCubit.toggleObscureText();
-                      },
-                      icon: Icon(
-                        authCubit.obscureText == true
-                            ? Icons.visibility_off
-                            : Icons.visibility_outlined,
-                        color: AppColors.lightGrey,
-                      ),
+          key: authCubit.formKeySignUp,
+          child: Column(
+            children: [
+              CustomTextFormFAuth(
+                  labelText: 'User name',
+                  onChanged: (name) {
+                    authCubit.userName = name;
+                  }),
+              CustomTextFormFAuth(
+                  labelText: 'Email Address',
+                  onChanged: (email) {
+                    authCubit.emailAddress = email;
+                  }),
+              CustomTextFormFAuth(
+                  obscureText: authCubit.obscureText,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      authCubit.toggleObscureText();
+                    },
+                    icon: Icon(
+                      authCubit.obscureText == true
+                          ? Icons.visibility_off
+                          : Icons.visibility_outlined,
+                      color: AppColors.lightGrey,
                     ),
-                    labelText: "Password",
-                    onChanged: (password) {
-                      authCubit.password = password;
-                    }),
-                const SizedBox(height: 30),
-                // const CustomSignWithGoogle(),
-                const SizedBox(height: 24),
-                CustomButtonApp(
-                  onPressed: () async {
-                    if (authCubit.formKeySignUp.currentState!.validate()) {
-                      await authCubit.signUpWithEmailAndPassword();
-                    }
-                  },
-                  text: "تسجيل الحساب",
-                )
-              ],
-            ));
+                  ),
+                  labelText: "Password",
+                  onChanged: (password) {
+                    authCubit.password = password;
+                  }),
+              const SizedBox(height: 24),
+              state is CreateAccountLoadingState
+                  ? const Center(child: CustomLoadingWidget())
+                  : CustomButtonApp(
+                      onPressed: () async {
+                        if (authCubit.formKeySignUp.currentState!.validate()) {
+                          await authCubit.signUpWithEmailAndPassword();
+                        }
+                      },
+                      text: "تسجيل الحساب",
+                    ),
+              const SizedBox(height: 24),
+              state is SignInGoogleLoadingState
+                  ? const Center(child: CustomLoadingWidget())
+                  : const CustomSignWithGoogle(),
+            ],
+          ),
+        );
       },
     );
   }
