@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
+import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/helper/show_snackbar.dart';
 import 'package:scanner/screens/auth/widgets/custom_button.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_form_auth.dart';
@@ -18,10 +19,15 @@ class CustomLoginForm extends StatelessWidget {
       listener: (context, state) {
         if (state is SignInSccessState) {
           FirebaseAuth.instance.currentUser!.emailVerified
-              ? customReplacementNavigate(context, '/navigator')
-              : showSnackBar(context, 'Succes please verify your email');
+              ? customGoNavigate(context, '/navigator')
+              : showBottomSnackBar(
+                  context, 'يرجي فحص الجيميل للتفعيل أولاََ');
         } else if (state is SignInFailureState) {
-          showSnackBar(context, state.error.toString());
+          showCustomSnackBar(
+            context: context,
+            text: state.error.toString(),
+            status: false,
+          );
         }
       },
       builder: (context, state) {
@@ -64,7 +70,7 @@ class CustomLoginForm extends StatelessWidget {
                           await authCubit.signINWithEmailAndPassword();
                         }
                       },
-                      text: "Sign In",
+                      text: "تسجيل الدخول",
                     ),
               const SizedBox(height: 24),
               // const CustomSignWithGoogle(),

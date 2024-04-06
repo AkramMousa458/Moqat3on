@@ -17,10 +17,6 @@ class CustomTextHaveAccount extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            textAlready,
-            style: CustomTextStyle.stylesFont500Size16,
-          ),
           GestureDetector(
             onTap: onTap,
             child: Text(
@@ -29,6 +25,10 @@ class CustomTextHaveAccount extends StatelessWidget {
                 color: Colors.red,
               ),
             ),
+          ),
+          Text(
+            textAlready,
+            style: CustomTextStyle.stylesFont500Size16,
           ),
         ],
       ),

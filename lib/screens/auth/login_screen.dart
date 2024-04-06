@@ -25,55 +25,55 @@ class LoginScreen extends StatelessWidget {
           Container(
             height: MediaQuery.of(context).size.height,
             color: Colors.black.withOpacity(0.8),
-            padding:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height / 12),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      const Spacer(),
-                      TextButton(
-                        onPressed: () {
-                          customGoNavigate(context, '/navigator');
-                          BlocProvider.of<AuthCubit>(context).skipUser();
-                        },
-                        child: Text(
-                          'Skip',
-                          style: CustomTextStyle.stylesFont500Size16.copyWith(
-                            color: Colors.red,
+            child: SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        const Spacer(),
+                        TextButton(
+                          onPressed: () {
+                            customGoNavigate(context, '/navigator');
+                            BlocProvider.of<AuthCubit>(context).skipUser();
+                          },
+                          child: Text(
+                            'تخطي',
+                            style: CustomTextStyle.stylesFont500Size16.copyWith(
+                              color: Colors.red,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 70, left: 50, right: 50),
-                    child: Image.asset(
-                      "assets/images/hand.png",
-                      width: 150,
-                      height: 150,
+                      ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  const CustomLoginForm(),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  CustomTextHaveAccount(
-                    onTap: () {
-                      customGoNavigate(context, "/createAccount");
-                    },
-                    textAlready: " Don't have an account?",
-                    textlogin: " Sign Up",
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                ],
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 70, left: 50, right: 50),
+                      child: Image.asset(
+                        "assets/images/hand.png",
+                        width: 150,
+                        height: 150,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    const CustomLoginForm(),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    CustomTextHaveAccount(
+                      onTap: () {
+                        customGoNavigate(context, "/createAccount");
+                      },
+                      textAlready: "ليس لديك حساب؟",
+                      textlogin: " تسجيل حساب جديد",
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

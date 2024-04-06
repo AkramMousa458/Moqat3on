@@ -4,6 +4,7 @@ import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
+import 'package:scanner/helper/show_snackbar.dart';
 import 'package:scanner/screens/auth/widgets/custom_button.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_form_auth.dart';
 
@@ -15,13 +16,17 @@ class CustomCreateAccountForm extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is CreateAccountSccessState) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Success Check your email'),
-          ));
-          customNavigate(context, '/login');
+          showBottomSnackBar(
+            context,
+            'تم التسجيل بنجاح, يرجي فحص الجيميل للتفعيل',
+          );
+          customGoNavigate(context, '/login');
         } else if (state is CreateAccountFailureState) {
           showCustomSnackBar(
-              context: context, text: state.error.toString(), status: false);
+            context: context,
+            text: state.error.toString(),
+            status: false,
+          );
         }
       },
       builder: (context, state) {
@@ -66,7 +71,7 @@ class CustomCreateAccountForm extends StatelessWidget {
                       await authCubit.signUpWithEmailAndPassword();
                     }
                   },
-                  text: "Sign Up",
+                  text: "تسجيل الحساب",
                 )
               ],
             ));

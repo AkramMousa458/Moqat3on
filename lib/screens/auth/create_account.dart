@@ -43,8 +43,8 @@ class CreateAccount extends StatelessWidget {
                       onTap: () {
                         customGoNavigate(context, '/login');
                       },
-                      textAlready: "  Don't have an account?",
-                      textlogin: " Sign In",
+                      textAlready: "لديك حساب بالفعل؟",
+                      textlogin: "تسجيل الدخول ",
                     ),
                     const SizedBox(height: 50),
                   ],
