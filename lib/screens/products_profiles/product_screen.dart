@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
@@ -38,11 +39,15 @@ class _ProductScreenState extends State<ProductScreen> {
               sizeHeight(20),
               Container(
                 height: 200,
-                width: 200,
+                width: MediaQuery.sizeOf(context).width / 1.5,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(25),
                   image: DecorationImage(
-                    image: NetworkImage(widget.productModel.image),
+                    fit: BoxFit.cover,
+                    image: CachedNetworkImageProvider(
+                      widget.productModel.image,
+                      errorListener: (p0) => const Icon(Icons.error),
+                    ),
                   ),
                 ),
               ),

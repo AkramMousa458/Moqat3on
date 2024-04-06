@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/product_model.dart';
+import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class CustomProductItem extends StatelessWidget {
   const CustomProductItem({super.key, required this.productModel});
@@ -28,11 +30,13 @@ class CustomProductItem extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(
-                  productModel.image,
-                  width: 135,
-                  height: 100,
+                child: CachedNetworkImage(
+                  imageUrl: productModel.image,
                   fit: BoxFit.cover,
+                  height: MediaQuery.sizeOf(context).width / 4,
+                  placeholder: (context, url) =>
+                      const Center(child: CustomLoadingWidget()),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
               const SizedBox(

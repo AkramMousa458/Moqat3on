@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/donate_model.dart';
 import 'package:scanner/screens/home/widgets/custom_categories_scroll_item.dart';
+import 'package:scanner/widgets/custom_loading_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CustomDonateWidget extends StatelessWidget {
@@ -34,16 +36,19 @@ class CustomDonateWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.network(
-              donateModel.image,
-              cacheHeight: 55,
+            CachedNetworkImage(
+              imageUrl: donateModel.image,
               fit: BoxFit.cover,
+              height: MediaQuery.sizeOf(context).width / 6,
+              placeholder: (context, url) => const CustomLoadingWidget(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
             sizeHeight(5),
             Text(
               donateModel.text,
               textAlign: TextAlign.center,
               style: CustomTextStyle.stylesFont300Size16.copyWith(
+                fontSize: 15,
                 height: 1.2,
                 color: AppColors.redBlck,
                 fontWeight: FontWeight.bold,
