@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
+import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/product_model.dart';
 import 'package:scanner/screens/products_profiles/widgets/custom_products_alternative.dart';
@@ -20,8 +21,6 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  double rating = 0.0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,11 +98,11 @@ class _ProductScreenState extends State<ProductScreen> {
                   sizeHeight(10),
                   if (widget.productModel.boycott == 'لا')
                     CustomRatingBar(
-                      onRatingUpdate: (value) {
-                        rating = value;
-                        setState(() {});
-                      },
-                      rating: rating,
+                      // onRatingUpdate: (value) {
+                      //   rating = value;
+                      //   setState(() {});
+                      // },
+                      rating: widget.productModel.rating,
                     )
                 ],
               ),
@@ -133,7 +132,9 @@ class _ProductScreenState extends State<ProductScreen> {
                 endIndent: 30,
               ),
               Text(
-                "منتجات صناعة محلية بديل أفضل",
+                widget.productModel.boycott == "نعم"
+                    ? "منتجات صناعة محلية بديل أفضل"
+                    : 'منتجات بديلة أخري',
                 style: CustomTextStyle.stylesFont300Size16.copyWith(
                   color: Colors.green.shade600,
                   fontWeight: FontWeight.bold,

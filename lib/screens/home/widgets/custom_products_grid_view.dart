@@ -14,43 +14,44 @@ class CustomProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetProductsCubit, GetProductsState>(
-      builder: (context, state) {
-        if (state is GetProductsFailure) {
-          showCustomSnackBar(
-              context: context, text: state.errMessage, status: false);
-          return const SizedBox(width: 10);
-        } else if (state is GetProductsSuccess) {
-          return GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 0.0,
-              crossAxisSpacing: 16.0,
-              childAspectRatio: 0.9,
-            ),
-            itemCount: state.allProducts.length,
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () {
-                  // BlocProvider.of<AddProductCubit>(context)
-                  //     .addProduct(state.allProducts[index]);
-                  GoRouter.of(context).push(
-                    AppString.kproductScreen,
-                    extra: state.allProducts[index],
-                  );
-                },
-                child: CustomProductItem(
-                  productModel: state.allProducts[index],
-                ),
-              );
-            },
-          );
-        } else {
-          return const Center(child: CustomLoadingWidget());
-        }
-      },
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: BlocBuilder<GetProductsCubit, GetProductsState>(
+        builder: (context, state) {
+          if (state is GetProductsFailure) {
+            showCustomSnackBar(
+                context: context, text: state.errMessage, status: false);
+            return const SizedBox(width: 10);
+          } else if (state is GetProductsSuccess) {
+            return GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 0.0,
+                crossAxisSpacing: 16.0,
+                childAspectRatio: 0.9,
+              ),
+              itemCount: state.allProducts.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).push(
+                      AppString.kproductScreen,
+                      extra: state.allProducts[index],
+                    );
+                  },
+                  child: CustomProductItem(
+                    productModel: state.allProducts[index],
+                  ),
+                );
+              },
+            );
+          } else {
+            return const Center(child: CustomLoadingWidget());
+          }
+        },
+      ),
     );
   }
 }

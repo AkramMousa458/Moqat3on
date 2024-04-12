@@ -28,34 +28,37 @@ class DonateScreen extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        body: BlocBuilder<GetDonateCubit, GetDonateState>(
-          builder: (context, state) {
-            if (state is GetDonateFailure) {
-              return Center(
-                child: Text(state.errMessage),
-              );
-            } else if (state is GetDonateSuccess) {
-              return GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 16,
-                  crossAxisSpacing: 16,
-                  childAspectRatio: 0.85,
-                ),
-                itemCount: state.donateList.length,
-                itemBuilder: (context, index) {
-                  return CustomDonateWidget(
-                    donateModel: state.donateList[index],
-                  );
-                },
-              );
-            } else {
-              return const Center(
-                child: CustomLoadingWidget(),
-              );
-            }
-          },
+        body: Directionality(
+          textDirection: TextDirection.rtl,
+          child: BlocBuilder<GetDonateCubit, GetDonateState>(
+            builder: (context, state) {
+              if (state is GetDonateFailure) {
+                return Center(
+                  child: Text(state.errMessage),
+                );
+              } else if (state is GetDonateSuccess) {
+                return GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    childAspectRatio: 0.85,
+                  ),
+                  itemCount: state.donateList.length,
+                  itemBuilder: (context, index) {
+                    return CustomDonateWidget(
+                      donateModel: state.donateList[index],
+                    );
+                  },
+                );
+              } else {
+                return const Center(
+                  child: CustomLoadingWidget(),
+                );
+              }
+            },
+          ),
         ),
       ),
     );

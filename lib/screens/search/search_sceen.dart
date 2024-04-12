@@ -61,7 +61,6 @@ class SearchScreen extends StatelessWidget {
                   CustomSearchTextField(
                     goSearch: false,
                     onChanged: (value) {
-
                       searchCubit.searchProducts(
                         value,
                         BlocProvider.of<GetProductsCubit>(context)

@@ -38,12 +38,12 @@ class CustomCreateAccountForm extends StatelessWidget {
           child: Column(
             children: [
               CustomTextFormFAuth(
-                  labelText: 'User name',
+                  labelText: 'إسم المستخدم',
                   onChanged: (name) {
                     authCubit.userName = name;
                   }),
               CustomTextFormFAuth(
-                  labelText: 'Email Address',
+                  labelText: "البريد الإلكتروني",
                   onChanged: (email) {
                     authCubit.emailAddress = email;
                   }),
@@ -60,7 +60,7 @@ class CustomCreateAccountForm extends StatelessWidget {
                       color: AppColors.lightGrey,
                     ),
                   ),
-                  labelText: "Password",
+                  labelText: "كلمة السر",
                   onChanged: (password) {
                     authCubit.password = password;
                   }),

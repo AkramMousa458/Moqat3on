@@ -44,15 +44,6 @@ class CustomProductItem extends StatelessWidget {
               ),
               Row(
                 children: [
-                  productModel.boycott == 'نعم'
-                      ? Icon(
-                          FontAwesomeIcons.ban,
-                          color: AppColors.redBlck,
-                        )
-                      : Icon(
-                          FontAwesomeIcons.check,
-                          color: AppColors.primaryColor,
-                        ),
                   Expanded(
                     flex: 1,
                     child: Text(
@@ -65,6 +56,15 @@ class CustomProductItem extends StatelessWidget {
                       ),
                     ),
                   ),
+                  productModel.boycott == 'نعم'
+                      ? Icon(
+                          FontAwesomeIcons.ban,
+                          color: AppColors.redBlck,
+                        )
+                      : Icon(
+                          FontAwesomeIcons.check,
+                          color: AppColors.primaryColor,
+                        ),
                 ],
               ),
             ],

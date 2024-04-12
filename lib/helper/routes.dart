@@ -60,10 +60,6 @@ final GoRouter router = GoRouter(
       path: "/checkSignUp",
       builder: (context, state) => const CheckSignUpProfile(),
     ),
-    GoRoute(
-      path: "/info",
-      builder: (context, state) => const InfoScreen(),
-    ),
   ],
 );
 

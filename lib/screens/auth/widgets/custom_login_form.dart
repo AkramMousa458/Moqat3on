@@ -47,7 +47,7 @@ class CustomLoginForm extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               CustomTextFormFAuth(
-                  labelText: "Email Address",
+                  labelText: "البريد الإلكتروني",
                   onChanged: (email) {
                     authCubit.emailAddress = email;
                   }),
@@ -64,7 +64,7 @@ class CustomLoginForm extends StatelessWidget {
                       color: AppColors.lightGrey,
                     ),
                   ),
-                  labelText: "Password",
+                  labelText: "كلمة السر",
                   onChanged: (password) {
                     authCubit.password = password;
                   }),

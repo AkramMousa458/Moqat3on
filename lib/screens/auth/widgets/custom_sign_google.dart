@@ -33,7 +33,7 @@ class CustomSignWithGoogle extends StatelessWidget {
               width: 14,
             ),
             const Text(
-              'Sign In with Google ',
+              'تسجيل الدخول بإستخدام جوجل ',
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
             ),
           ],

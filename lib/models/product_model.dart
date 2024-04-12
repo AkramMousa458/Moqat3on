@@ -5,7 +5,7 @@ class ProductModel {
   final String boycottReason;
   final String country;
   final String image;
-  final double ratign;
+  final double rating;
   ProductModel({
     required this.name,
     required this.category,
@@ -13,7 +13,7 @@ class ProductModel {
     required this.boycottReason,
     required this.country,
     required this.image,
-    required this.ratign,
+    required this.rating,
   });
 
   // Example factory method to create a Product from a JSON-like map
@@ -26,8 +26,9 @@ class ProductModel {
       boycott: data['boycott'] ?? '',
       boycottReason: data['boycottReason'] ?? '',
       country: data['country'] ?? '',
-      image: data['image'] ?? 'https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg',
-      ratign: data['ratign'] ??  0.0,
+      image: data['image'] ??
+          'https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg',
+      rating: data['rating'] ?? 0.0,
     );
   }
 
@@ -39,6 +40,6 @@ class ProductModel {
         'boycottReason': boycottReason,
         'country': country,
         'image': image,
-        'ratign': ratign,
+        'ratign': rating,
       };
 }

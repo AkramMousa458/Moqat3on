@@ -14,24 +14,25 @@ class CustomCategoriesScrollView extends StatefulWidget {
       _CustomCategoriesScrollViewState();
 }
 
+int selectedIndex = 0;
+ProductModel? productModel;
+
 class _CustomCategoriesScrollViewState
     extends State<CustomCategoriesScrollView> {
   List<String> itemText = [
     "الكل",
     "مطعاعم وكافيهات",
     "مشروبات",
+    "منتجات غذائية",
     "جبن وألبان",
     "ملابس",
     "منظفات",
+    "إلكترونيات",
   ];
-
-  int selectedIndex = 0;
-  ProductModel? productModel;
 
   @override
   Widget build(BuildContext context) {
-    final getProductsCubit = BlocProvider.of<GetProductsCubit>(
-        context); 
+    final getProductsCubit = BlocProvider.of<GetProductsCubit>(context);
 
     return Directionality(
       textDirection: TextDirection.rtl,
