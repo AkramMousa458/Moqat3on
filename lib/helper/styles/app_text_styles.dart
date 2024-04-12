@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
 
 class CustomTextStyle {
-  static final stylesFont500Size24 = TextStyle(
+  static const stylesFont500Size24 = TextStyle(
     fontSize: 22,
     fontWeight: FontWeight.w500,
     color: AppColors.red,
@@ -27,7 +27,7 @@ class CustomTextStyle {
     fontWeight: FontWeight.w500,
     color: AppColors.lightGrey,
   );
-  static final stylesFont400Size13 = TextStyle(
+  static const stylesFont400Size13 = TextStyle(
     fontSize: 13,
     fontWeight: FontWeight.w400,
     color: AppColors.deepGrey,

@@ -21,8 +21,8 @@ Future<dynamic> showAlertBox({
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Icon(
                   Icons.logout,
                   color: AppColors.redBlck,
@@ -34,7 +34,7 @@ Future<dynamic> showAlertBox({
                 child: Text(
                   bodyText,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     color: AppColors.redBlck,
                     fontWeight: FontWeight.bold,

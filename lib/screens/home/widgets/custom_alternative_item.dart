@@ -57,11 +57,11 @@ class CustomAlternativeItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     productModel.boycott == 'نعم'
-                        ? Icon(
+                        ? const Icon(
                             FontAwesomeIcons.ban,
                             color: AppColors.redBlck,
                           )
-                        : Icon(
+                        : const Icon(
                             FontAwesomeIcons.check,
                             color: AppColors.primaryColor,
                           ),

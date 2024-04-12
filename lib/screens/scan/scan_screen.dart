@@ -130,7 +130,7 @@ class _ScanScreenState extends State<ScanScreen> {
                     : Column(
                         children: [
                           const SizedBox(height: 50),
-                          Text(
+                          const Text(
                             'من فضلك ادخل ال 13 رقم الخاص بالباركود من اليسار الى اليمين',
                             textDirection: TextDirection.rtl,
                             textAlign: TextAlign.center,

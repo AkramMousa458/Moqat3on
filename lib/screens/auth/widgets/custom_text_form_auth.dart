@@ -34,7 +34,7 @@ class CustomTextFormFAuth extends StatelessWidget {
         decoration: InputDecoration(
           labelText: labelText,
           suffixIcon: suffixIcon,
-          labelStyle: TextStyle(color: AppColors.primaryColor),
+          labelStyle: const TextStyle(color: AppColors.primaryColor),
           border: customOutLineInputBorder(),
           enabledBorder: customOutLineInputBorder(),
           focusedBorder: customOutLineInputBorder(),

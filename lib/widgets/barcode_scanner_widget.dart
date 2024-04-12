@@ -9,7 +9,7 @@ ScanController controller = ScanController();
 
 AppBar barcodeScannerAppBar(BuildContext context) {
   return AppBar(
-    title: Text(
+    title: const Text(
       'مسح المنتج',
       style: TextStyle(color: AppColors.white),
     ),

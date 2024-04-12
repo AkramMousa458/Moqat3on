@@ -82,13 +82,13 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
               height: 50,
               padding: EdgeInsets.zero,
               margin: EdgeInsets.zero,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: AppColors.redBlck,
-                borderRadius: const BorderRadius.all(
+                borderRadius: BorderRadius.all(
                   Radius.circular(100),
                 ),
               ),
-              child: Center(
+              child: const Center(
                 child: Icon(
                   FontAwesomeIcons.expand,
                   color: AppColors.white,

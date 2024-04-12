@@ -52,7 +52,7 @@ class ScanChooseButton extends StatelessWidget {
                   text,
                   textDirection: TextDirection.rtl,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: AppColors.redBlck,

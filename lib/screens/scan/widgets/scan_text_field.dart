@@ -24,13 +24,13 @@ class ScanTextField extends StatelessWidget {
         maxLength: 13,
         keyboardType: TextInputType.number,
         cursorColor: AppColors.deepGrey,
-        style: TextStyle(color: AppColors.redBlck),
+        style: const TextStyle(color: AppColors.redBlck),
         obscureText: obscureText,
         onChanged: onChanged,
         decoration: InputDecoration(
           labelText: labelText,
           suffixIcon: suffixIcon,
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
             color: AppColors.redBlck,
           ),
           border: customOutLineInputBorder(),
@@ -43,7 +43,7 @@ class ScanTextField extends StatelessWidget {
 
   OutlineInputBorder customOutLineInputBorder() => OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide(
+        borderSide: const BorderSide(
           color: AppColors.redBlck,
         ),
       );

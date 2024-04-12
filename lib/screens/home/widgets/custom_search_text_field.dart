@@ -25,15 +25,15 @@ class CustomSearchTextField extends StatelessWidget {
       },
       decoration: InputDecoration(
         hintText: 'ابحث',
-        hintStyle: TextStyle(color: AppColors.redBlck),
+        hintStyle: const TextStyle(color: AppColors.redBlck),
         prefixIcon: const Icon(Icons.search),
         prefixIconColor: AppColors.redBlck,
         border: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.redBlck),
+          borderSide: const BorderSide(color: AppColors.redBlck),
           borderRadius: BorderRadius.circular(14),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.redBlck),
+          borderSide: const BorderSide(color: AppColors.redBlck),
           borderRadius: BorderRadius.circular(14),
         ),
       ),

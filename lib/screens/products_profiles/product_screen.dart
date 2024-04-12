@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
-import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/product_model.dart';
 import 'package:scanner/screens/products_profiles/widgets/custom_products_alternative.dart';
@@ -55,7 +54,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 children: [
                   Text(
                     widget.productModel.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 25,
                       color: AppColors.black,
                       fontWeight: FontWeight.bold,
@@ -67,8 +66,8 @@ class _ProductScreenState extends State<ProductScreen> {
                     children: [
                       Text(
                         widget.productModel.boycott,
-                        style:
-                            TextStyle(color: AppColors.redBlck, fontSize: 20),
+                        style: const TextStyle(
+                            color: AppColors.redBlck, fontSize: 20),
                       ),
                       const Text(
                         " : مقطاعة ",
@@ -86,8 +85,8 @@ class _ProductScreenState extends State<ProductScreen> {
                     children: [
                       Text(
                         widget.productModel.country,
-                        style:
-                            TextStyle(color: AppColors.redBlck, fontSize: 16),
+                        style: const TextStyle(
+                            color: AppColors.redBlck, fontSize: 16),
                       ),
                       const Text(
                         " : بلد المنشاء  ",
@@ -98,10 +97,6 @@ class _ProductScreenState extends State<ProductScreen> {
                   sizeHeight(10),
                   if (widget.productModel.boycott == 'لا')
                     CustomRatingBar(
-                      // onRatingUpdate: (value) {
-                      //   rating = value;
-                      //   setState(() {});
-                      // },
                       rating: widget.productModel.rating,
                     )
                 ],

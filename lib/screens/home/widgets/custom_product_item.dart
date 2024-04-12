@@ -57,11 +57,11 @@ class CustomProductItem extends StatelessWidget {
                     ),
                   ),
                   productModel.boycott == 'نعم'
-                      ? Icon(
+                      ? const Icon(
                           FontAwesomeIcons.ban,
                           color: AppColors.redBlck,
                         )
-                      : Icon(
+                      : const Icon(
                           FontAwesomeIcons.check,
                           color: AppColors.primaryColor,
                         ),
