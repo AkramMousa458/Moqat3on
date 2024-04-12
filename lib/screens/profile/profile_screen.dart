@@ -102,7 +102,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   return ListView(
                     children: [
                       const SizedBox(height: 20),
-                      CustomProfileImage(url: userData["image"]),
+                      CustomProfileImage(
+                          url: userData["image"] ??
+                              'https://i.guim.co.uk/img/media/5d9ea77d27c95d327caee787ddc6af484faaa567/0_0_8192_5464/master/8192.jpg?width=1300&dpr=1&s=none'),
                       const SizedBox(height: 16),
                       CustomProfileName(
                         text: userData['name']!,

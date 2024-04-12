@@ -123,28 +123,32 @@ class AuthCubit extends Cubit<AuthState> {
       });
 
       emit(SignInGoogleSccessState());
+      } on FirebaseAuthException catch (e) {
+        _googleSignInException(e);
     } catch (e) {
       emit(SignInGoogleFailureState(error: e.toString()));
     }
+  }
 
-    // Trigger the authentication flow
-    // final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    // if (googleUser == null) {
-    //   return;
-    // }
-
-    // // Obtain the auth details from the request
-    // final GoogleSignInAuthentication googleAuth =
-    //     await googleUser.authentication;
-
-    // // Create a new credential
-    // final credential = GoogleAuthProvider.credential(
-    //   accessToken: googleAuth.accessToken,
-    //   idToken: googleAuth.idToken,
-    // );
-
-    // // Once signed in, return the UserCredential
-    // await FirebaseAuth.instance.signInWithCredential(credential);
+  void _googleSignInException(FirebaseAuthException e) {
+    if (e.code == 'user-disabled') {
+      emit(SignInGoogleFailureState(
+        error: 'The User in disabled',
+      ));
+    } else if (e.code == 'web-context-canceled') {
+      emit(SignInGoogleFailureState(
+        error: 'Google sign in cancled by user',
+      ));
+    } else if (e.code == ' invalid-email') {
+    } else if (e.code == 'email-already-in-use') {
+      emit(SignInGoogleFailureState(
+        error: 'The account already exists for that email.',
+      ));
+    } else if (e.code == ' invalid-email') {
+      emit(SignInGoogleFailureState(
+        error: ' The email input is invalid.',
+      ));
+    }
   }
 
   void skipUser() async {
