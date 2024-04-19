@@ -8,6 +8,7 @@ import 'package:scanner/screens/home/widgets/custom_search_text_field.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+  static String routeName = '/homeScreen';
 
   @override
   Widget build(BuildContext context) {

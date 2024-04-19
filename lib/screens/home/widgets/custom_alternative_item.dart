@@ -6,6 +6,7 @@ import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/routes.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/product_model.dart';
+import 'package:scanner/screens/products_profiles/product_screen.dart';
 import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class CustomAlternativeItem extends StatelessWidget {
@@ -18,7 +19,7 @@ class CustomAlternativeItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         GoRouter.of(context).pushReplacement(
-          AppString.kproductScreen,
+          ProductScreen.routeName,
           extra: productModel,
         );
       },

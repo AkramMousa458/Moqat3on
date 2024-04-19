@@ -1,28 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:scanner/widgets/custom_back_button.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key, required this.text});
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({
+    super.key,
+    required this.title,
+  });
 
-  final String text;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      actions: [
+        Image.asset(
+          'assets/images/hand.png',
+          width: 50,
+          height: 50,
+        ),
+      ],
       title: Text(
-        text,
+        title,
         style: const TextStyle(
-          fontFamily: "ReadexPro",
-          color: Colors.white,
+          color: Colors.black,
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
         ),
       ),
-      leading: const CustomBackButton(),
-      backgroundColor: const Color.fromARGB(255, 88, 15, 15),
-      elevation: 0,
       centerTitle: true,
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

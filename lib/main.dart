@@ -6,17 +6,21 @@ import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/firebase_options.dart';
 import 'package:scanner/helper/firebase_notification.dart';
-import 'package:scanner/helper/local_notification.dart';
+import 'package:scanner/helper/local_notification_service.dart';
 import 'package:scanner/helper/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:scanner/helper/work_manager_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseNotification.initNotificaitons();
-  await LocalNotification.initNotification();
+  await Future.wait([
+    FirebaseNotification.initNotificaitons(),
+    LocalNotificationService.init(),
+    WorkManagerService().init(),
+  ]);
 
   runApp(const Scanner());
 }
@@ -34,9 +38,7 @@ class Scanner extends StatelessWidget {
         BlocProvider(
           create: (context) => GetProductsCubit()..getAllProducts(),
         ),
-        BlocProvider(
-          create: (context) => GetBarcodesCubit()
-        ),
+        BlocProvider(create: (context) => GetBarcodesCubit()),
       ],
       child: MaterialApp.router(
         theme: ThemeData(

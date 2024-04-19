@@ -9,6 +9,7 @@ import 'package:scanner/screens/products_profiles/product_screen.dart';
 import 'package:scanner/screens/profile/profile_screen.dart';
 import 'package:scanner/screens/profile/widgets/check_signup_profile.dart';
 import 'package:scanner/screens/search/search_sceen.dart';
+import 'package:scanner/screens/settings_screen.dart';
 import 'package:scanner/screens/splash_screen.dart';
 
 import '../screens/auth/create_account.dart';
@@ -16,52 +17,52 @@ import '../screens/auth/create_account.dart';
 final GoRouter router = GoRouter(
   routes: [
     GoRoute(
-      path: "/",
+      path: SplashScreen.routeName,
       builder: (context, state) => const SplashScreen(),
     ),
     GoRoute(
-      path: "/login",
+      path: LoginScreen.routeName,
       builder: (context, state) => BlocProvider(
         create: (context) => AuthCubit(),
         child: const LoginScreen(),
       ),
     ),
     GoRoute(
-      path: "/createAccount",
+      path: CreateAccount.routeName,
       builder: (context, state) => BlocProvider(
         create: (context) => AuthCubit(),
         child: const CreateAccount(),
       ),
     ),
     GoRoute(
-      path: "/home",
+      path: HomeScreen.routeName,
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: "/search",
+      path: SearchScreen.routeName,
       builder: (context, state) => const SearchScreen(),
     ),
     GoRoute(
-      path: "/profile",
+      path: ProfileScreen.routeName,
       builder: (context, state) => const ProfileScreen(),
     ),
     GoRoute(
-      path: "/navigator",
+      path: NavigatorWidget.routeName,
       builder: (context, state) => const NavigatorWidget(),
     ),
     GoRoute(
-      path: AppString.kproductScreen,
+      path: ProductScreen.routeName,
       builder: (context, state) => ProductScreen(
         productModel: state.extra as ProductModel,
       ),
     ),
     GoRoute(
-      path: "/checkSignUp",
+      path: CheckSignUpProfile.routeName,
       builder: (context, state) => const CheckSignUpProfile(),
+    ),
+    GoRoute(
+      path: SettingsScreen.routeName,
+      builder: (context, state) => const SettingsScreen(),
     ),
   ],
 );
-
-class AppString {
-  static const kproductScreen = "/product";
-}

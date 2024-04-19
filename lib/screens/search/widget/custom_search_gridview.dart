@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:scanner/cubits/search_cubit/search_cubit.dart';
-import 'package:scanner/helper/routes.dart';
 import 'package:scanner/screens/home/widgets/custom_product_item.dart';
+import 'package:scanner/screens/products_profiles/product_screen.dart';
 import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class CustomSearchGridView extends StatelessWidget {
@@ -37,7 +37,7 @@ class CustomSearchGridView extends StatelessWidget {
                 return GestureDetector(
                   onTap: () {
                     GoRouter.of(context).push(
-                      AppString.kproductScreen,
+                      ProductScreen.routeName,
                       extra: searchCubit.filteredList[index],
                     );
                   },

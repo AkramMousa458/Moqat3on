@@ -1,9 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/navigation.dart';
+import 'package:scanner/screens/auth/login_screen.dart';
+import 'package:scanner/screens/home/navigator_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  static String routeName = '/';
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -17,11 +21,11 @@ class _SplashScreenState extends State<SplashScreen> {
     firebaseAuth.authStateChanges().listen((user) {
       if (user == null) {
         Future.delayed(const Duration(seconds: 2), () {
-          customReplacementNavigate(context, '/login');
+          customReplacementNavigate(context, LoginScreen.routeName);
         });
       } else {
         Future.delayed(const Duration(seconds: 2), () {
-          customReplacementNavigate(context, '/navigator');
+          customReplacementNavigate(context, NavigatorWidget.routeName);
         });
       }
     });

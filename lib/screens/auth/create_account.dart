@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/navigation.dart';
+import 'package:scanner/screens/auth/login_screen.dart';
 import 'package:scanner/screens/auth/widgets/custom_create_form.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_have_account.dart';
 
 class CreateAccount extends StatelessWidget {
   const CreateAccount({super.key});
+
+  static String routeName = '/createAccountScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class CreateAccount extends StatelessWidget {
                     const SizedBox(height: 30),
                     CustomTextHaveAccount(
                       onTap: () {
-                        customGoNavigate(context, '/login');
+                        customGoNavigate(context, LoginScreen.routeName);
                       },
                       textAlready: "لديك حساب بالفعل؟",
                       textlogin: "تسجيل الدخول ",

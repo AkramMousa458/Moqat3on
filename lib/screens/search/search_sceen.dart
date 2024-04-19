@@ -8,7 +8,7 @@ import 'package:scanner/screens/search/widget/custom_search_gridview.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
-
+static String routeName = '/searchScreen';
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SearchCubit>(

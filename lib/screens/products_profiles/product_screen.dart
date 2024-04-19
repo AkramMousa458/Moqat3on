@@ -5,7 +5,7 @@ import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/product_model.dart';
 import 'package:scanner/screens/products_profiles/widgets/custom_products_alternative.dart';
 import 'package:scanner/screens/products_profiles/widgets/custom_rating_bar.dart';
-import 'package:scanner/widgets/custom_appbar_app.dart';
+import 'package:scanner/widgets/custom_app_bar.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({
@@ -14,6 +14,7 @@ class ProductScreen extends StatefulWidget {
   }) : super(key: key);
 
   final ProductModel productModel;
+  static String routeName = '/productsScreen';
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
@@ -33,7 +34,9 @@ class _ProductScreenState extends State<ProductScreen> {
           ),
           child: Column(
             children: [
-              const CustomAppBAr(),
+              const CustomAppBar(
+                title: 'المنتج',
+              ),
               sizeHeight(20),
               Container(
                 height: 200,

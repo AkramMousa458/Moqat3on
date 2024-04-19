@@ -5,11 +5,12 @@ class CustomLinkIcon extends StatelessWidget {
   const CustomLinkIcon({
     super.key,
     required this.icon,
-    required this.url,
+    required this.url, required this.color,
   });
 
   final IconData icon;
   final String url;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,10 @@ class CustomLinkIcon extends StatelessWidget {
         builder: (context, FollowLink) {
           return IconButton(
             onPressed: FollowLink,
-            icon: Icon(icon),
+            icon: Icon(
+              icon,
+              color: color,
+            ),
             iconSize: 55,
           );
         });

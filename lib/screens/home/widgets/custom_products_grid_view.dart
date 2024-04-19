@@ -5,6 +5,7 @@ import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/helper/routes.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/screens/home/widgets/custom_product_item.dart';
+import 'package:scanner/screens/products_profiles/product_screen.dart';
 import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class CustomProductsGridView extends StatelessWidget {
@@ -37,7 +38,7 @@ class CustomProductsGridView extends StatelessWidget {
                 return GestureDetector(
                   onTap: () {
                     GoRouter.of(context).push(
-                      AppString.kproductScreen,
+                      ProductScreen.routeName,
                       extra: state.allProducts[index],
                     );
                   },

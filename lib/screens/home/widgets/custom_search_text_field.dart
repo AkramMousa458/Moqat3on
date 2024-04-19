@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
+import 'package:scanner/screens/search/search_sceen.dart';
 
 class CustomSearchTextField extends StatelessWidget {
   const CustomSearchTextField({
@@ -21,7 +22,7 @@ class CustomSearchTextField extends StatelessWidget {
         height: 0.8,
       ),
       onTap: () {
-        if (goSearch) customNavigate(context, '/search');
+        if (goSearch) customNavigate(context, SearchScreen.routeName);
       },
       decoration: InputDecoration(
         hintText: 'ابحث',

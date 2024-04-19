@@ -9,6 +9,7 @@ import 'package:scanner/helper/show_snackbar.dart';
 import 'package:scanner/screens/auth/widgets/custom_button.dart';
 import 'package:scanner/screens/auth/widgets/custom_sign_google.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_form_auth.dart';
+import 'package:scanner/screens/home/navigator_widget.dart';
 import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class CustomLoginForm extends StatelessWidget {
@@ -20,7 +21,7 @@ class CustomLoginForm extends StatelessWidget {
       listener: (context, state) {
         if (state is SignInSccessState) {
           FirebaseAuth.instance.currentUser!.emailVerified
-              ? customGoNavigate(context, '/navigator')
+              ? customGoNavigate(context, NavigatorWidget.routeName)
               : showBottomSnackBar(context, 'يرجي فحص الجيميل للتفعيل أولاََ');
         } else if (state is SignInFailureState) {
           showCustomSnackBar(
@@ -35,7 +36,7 @@ class CustomLoginForm extends StatelessWidget {
             status: false,
           );
         } else if (state is SignInGoogleSccessState) {
-          customGoNavigate(context, '/navigator');
+          customGoNavigate(context, NavigatorWidget.routeName);
         }
       },
       builder: (context, state) {

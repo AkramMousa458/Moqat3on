@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:scanner/helper/colors.dart';
+import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/screens/about_screen.dart';
 import 'package:scanner/screens/donate/donate_screen.dart';
 import 'package:scanner/screens/home/home_screen.dart';
 import 'package:scanner/screens/profile/profile_screen.dart';
 import 'package:scanner/screens/scan/scan_screen.dart';
+import 'package:scanner/screens/settings_screen.dart';
 
 class NavigatorWidget extends StatefulWidget {
   const NavigatorWidget({super.key});
+
+  static String routeName = '/navigatorWidget';
 
   @override
   State<NavigatorWidget> createState() => _NavigatorWidgetState();
@@ -44,69 +49,88 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
       //   child: const Icon(Icons.add),
       // ),
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 16),
-          child: Image.asset('assets/images/hand.png'),
-        ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              FontAwesomeIcons.gear,
+              color: AppColors.deepGrey,
+            ),
+            onPressed: () {
+              customNavigate(context, SettingsScreen.routeName);
+            },
+          )
+        ],
         title: const Text(
-          'مقاطعة',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
+          "مقاطعة",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
+        leading: Image.asset(
+          'assets/images/hand.png',
+          width: 50,
+          height: 50,
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: true,
-        showUnselectedLabels: false,
-        iconSize: 23,
-        elevation: 1,
-        selectedItemColor: AppColors.redBlck,
-        unselectedItemColor: AppColors.deepGrey,
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        onTap: (value) {
-          _selectedIndex = value;
-          setState(() {});
-        },
-        items: [
-          const BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.houseChimney),
-            label: 'الرئيسية',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.handHoldingDollar),
-            label: 'التبرع',
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              width: 50,
-              height: 50,
-              padding: EdgeInsets.zero,
-              margin: EdgeInsets.zero,
-              decoration: const BoxDecoration(
-                color: AppColors.redBlck,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(100),
-                ),
-              ),
-              child: const Center(
-                child: Icon(
-                  FontAwesomeIcons.expand,
-                  color: AppColors.white,
-                  size: 30,
-                ),
-              ),
+      bottomNavigationBar: Directionality(
+        textDirection: TextDirection.rtl,
+        child: BottomNavigationBar(
+          showSelectedLabels: true,
+          showUnselectedLabels: false,
+          iconSize: 23,
+          elevation: 1,
+          selectedItemColor: AppColors.redBlck,
+          unselectedItemColor: AppColors.deepGrey,
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _selectedIndex,
+          onTap: (value) {
+            _selectedIndex = value;
+            setState(() {});
+          },
+          items: [
+            const BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.houseChimney),
+              label: 'الرئيسية',
             ),
-            label: 'مسح',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.circleInfo),
-            label: 'عنا',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.circleUser),
-            label: 'البروفايل',
-          ),
-        ],
+            const BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.handHoldingDollar),
+              label: 'التبرع',
+            ),
+            BottomNavigationBarItem(
+              icon: Container(
+                width: 50,
+                height: 50,
+                padding: EdgeInsets.zero,
+                margin: EdgeInsets.zero,
+                decoration: const BoxDecoration(
+                  color: AppColors.redBlck,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(100),
+                  ),
+                ),
+                child: const Center(
+                  child: Icon(
+                    FontAwesomeIcons.expand,
+                    color: AppColors.white,
+                    size: 30,
+                  ),
+                ),
+              ),
+              label: 'مسح',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.circleInfo),
+              label: 'عنا',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.circleUser),
+              label: 'البروفايل',
+            ),
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 16),

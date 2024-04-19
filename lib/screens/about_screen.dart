@@ -12,22 +12,6 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.lightBlack,
-      // floatingActionButton: Link(
-      //   uri: Uri.parse('https://forms.gle/UZfRvfcWa1UHNKbVA'),
-      //   builder: (context, followLink) {
-      //     return FloatingActionButton(
-      //       onPressed: followLink,
-      //       foregroundColor: Colors.black,
-      //       splashColor: Colors.black87,
-      //       backgroundColor: Colors.white,
-      //       tooltip: 'للإبلاغ عن مشكلة أو إقتراح معين',
-      //       child: const Icon(
-      //         Icons.bug_report,
-      //         size: 30,
-      //       ),
-      //     );
-      //   },
-      // ),
       body: ListView(
         children: [
           const SizedBox(height: 10),
@@ -114,10 +98,12 @@ class AboutScreen extends StatelessWidget {
                 children: [
                   CustomLinkIcon(
                     icon: FontAwesomeIcons.telegram,
+                    color: AppColors.telegramColor,
                     url: 'https://t.me/Moqata3aApp',
                   ),
                   CustomLinkIcon(
                     icon: FontAwesomeIcons.linkedin,
+                    color: AppColors.linkedInColor,
                     url:
                         'https://www.linkedin.com/in/akram-mousa-29a83b206?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
                   ),
@@ -135,6 +121,7 @@ class AboutScreen extends StatelessWidget {
                     ),
                     CustomLinkIcon(
                       icon: Icons.bug_report,
+                      color: AppColors.redBlck,
                       url: 'https://forms.gle/UZfRvfcWa1UHNKbVA',
                     ),
                   ],
@@ -153,5 +140,3 @@ class AboutScreen extends StatelessWidget {
     );
   }
 }
-
-

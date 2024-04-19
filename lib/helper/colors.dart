@@ -14,4 +14,7 @@ abstract class AppColors {
 
   static const Color black = Color(0xff333333);
   static const Color white = Color(0xffFFFFFF);
+
+  static const Color linkedInColor = Color(0xff2864aa);
+  static const Color telegramColor = Color(0xff32a7d8);
 }

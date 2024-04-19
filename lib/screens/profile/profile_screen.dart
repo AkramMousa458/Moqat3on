@@ -15,6 +15,8 @@ import 'package:scanner/widgets/custom_loading_widget.dart';
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
+  static String routeName = '/profileScreen';
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }

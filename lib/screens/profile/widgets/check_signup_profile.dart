@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
+import 'package:scanner/helper/styles/app_text_styles.dart';
+import 'package:scanner/screens/auth/create_account.dart';
+import 'package:scanner/screens/auth/login_screen.dart';
 import 'package:scanner/screens/home/widgets/custom_categories_scroll_item.dart';
-
-import '../../../helper/styles/app_text_styles.dart';
 
 class CheckSignUpProfile extends StatelessWidget {
   const CheckSignUpProfile({super.key});
+
+  static String routeName = '/checkSignUpProfile';
 
   final int isColor = 0;
   @override
@@ -23,7 +26,7 @@ class CheckSignUpProfile extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  customGoNavigate(context, "/login");
+                  customGoNavigate(context, LoginScreen.routeName);
                 },
                 child: CustomCategoriesScrollItem(
                   width: 120,
@@ -33,7 +36,7 @@ class CheckSignUpProfile extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  customGoNavigate(context, "/createAccount");
+                  customGoNavigate(context, CreateAccount.routeName);
                 },
                 child: CustomCategoriesScrollItem(
                   width: 120,

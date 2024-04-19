@@ -3,11 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
+import 'package:scanner/screens/auth/create_account.dart';
 import 'package:scanner/screens/auth/widgets/custom_login_form.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_have_account.dart';
+import 'package:scanner/screens/home/navigator_widget.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+
+  static String routeName = '/loginScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +38,17 @@ class LoginScreen extends StatelessWidget {
                         const Spacer(),
                         TextButton(
                           onPressed: () {
-                            customGoNavigate(context, '/navigator');
+                            customGoNavigate(context, NavigatorWidget.routeName);
                             BlocProvider.of<AuthCubit>(context).skipUser();
                           },
-                          child: Text(
-                            'تخطي',
-                            style: CustomTextStyle.stylesFont500Size16.copyWith(
-                              color: Colors.red,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'تخطي',
+                              style:
+                                  CustomTextStyle.stylesFont500Size16.copyWith(
+                                color: Colors.red,
+                              ),
                             ),
                           ),
                         ),
@@ -64,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     CustomTextHaveAccount(
                       onTap: () {
-                        customGoNavigate(context, "/createAccount");
+                        customGoNavigate(context, CreateAccount.routeName);
                       },
                       textAlready: "ليس لديك حساب؟",
                       textlogin: "تسجيل حساب جديد ",

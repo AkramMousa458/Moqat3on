@@ -5,6 +5,7 @@ import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/helper/show_snackbar.dart';
+import 'package:scanner/screens/auth/login_screen.dart';
 import 'package:scanner/screens/auth/widgets/custom_button.dart';
 import 'package:scanner/screens/auth/widgets/custom_sign_google.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_form_auth.dart';
@@ -22,7 +23,7 @@ class CustomCreateAccountForm extends StatelessWidget {
             context,
             'تم التسجيل بنجاح, يرجي فحص الجيميل للتفعيل',
           );
-          customGoNavigate(context, '/login');
+          customGoNavigate(context, LoginScreen.routeName);
         } else if (state is CreateAccountFailureState) {
           showCustomSnackBar(
             context: context,
