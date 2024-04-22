@@ -4,7 +4,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:scanner/helper/colors.dart';
-import 'package:scanner/helper/routes.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/product_model.dart';
 import 'package:scanner/screens/products_profiles/product_screen.dart';

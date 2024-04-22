@@ -14,10 +14,8 @@ import 'package:scanner/helper/work_manager_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   await Future.wait([
+    Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
     FirebaseNotification.initNotificaitons(),
     LocalNotificationService.init(),
     WorkManagerService().init(),
