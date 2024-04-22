@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:scanner/helper/colors.dart';
+import 'package:scanner/screens/auth/widgets/custom_button.dart';
 import 'package:scanner/screens/home/widgets/cancel_duaa_notification.dart';
 import 'package:scanner/widgets/custom_app_bar.dart';
+import 'package:scanner/widgets/custom_button.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -30,21 +32,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     title: 'الإعدادت',
                   ),
                   CancelDuaaNotifiaction(),
-                  // CustomAppBar(title: 'Settings'),
-                  // DarkMoodItem(),
-                  // LanguageItem(),
-                  // ContactUsItem(),
                 ],
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(vertical: 20),
-            //   child: CustomButton(
-            //     text: Text('Logout', style: Styles.textStyle14),
-            //     backgroundColor: AppColors.kRedColor,
-            //     onPressed: () {},
-            //   ),
-            // ),
+            Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: CustomButtonApp(
+                  onPressed: () {},
+                  text: 'حذف الحساب',
+                  color: AppColors.redBlck,
+                )
+                // CustomButton(
+                //   onTap: () {},
+                //   height: MediaQuery.sizeOf(context).height / 14,
+                //   text: 'حذف الحساب',
+                // ),
+                ),
           ],
         ),
       ),

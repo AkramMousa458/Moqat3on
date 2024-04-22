@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:scanner/helper/colors.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.onTap,
     required this.text,
+    this.backgroundColor = AppColors.white,
     this.width = 250,
     this.height = 70,
     this.textSize = 25,
@@ -13,6 +15,7 @@ class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
   final double width, height, textSize;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {

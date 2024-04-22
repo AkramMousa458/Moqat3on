@@ -5,6 +5,7 @@ import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/product_model.dart';
 import 'package:scanner/widgets/custom_loading_widget.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class CustomProductItem extends StatelessWidget {
   const CustomProductItem({super.key, required this.productModel});
@@ -71,6 +72,6 @@ class CustomProductItem extends StatelessWidget {
           ),
         ),
       ],
-    );
+    ).animate().scale();
   }
 }

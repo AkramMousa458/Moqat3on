@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:scanner/helper/colors.dart';
 
 class CustomCategoriesScrollItem extends StatelessWidget {
@@ -45,6 +46,6 @@ class CustomCategoriesScrollItem extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ).animate().moveX(curve: Curves.easeInCubic);
   }
 }

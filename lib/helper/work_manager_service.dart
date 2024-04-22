@@ -7,7 +7,7 @@ class WorkManagerService {
     await Workmanager().registerPeriodicTask(
       'duaaNotification',
       'show notification',
-      frequency: const Duration(minutes: 15),
+      frequency: const Duration(hours: 2),
     );
   }
 

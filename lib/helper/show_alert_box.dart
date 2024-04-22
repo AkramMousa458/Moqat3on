@@ -7,6 +7,7 @@ Future<dynamic> showAlertBox({
   required String bodyText,
   required String confirmText,
   required VoidCallback confirmAction,
+  required IconData icon,
 }) {
   return showDialog(
     context: context,
@@ -21,10 +22,11 @@ Future<dynamic> showAlertBox({
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Icon(
-                  Icons.logout,
+                  // Icons.logout,
+                  icon,
                   color: AppColors.redBlck,
                   size: 50,
                 ),

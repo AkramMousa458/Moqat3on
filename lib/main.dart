@@ -4,6 +4,7 @@ import 'package:scanner/constants.dart';
 import 'package:scanner/cubits/get_barcodes_cubit/get_barcodes_cubit.dart';
 import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
+import 'package:scanner/cubits/settings_cubit/settings_cubit.dart';
 import 'package:scanner/firebase_options.dart';
 import 'package:scanner/helper/firebase_notification.dart';
 import 'package:scanner/helper/local_notification_service.dart';
@@ -39,6 +40,7 @@ class Scanner extends StatelessWidget {
           create: (context) => GetProductsCubit()..getAllProducts(),
         ),
         BlocProvider(create: (context) => GetBarcodesCubit()),
+        BlocProvider(create: (context) => SettingsCubit()),
       ],
       child: MaterialApp.router(
         theme: ThemeData(

@@ -144,6 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   isColor = 1;
                                   showAlertBox(
                                     context: context,
+                                    icon: Icons.logout,
                                     bodyText: 'متأكد هل تريد تسجيل الخروج',
                                     confirmText: 'نعم',
                                     confirmAction: () {

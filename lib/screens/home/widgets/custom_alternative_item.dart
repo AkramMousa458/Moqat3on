@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:scanner/helper/colors.dart';
@@ -49,7 +50,6 @@ class CustomAlternativeItem extends StatelessWidget {
                     errorWidget: (context, url, error) =>
                         const Icon(Icons.error),
                   ),
-
                 ),
                 const SizedBox(
                   height: 10,
@@ -86,6 +86,6 @@ class CustomAlternativeItem extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ).animate().scale();
   }
 }

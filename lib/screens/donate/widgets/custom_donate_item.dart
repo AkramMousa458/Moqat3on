@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/donate_model.dart';
@@ -7,8 +8,8 @@ import 'package:scanner/screens/home/widgets/custom_categories_scroll_item.dart'
 import 'package:scanner/widgets/custom_loading_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class CustomDonateWidget extends StatelessWidget {
-  const CustomDonateWidget({super.key, required this.donateModel});
+class CustomDonateItem extends StatelessWidget {
+  const CustomDonateItem({super.key, required this.donateModel});
   final DonateModel donateModel;
 
   @override
@@ -64,6 +65,6 @@ class CustomDonateWidget extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ).animate().scale();
   }
 }

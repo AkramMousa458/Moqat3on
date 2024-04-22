@@ -10,6 +10,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  
   String? userName;
 
   String? emailAddress;
