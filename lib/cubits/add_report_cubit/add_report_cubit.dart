@@ -10,15 +10,16 @@ class AddReportCubit extends Cubit<AddReportState> {
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<void> addReport(ReportModel product) async {
+  Future<void> addReport({required ReportModel report}) async {
     emit(AddReportLoading());
     try {
       await firestore.collection('reports').add({
-        'product': product.product,
-        'message': product.message,
+        'product': report.product.toMap(),
+        'message': report.message,
       });
       emit(AddReportSuccsess());
     } catch (e) {
+      print(e.toString());
       emit(AddReportFailure(errMessage: "Failed to add report: $e"));
     }
   }
