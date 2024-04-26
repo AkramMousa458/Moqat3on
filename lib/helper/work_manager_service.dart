@@ -1,4 +1,5 @@
 import 'package:scanner/helper/local_notification_service.dart';
+import 'package:scanner/helper/shared_preferences.dart';
 import 'package:scanner/models/duaa_model.dart';
 import 'package:workmanager/workmanager.dart';
 
@@ -12,8 +13,11 @@ class WorkManagerService {
   }
 
   Future<void> init() async {
-    await Workmanager().initialize(_callbackDispatcher);
-    _registerDuaaTask();
+    bool result = await NotificationSharedPreferences.getNotification() ?? true;
+    if (result) {
+      await Workmanager().initialize(_callbackDispatcher);
+      _registerDuaaTask();
+    }
   }
 
   void stopNotification() {

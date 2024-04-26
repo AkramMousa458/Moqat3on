@@ -25,7 +25,6 @@ Future<dynamic> showAlertBox({
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Icon(
-                  // Icons.logout,
                   icon,
                   color: AppColors.redBlck,
                   size: 50,

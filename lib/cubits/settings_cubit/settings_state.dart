@@ -12,4 +12,7 @@ final class SettingsFailure extends SettingsState {
   SettingsFailure({required this.errMessage});
 }
 
-final class SettingsSuccess extends SettingsState {}
+final class SettingsSuccess extends SettingsState {
+  final bool activateNotification;
+  SettingsSuccess(this.activateNotification);
+}

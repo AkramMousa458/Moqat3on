@@ -45,29 +45,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
         content: Directionality(
           textDirection: TextDirection.rtl,
           child: TextField(
-              autocorrect: true,
-              style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                hintText: "أدخل $field الجديد",
-                hintStyle: const TextStyle(color: Colors.grey),
-              ),
-              onChanged: (value) {
-                newValue = value;
-              }),
+            autocorrect: true,
+            style: const TextStyle(color: AppColors.black),
+            decoration: InputDecoration(
+              hintText: "أدخل $field الجديد",
+              hintStyle: const TextStyle(color: Colors.grey),
+            ),
+            onChanged: (value) {
+              newValue = value;
+            },
+          ),
         ),
         actions: [
           TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text(
-                'Cancel',
-              )),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'إلغاء',
+            ),
+          ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop(newValue);
             },
-            child: const Text('Update'),
+            child: const Text('تحديث'),
           )
         ],
       ),
@@ -110,7 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(height: 16),
                       CustomProfileName(
                         text: userData['name']!,
-                        style: CustomTextStyle.stylesFont400Size22,
+                        style: CustomTextStyle.stylesFont500Size22,
                       ),
                       CustomProfileName(
                         text: userData['email']!,
@@ -126,8 +128,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               setState(
                                 () {
                                   isColor = 0;
-                                  editField("email");
-                                  editField('name');
+                                  editField("الإيميل");
+                                  editField('الإسم');
                                 },
                               );
                             },

@@ -9,9 +9,9 @@ class CustomTextStyle {
     color: AppColors.red,
   );
 
-  static const stylesFont400Size22 = TextStyle(
+  static const stylesFont500Size22 = TextStyle(
     fontSize: 22,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
   );
   static const stylesFont300Size16 = TextStyle(
     fontSize: 16,

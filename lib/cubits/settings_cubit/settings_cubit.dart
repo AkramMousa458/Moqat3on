@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:scanner/helper/shared_preferences.dart';
 import 'package:scanner/helper/work_manager_service.dart';
 
 part 'settings_state.dart';
@@ -7,26 +8,39 @@ part 'settings_state.dart';
 class SettingsCubit extends Cubit<SettingsState> {
   SettingsCubit() : super(SettingsInitial());
 
-  bool activateNotification = true;
+  late bool activateNotification;
   final WorkManagerService workManagerService = WorkManagerService();
 
-  void canelDuaaNotification() {
+  Future<void> canelDuaaNotification() async {
     try {
       workManagerService.stopNotification();
-      activateNotification = false;
-      emit(SettingsSuccess());
+      Future.wait({
+        NotificationSharedPreferences.setNotification(false),
+        getNotificationValue(),
+      });
+
+      emit(SettingsSuccess(false));
     } catch (e) {
       emit(SettingsFailure(errMessage: 'Error in cancel notification: $e'));
     }
   }
 
-  void activateDuaaNotification() {
+  Future<void> activateDuaaNotification() async {
     try {
       workManagerService.init();
-      activateNotification = true;
-      emit(SettingsSuccess());
+      Future.wait({
+        NotificationSharedPreferences.setNotification(true),
+        getNotificationValue(),
+      });
+      emit(SettingsSuccess(true));
     } catch (e) {
       emit(SettingsFailure(errMessage: 'Error in activate notification: $e'));
     }
+  }
+
+  Future<void> getNotificationValue() async {
+    activateNotification =
+        await NotificationSharedPreferences.getNotification() ?? true;
+    emit(SettingsSuccess(activateNotification));
   }
 }

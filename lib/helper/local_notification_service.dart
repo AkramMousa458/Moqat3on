@@ -12,12 +12,13 @@ class LocalNotificationService {
     InitializationSettings settings = const InitializationSettings(
       android: AndroidInitializationSettings('@mipmap/ic_launcher'),
     );
-
-    flutterLocalNotificationsPlugin.initialize(
+    
+      flutterLocalNotificationsPlugin.initialize(
       settings,
       onDidReceiveBackgroundNotificationResponse: onTap,
       onDidReceiveNotificationResponse: onTap,
-    );
+    ) ;
+    
   }
 
   static Future<void> showNotification(
@@ -38,15 +39,18 @@ class LocalNotificationService {
     );
   }
 
-  static Future<void> showDuaaNotification({required DuaaModel duaaModel}) async {
+  static Future<void> showDuaaNotification(
+      {required DuaaModel duaaModel}) async {
     NotificationDetails notificationDetails = const NotificationDetails(
-        android: AndroidNotificationDetails(
-      'id 0',
-      'Basic notificaion',
-      importance: Importance.high,
-      priority: Priority.high,
-      fullScreenIntent: true,
-    ));
+      android: AndroidNotificationDetails(
+        'id 0',
+        'Basic notificaion',
+        importance: Importance.high,
+        priority: Priority.high,
+        fullScreenIntent: true,
+        styleInformation: BigTextStyleInformation(''),
+      ),
+    );
     flutterLocalNotificationsPlugin.show(
       0,
       'لا تنسوا الدعاء لأهلنا في غزة',

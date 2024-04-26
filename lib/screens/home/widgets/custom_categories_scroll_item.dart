@@ -46,6 +46,6 @@ class CustomCategoriesScrollItem extends StatelessWidget {
           ),
         ),
       ),
-    ).animate().moveX(curve: Curves.easeInCubic);
+    );
   }
 }
