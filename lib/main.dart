@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:scanner/constants.dart';
 import 'package:scanner/cubits/get_barcodes_cubit/get_barcodes_cubit.dart';
 import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
@@ -10,10 +11,12 @@ import 'package:scanner/helper/local_notification_service.dart';
 import 'package:scanner/helper/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:scanner/helper/work_manager_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  prefs = await SharedPreferences.getInstance();
   await Future.wait([
     FirebaseNotification.initNotificaitons(),
     LocalNotificationService.init(),
@@ -40,7 +43,7 @@ class Scanner extends StatelessWidget {
       ],
       child: MaterialApp.router(
         theme: ThemeData(
-          fontFamily: "Cairo",
+          textTheme: GoogleFonts.cairoTextTheme(),
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.transparent,
             elevation: 0,

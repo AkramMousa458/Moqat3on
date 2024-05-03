@@ -11,36 +11,40 @@ class SettingsCubit extends Cubit<SettingsState> {
   late bool activateNotification;
   final WorkManagerService workManagerService = WorkManagerService();
 
-  Future<void> canelDuaaNotification() async {
-    try {
-      workManagerService.stopNotification();
-      Future.wait({
-        NotificationSharedPreferences.setNotification(false),
-        getNotificationValue(),
-      });
+  void changeNotificationStatus({required }) async{
 
-      emit(SettingsSuccess(false));
-    } catch (e) {
-      emit(SettingsFailure(errMessage: 'Error in cancel notification: $e'));
-    }
   }
 
-  Future<void> activateDuaaNotification() async {
-    try {
-      workManagerService.init();
-      Future.wait({
-        NotificationSharedPreferences.setNotification(true),
-        getNotificationValue(),
-      });
-      emit(SettingsSuccess(true));
-    } catch (e) {
-      emit(SettingsFailure(errMessage: 'Error in activate notification: $e'));
-    }
-  }
+  // Future<void> canelDuaaNotification() async {
+  //   try {
+  //     workManagerService.stopNotification();
+  //     Future.wait({
+  //       NotificationSharedPreferences.setNotification(false),
+  //       getNotificationValue(),
+  //     });
 
-  Future<void> getNotificationValue() async {
-    activateNotification =
-        await NotificationSharedPreferences.getNotification() ?? true;
-    emit(SettingsSuccess(activateNotification));
-  }
+  //     emit(SettingsSuccess(false));
+  //   } catch (e) {
+  //     emit(SettingsFailure(errMessage: 'Error in cancel notification: $e'));
+  //   }
+  // }
+
+  // Future<void> activateDuaaNotification() async {
+  //   try {
+  //     workManagerService.init();
+  //     Future.wait({
+  //       NotificationSharedPreferences.setNotification(true),
+  //       getNotificationValue(),
+  //     });
+  //     emit(SettingsSuccess(true));
+  //   } catch (e) {
+  //     emit(SettingsFailure(errMessage: 'Error in activate notification: $e'));
+  //   }
+  // }
+
+  // Future<void> getNotificationValue() async {
+  //   activateNotification =
+  //       await NotificationSharedPreferences.getNotification() ?? true;
+  //   emit(SettingsSuccess(activateNotification));
+  // }
 }
