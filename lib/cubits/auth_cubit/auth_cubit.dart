@@ -191,4 +191,13 @@ class AuthCubit extends Cubit<AuthState> {
 
     return prefs.getBool('isSkiped') ?? false;
   }
+
+  Future<void> signOut() async {
+    try {
+      await _googleSignIn.signOut();
+      await _auth.signOut();
+    } catch (e) {
+      log('Error signing out: $e');
+    }
+  }
 }

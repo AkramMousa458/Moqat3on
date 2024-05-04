@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
 import 'package:scanner/helper/colors.dart';
+import 'package:scanner/widgets/custom_loading_widget.dart';
 
-class CustomSignWithGoogle extends StatelessWidget {
-  const CustomSignWithGoogle({
-    super.key,
+class CustomGoogleSignButton extends StatelessWidget {
+  const CustomGoogleSignButton({
+    super.key, required this.isLoading,
+    
   });
-
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -22,7 +24,8 @@ class CustomSignWithGoogle extends StatelessWidget {
           color: AppColors.lightGrey.withOpacity(0.7),
           borderRadius: BorderRadius.circular(14),
         ),
-        child: Row(
+        child: 
+        isLoading ? const Center(child: CustomLoadingWidget()) : Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(

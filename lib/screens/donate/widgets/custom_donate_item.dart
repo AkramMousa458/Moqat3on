@@ -17,9 +17,8 @@ class CustomDonateItem extends StatelessWidget {
     return MaterialButton(
       padding: EdgeInsets.zero,
       hoverColor: AppColors.redBlck,
-      // color: AppColors.redBlck,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20), // Border radius
+        borderRadius: BorderRadius.circular(20),
       ),
       onPressed: () {
         launchUrl(
@@ -41,7 +40,8 @@ class CustomDonateItem extends StatelessWidget {
               imageUrl: donateModel.image,
               fit: BoxFit.cover,
               height: MediaQuery.sizeOf(context).width / 6,
-              placeholder: (context, url) => const CustomLoadingWidget(),
+              placeholder: (context, url) =>
+                  const Center(child: CustomLoadingWidget()),
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
             sizeHeight(5),

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scanner/cubits/notification_cubit/notification_cubit.dart';
 import 'package:scanner/helper/colors.dart';
-import 'package:scanner/screens/auth/widgets/custom_button.dart';
 import 'package:scanner/screens/home/widgets/cancel_duaa_notification_widget.dart';
 import 'package:scanner/widgets/custom_app_bar.dart';
 

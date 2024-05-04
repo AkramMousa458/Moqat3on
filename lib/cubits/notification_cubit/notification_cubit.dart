@@ -22,20 +22,24 @@ class NotificationCubit extends Cubit<NotificationState> {
           prefs!.getBool('notification') == false
               ? {
                   notification = false,
+                  workManagerService.stopNotification(),
                   log('from initial notification false'),
                   emit(NotificationDeactivated()),
                 }
               : {
                   notification = true,
+                  workManagerService.init(),
                   log('from initial notification true'),
                   emit(NotificationActivated()),
                 };
+        }else{
+
         }
         break;
       case NotificationEnum.activate:
         {
           workManagerService.init();
-           log('from activate notification true');
+          log('from activate notification true');
           prefs!.setBool('notification', true);
           notification = true;
           emit(NotificationActivated());

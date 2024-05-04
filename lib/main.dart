@@ -1,8 +1,8 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scanner/constants.dart';
+import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
 import 'package:scanner/cubits/get_barcodes_cubit/get_barcodes_cubit.dart';
 import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
@@ -37,6 +37,9 @@ class Scanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => AuthCubit(),
+        ),
         BlocProvider(
           create: (context) => ScanCubit(),
         ),

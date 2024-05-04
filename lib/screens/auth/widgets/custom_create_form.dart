@@ -7,9 +7,8 @@ import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/helper/show_snackbar.dart';
 import 'package:scanner/screens/auth/login_screen.dart';
 import 'package:scanner/screens/auth/widgets/custom_button.dart';
-import 'package:scanner/screens/auth/widgets/custom_sign_google.dart';
+import 'package:scanner/screens/auth/widgets/custom_google_sign_button.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_form_auth.dart';
-import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class CustomCreateAccountForm extends StatelessWidget {
   const CustomCreateAccountForm({super.key});
@@ -66,20 +65,19 @@ class CustomCreateAccountForm extends StatelessWidget {
                     authCubit.password = password;
                   }),
               const SizedBox(height: 24),
-              state is CreateAccountLoadingState
-                  ? const Center(child: CustomLoadingWidget())
-                  : CustomButtonApp(
-                      onPressed: () async {
-                        if (authCubit.formKeySignUp.currentState!.validate()) {
-                          await authCubit.signUpWithEmailAndPassword();
-                        }
-                      },
-                      text: "تسجيل الحساب",
-                    ),
+              CustomButtonApp(
+                onPressed: () async {
+                  if (authCubit.formKeyLogin.currentState!.validate()) {
+                    await authCubit.signINWithEmailAndPassword();
+                  }
+                },
+                isLoading: state is SignInLoadingState ? true : false,
+                text: "تسجيل حساب جديد",
+              ),
               const SizedBox(height: 24),
-              state is SignInGoogleLoadingState
-                  ? const Center(child: CustomLoadingWidget())
-                  : const CustomSignWithGoogle(),
+              CustomGoogleSignButton(
+                isLoading: state is SignInGoogleLoadingState ? true : false,
+              ),
             ],
           ),
         );

@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
 
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/show_alert_box.dart';
@@ -150,7 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     bodyText: 'متأكد هل تريد تسجيل الخروج',
                                     confirmText: 'نعم',
                                     confirmAction: () {
-                                      FirebaseAuth.instance.signOut();
+                                      context.read<AuthCubit>().signOut();
                                       GoRouter.of(context).go('/');
                                     },
                                   );

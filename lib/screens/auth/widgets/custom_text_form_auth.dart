@@ -23,7 +23,7 @@ class CustomTextFormFAuth extends StatelessWidget {
       child: TextFormField(
         validator: (value) {
           if (value!.isEmpty) {
-            return "This field is required";
+            return "يجب إدخال البيانات أولاََ";
           }
           return null;
         },

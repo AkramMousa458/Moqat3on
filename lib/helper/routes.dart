@@ -1,6 +1,4 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
 import 'package:scanner/models/product_model.dart';
 import 'package:scanner/screens/auth/login_screen.dart';
 import 'package:scanner/screens/home/home_screen.dart';
@@ -22,17 +20,11 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: LoginScreen.routeName,
-      builder: (context, state) => BlocProvider(
-        create: (context) => AuthCubit(),
-        child: const LoginScreen(),
-      ),
+      builder: (context, state) => const LoginScreen(),
     ),
     GoRoute(
       path: CreateAccount.routeName,
-      builder: (context, state) => BlocProvider(
-        create: (context) => AuthCubit(),
-        child: const CreateAccount(),
-      ),
+      builder: (context, state) => const CreateAccount(),
     ),
     GoRoute(
       path: HomeScreen.routeName,

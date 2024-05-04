@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
+import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class CustomButtonApp extends StatelessWidget {
-  const CustomButtonApp(
-      {super.key, required this.text, required this.onPressed, this.color});
+  const CustomButtonApp({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.color,
+    required this.isLoading,
+  });
 
   final String text;
   final void Function()? onPressed;
   final Color? color;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +29,15 @@ class CustomButtonApp extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(
-          text,
-          style: const TextStyle(
-            color: AppColors.offwhite,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
+        child: isLoading
+            ? const CustomLoadingWidget()
+            : Text(
+                text,
+                style: const TextStyle(
+                  color: AppColors.offwhite,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
       ),
     );
   }

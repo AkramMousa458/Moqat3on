@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/cubits/add_report_cubit/add_report_cubit.dart';
@@ -11,6 +12,7 @@ import 'package:scanner/widgets/custom_loading_widget.dart';
 
 void showReportBottomSheet(
     {required BuildContext context, required ProductModel productModel}) {
+  final currenUser = FirebaseAuth.instance.currentUser;
   TextEditingController messageController = TextEditingController();
   bool isLoading = false;
   showModalBottomSheet(
@@ -75,7 +77,7 @@ void showReportBottomSheet(
                         ),
                       ),
                       Text(
-                        'ملحوظة : سيتم إرسال معلومات المنتج مع الإبلاغ',
+                        'ملحوظة : سيتم إرسال معلومات المُرسِل والمنتج مع الإبلاغ',
                         style: CustomTextStyle.stylesFont300Size16
                             .copyWith(fontSize: 12),
                       ),
@@ -119,6 +121,9 @@ void showReportBottomSheet(
                                                   context)
                                               .addReport(
                                                 report: ReportModel(
+                                                  userEmail: currenUser!.email!,
+                                                  userName:
+                                                      currenUser.displayName!,
                                                   product: productModel,
                                                   message:
                                                       messageController.text,

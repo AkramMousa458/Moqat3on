@@ -38,7 +38,8 @@ class LoginScreen extends StatelessWidget {
                         const Spacer(),
                         TextButton(
                           onPressed: () {
-                            customGoNavigate(context, NavigatorWidget.routeName);
+                            customGoNavigate(
+                                context, NavigatorWidget.routeName);
                             BlocProvider.of<AuthCubit>(context).skipUser();
                           },
                           child: Padding(
@@ -72,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     CustomTextHaveAccount(
                       onTap: () {
-                        customGoNavigate(context, CreateAccount.routeName);
+                        customNavigate(context, CreateAccount.routeName);
                       },
                       textAlready: "ليس لديك حساب؟",
                       textlogin: "تسجيل حساب جديد ",

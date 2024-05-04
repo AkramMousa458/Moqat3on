@@ -7,10 +7,9 @@ import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
 import 'package:scanner/helper/show_snackbar.dart';
 import 'package:scanner/screens/auth/widgets/custom_button.dart';
-import 'package:scanner/screens/auth/widgets/custom_sign_google.dart';
+import 'package:scanner/screens/auth/widgets/custom_google_sign_button.dart';
 import 'package:scanner/screens/auth/widgets/custom_text_form_auth.dart';
 import 'package:scanner/screens/home/navigator_widget.dart';
-import 'package:scanner/widgets/custom_loading_widget.dart';
 
 class CustomLoginForm extends StatelessWidget {
   const CustomLoginForm({super.key});
@@ -69,22 +68,20 @@ class CustomLoginForm extends StatelessWidget {
                   onChanged: (password) {
                     authCubit.password = password;
                   }),
-              //    const CustomTextForgotPassword(),
               const SizedBox(height: 30),
-              state is SignInLoadingState
-                  ? const Center(child: CustomLoadingWidget())
-                  : CustomButtonApp(
-                      onPressed: () async {
-                        if (authCubit.formKeyLogin.currentState!.validate()) {
-                          await authCubit.signINWithEmailAndPassword();
-                        }
-                      },
-                      text: "تسجيل الدخول",
-                    ),
+              CustomButtonApp(
+                onPressed: () async {
+                  if (authCubit.formKeyLogin.currentState!.validate()) {
+                    await authCubit.signINWithEmailAndPassword();
+                  }
+                },
+                isLoading: state is SignInLoadingState ? true : false,
+                text: "تسجيل الدخول",
+              ),
               const SizedBox(height: 24),
-              state is SignInGoogleLoadingState
-                  ? const Center(child: CustomLoadingWidget())
-                  : const CustomSignWithGoogle(),
+              CustomGoogleSignButton(
+                isLoading: state is SignInGoogleLoadingState ? true : false,
+              ),
             ],
           ),
         );

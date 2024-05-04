@@ -14,12 +14,13 @@ class AddReportCubit extends Cubit<AddReportState> {
     emit(AddReportLoading());
     try {
       await firestore.collection('reports').add({
+        'userEmail': report.userEmail,
+        'userName': report.userName,
         'product': report.product.toMap(),
         'message': report.message,
       });
       emit(AddReportSuccsess());
     } catch (e) {
-      print(e.toString());
       emit(AddReportFailure(errMessage: "Failed to add report: $e"));
     }
   }
