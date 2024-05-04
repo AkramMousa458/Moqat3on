@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
 import 'package:scanner/screens/auth/login_screen.dart';
 import 'package:scanner/screens/home/navigator_widget.dart';
@@ -43,8 +44,11 @@ class _SplashScreenState extends State<SplashScreen> {
         width: screenWidth,
         height: screenHeight,
         decoration: const BoxDecoration(
+          color: AppColors.black,
           image: DecorationImage(
-            image: AssetImage('assets/images/black_bg.jpg'),
+            image: AssetImage('assets/images/login.jpg'),
+            opacity: 0.5,
+            // image: AssetImage('assets/images/black_bg.jpg'),
             fit: BoxFit.cover,
           ),
         ),

@@ -2,15 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:developer';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  
+
   String? userName;
 
   String? emailAddress;
@@ -111,22 +114,47 @@ class AuthCubit extends Cubit<AuthState> {
   Future signInWithGoogle() async {
     emit(SignInGoogleLoadingState());
     try {
-      GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
-      UserCredential userCredential =
-          await _auth.signInWithProvider(googleAuthProvider);
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser != null) {
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+        UserCredential userCredential =
+            await _auth.signInWithCredential(credential);
 
-      _firestore.collection('users').doc(userCredential.user!.email).set({
-        'name': userCredential.user!.displayName ??
-            userCredential.user!.email!.split('@')[0],
-        'email': userCredential.user!.email,
-        'image': userCredential.user!.photoURL ??
-            'https://i.guim.co.uk/img/media/5d9ea77d27c95d327caee787ddc6af484faaa567/0_0_8192_5464/master/8192.jpg?width=1300&dpr=1&s=none'
-      });
+        _firestore.collection('users').doc(userCredential.user!.email).set({
+          'name': userCredential.user!.displayName ??
+              userCredential.user!.email!.split('@')[0],
+          'email': userCredential.user!.email,
+          'image': userCredential.user!.photoURL ??
+              'https://i.guim.co.uk/img/media/5d9ea77d27c95d327caee787ddc6af484faaa567/0_0_8192_5464/master/8192.jpg?width=1300&dpr=1&s=none'
+        });
+        emit(SignInGoogleSccessState());
+      } else {
+        log('Google Sign-In aborted by user');
+        emit(SignInGoogleFailureState(error: 'Google Sign-In aborted by user'));
+      }
+      // GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
+      // UserCredential userCredential =
+      //     await _auth.signInWithProvider(googleAuthProvider);
 
-      emit(SignInGoogleSccessState());
-      } on FirebaseAuthException catch (e) {
-        _googleSignInException(e);
+      // _firestore.collection('users').doc(userCredential.user!.email).set({
+      //   'name': userCredential.user!.displayName ??
+      //       userCredential.user!.email!.split('@')[0],
+      //   'email': userCredential.user!.email,
+      //   'image': userCredential.user!.photoURL ??
+      //       'https://i.guim.co.uk/img/media/5d9ea77d27c95d327caee787ddc6af484faaa567/0_0_8192_5464/master/8192.jpg?width=1300&dpr=1&s=none'
+      // });
+
+      // emit(SignInGoogleSccessState());
+    } on FirebaseAuthException catch (e) {
+      log(e.toString());
+      _googleSignInException(e);
     } catch (e) {
+      log(e.toString());
       emit(SignInGoogleFailureState(error: e.toString()));
     }
   }

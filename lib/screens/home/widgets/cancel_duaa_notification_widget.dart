@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:scanner/cubits/settings_cubit/settings_cubit.dart';
+import 'package:scanner/cubits/notification_cubit/notification_cubit.dart';
 import 'package:scanner/helper/colors.dart';
+import 'package:scanner/helper/notification_enum.dart';
 import 'package:scanner/helper/show_alert_box.dart';
-import 'package:scanner/helper/show_custom_snack_bar.dart';
-import 'package:scanner/widgets/custom_loading_widget.dart';
 
-bool isLoading = false;
-bool activateNotification = false;
+bool activated = false;
 
 class CancelDuaaNotifiactionWidget extends StatelessWidget {
   const CancelDuaaNotifiactionWidget({
@@ -17,7 +15,8 @@ class CancelDuaaNotifiactionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SettingsCubit settingsCubit = BlocProvider.of<SettingsCubit>(context);
+    NotificationCubit notificationCubit =
+        BlocProvider.of<NotificationCubit>(context);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Container(
@@ -40,48 +39,31 @@ class CancelDuaaNotifiactionWidget extends StatelessWidget {
                 ),
               ],
             ),
-            BlocConsumer<SettingsCubit, SettingsState>(
-              listener: (context, state) {
-                if (state is SettingsFailure) {
-                  isLoading = false;
-                  showCustomSnackBar(
-                    context: context,
-                    text: state.errMessage,
-                    status: false,
-                  );
-                } else if (state is SettingsSuccess) {
-                  isLoading = false;
-                  activateNotification = state.activateNotification;
-                } else {
-                  isLoading = true;
-                }
-              },
+            BlocBuilder<NotificationCubit, NotificationState>(
               builder: (context, state) {
-                return isLoading
-                    ? const CustomLoadingWidget()
-                    : Transform.scale(
-                        scale: 0.8,
-                        child: Switch(
-                          value: activateNotification,
-                          activeColor: AppColors.primaryColor,
-                          onChanged: (value) {
-                            if (settingsCubit.activateNotification) {
-                              showAlertBox(
-                                context: context,
-                                icon: FontAwesomeIcons.circleExclamation,
-                                bodyText: 'هل تريد حقا إلغاء إشعارات الدعاء',
-                                confirmText: 'نعم',
-                                confirmAction: () {
-                                  settingsCubit.canelDuaaNotification();
-                                  Navigator.pop(context);
-                                },
-                              );
-                            } else {
-                              settingsCubit.activateDuaaNotification();
-                            }
+                return Transform.scale(
+                  scale: 0.8,
+                  child: Switch(
+                    value: state is NotificationActivated ? true : false,
+                    activeColor: AppColors.primaryColor,
+                    onChanged: (value) {
+                      if (!value) {
+                        showAlertBox(
+                          context: context,
+                          icon: FontAwesomeIcons.circleExclamation,
+                          bodyText: 'هل تريد حقا إلغاء إشعارات الدعاء',
+                          confirmText: 'نعم',
+                          confirmAction: () {
+                            notificationCubit.changeNotificationStatus(notificationStatus: NotificationEnum.deactivate);
+                            Navigator.pop(context);
                           },
-                        ),
-                      );
+                        );
+                      } else {
+                        notificationCubit.changeNotificationStatus(notificationStatus: NotificationEnum.activate);
+                      }
+                    },
+                  ),
+                );
               },
             ),
           ],

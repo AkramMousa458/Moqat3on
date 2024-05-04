@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,9 +6,11 @@ import 'package:scanner/constants.dart';
 import 'package:scanner/cubits/get_barcodes_cubit/get_barcodes_cubit.dart';
 import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
+import 'package:scanner/cubits/notification_cubit/notification_cubit.dart';
 import 'package:scanner/firebase_options.dart';
 import 'package:scanner/helper/firebase_notification.dart';
 import 'package:scanner/helper/local_notification_service.dart';
+import 'package:scanner/helper/notification_enum.dart';
 import 'package:scanner/helper/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:scanner/helper/work_manager_service.dart';
@@ -23,6 +26,7 @@ void main() async {
     WorkManagerService().init(),
   ]);
 
+  // runApp(DevicePreview(builder: (context) => const Scanner()));
   runApp(const Scanner());
 }
 
@@ -39,7 +43,14 @@ class Scanner extends StatelessWidget {
         BlocProvider(
           create: (context) => GetProductsCubit()..getAllProducts(),
         ),
-        BlocProvider(create: (context) => GetBarcodesCubit()),
+        BlocProvider(
+          create: (context) => GetBarcodesCubit(),
+        ),
+        BlocProvider(
+          create: (context) => NotificationCubit()
+            ..changeNotificationStatus(
+                notificationStatus: NotificationEnum.initial),
+        ),
       ],
       child: MaterialApp.router(
         theme: ThemeData(
