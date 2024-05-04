@@ -129,7 +129,7 @@ class AboutScreen extends StatelessWidget {
               ),
               SizedBox(height: 30),
               CustomText(
-                text: '🇵🇸 لا تنسوا الدعاء لإخواننا في فلسطين',
+                text: '(الإصدار: 2.0.1) 🇵🇸 لا تنسوا الدعاء لإخواننا في فلسطين',
                 size: 12,
               ),
               SizedBox(height: 40),
