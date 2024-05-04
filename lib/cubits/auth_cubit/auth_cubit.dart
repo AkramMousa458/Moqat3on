@@ -114,42 +114,30 @@ class AuthCubit extends Cubit<AuthState> {
   Future signInWithGoogle() async {
     emit(SignInGoogleLoadingState());
     try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser != null) {
-        final GoogleSignInAuthentication googleAuth =
-            await googleUser.authentication;
-        final AuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
-        );
-        UserCredential userCredential =
-            await _auth.signInWithCredential(credential);
-
-        _firestore.collection('users').doc(userCredential.user!.email).set({
-          'name': userCredential.user!.displayName ??
-              userCredential.user!.email!.split('@')[0],
-          'email': userCredential.user!.email,
-          'image': userCredential.user!.photoURL ??
-              'https://i.guim.co.uk/img/media/5d9ea77d27c95d327caee787ddc6af484faaa567/0_0_8192_5464/master/8192.jpg?width=1300&dpr=1&s=none'
-        });
-        emit(SignInGoogleSccessState());
-      } else {
-        log('Google Sign-In aborted by user');
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
         emit(SignInGoogleFailureState(error: 'Google Sign-In aborted by user'));
+        return;
       }
-      // GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
-      // UserCredential userCredential =
-      //     await _auth.signInWithProvider(googleAuthProvider);
 
-      // _firestore.collection('users').doc(userCredential.user!.email).set({
-      //   'name': userCredential.user!.displayName ??
-      //       userCredential.user!.email!.split('@')[0],
-      //   'email': userCredential.user!.email,
-      //   'image': userCredential.user!.photoURL ??
-      //       'https://i.guim.co.uk/img/media/5d9ea77d27c95d327caee787ddc6af484faaa567/0_0_8192_5464/master/8192.jpg?width=1300&dpr=1&s=none'
-      // });
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
-      // emit(SignInGoogleSccessState());
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      _firestore.collection('users').doc(userCredential.user!.email).set({
+        'name': userCredential.user!.displayName ??
+            userCredential.user!.email!.split('@')[0],
+        'email': userCredential.user!.email,
+        'image': userCredential.user!.photoURL ??
+            'https://i.guim.co.uk/img/media/5d9ea77d27c95d327caee787ddc6af484faaa567/0_0_8192_5464/master/8192.jpg?width=1300&dpr=1&s=none'
+      });
+      emit(SignInGoogleSccessState());
     } on FirebaseAuthException catch (e) {
       log(e.toString());
       _googleSignInException(e);
