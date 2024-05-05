@@ -15,7 +15,6 @@ class CancelDuaaNotifiactionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(context.watch<NotificationCubit>().notification);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Container(
