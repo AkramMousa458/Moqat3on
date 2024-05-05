@@ -15,6 +15,7 @@ class CancelDuaaNotifiactionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(context.watch<NotificationCubit>().notification);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Container(
@@ -24,40 +25,45 @@ class CancelDuaaNotifiactionWidget extends StatelessWidget {
           color: AppColors.white,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: SwitchListTile(
-          title: const Row(
-            children: [
-              Icon(FontAwesomeIcons.bell),
-              SizedBox(width: 10),
-              Text(
-                'تفعيل إشعارات الدعاء',
-                style: TextStyle(fontSize: 18),
+        child: BlocBuilder<NotificationCubit, NotificationState>(
+          builder: (context, state) {
+            return SwitchListTile(
+              title: const Row(
+                children: [
+                  Icon(FontAwesomeIcons.bell),
+                  SizedBox(width: 10),
+                  Text(
+                    'تفعيل إشعارات الدعاء',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ],
               ),
-            ],
-          ),
-          value:
-              context.watch<NotificationCubit>().state is NotificationActivated,
-          onChanged: (value) {
-            if (!value) {
-              showAlertBox(
-                context: context,
-                icon: FontAwesomeIcons.circleExclamation,
-                bodyText: 'هل تريد حقا إلغاء إشعارات الدعاء',
-                confirmText: 'نعم',
-                confirmAction: () {
-                  context.read<NotificationCubit>().changeNotificationStatus(
-                        notificationStatus: NotificationEnum.deactivate,
-                      );
-                  Navigator.pop(context);
-                },
-              );
-            } else {
-              context.read<NotificationCubit>().changeNotificationStatus(
-                    notificationStatus: NotificationEnum.activate,
+              value: context.watch<NotificationCubit>().notification,
+              onChanged: (value) {
+                if (!value) {
+                  showAlertBox(
+                    context: context,
+                    icon: FontAwesomeIcons.circleExclamation,
+                    bodyText: 'هل تريد حقا إلغاء إشعارات الدعاء',
+                    confirmText: 'نعم',
+                    confirmAction: () {
+                      context
+                          .read<NotificationCubit>()
+                          .changeNotificationStatus(
+                            notificationStatus: NotificationEnum.deactivate,
+                          );
+                      Navigator.pop(context);
+                    },
                   );
-            }
+                } else {
+                  context.read<NotificationCubit>().changeNotificationStatus(
+                        notificationStatus: NotificationEnum.activate,
+                      );
+                }
+              },
+              activeColor: AppColors.primaryColor,
+            );
           },
-          activeColor: AppColors.primaryColor,
         ),
         // child: Row(
         //   mainAxisAlignment: MainAxisAlignment.spaceBetween,

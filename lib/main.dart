@@ -26,7 +26,6 @@ void main() async {
     WorkManagerService().init(),
   ]);
 
-  // runApp(DevicePreview(builder: (context) => const Scanner()));
   runApp(const Scanner());
 }
 
