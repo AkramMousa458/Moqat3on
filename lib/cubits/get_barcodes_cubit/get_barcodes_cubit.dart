@@ -23,6 +23,9 @@ class GetBarcodesCubit extends Cubit<GetBarcodesState> {
           .map((doc) => CompanyBarcodeModel.fromSnapshot(doc))
           .toList();
       emit(GetBarcodesSuccess());
+      // for (var element in companiesBarcodesList) {
+      //   element.toMap();
+      // }
     } catch (e) {
       emit(GetBarcodesFailure(errMessage: "Failed to fetch products: $e"));
     }

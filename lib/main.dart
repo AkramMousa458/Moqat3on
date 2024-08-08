@@ -1,7 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scanner/constants.dart';
+import 'package:scanner/core/api_service.dart';
 import 'package:scanner/cubits/auth_cubit/auth_cubit.dart';
 import 'package:scanner/cubits/get_barcodes_cubit/get_barcodes_cubit.dart';
 import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
@@ -43,7 +45,7 @@ class Scanner extends StatelessWidget {
           create: (context) => ScanCubit(),
         ),
         BlocProvider(
-          create: (context) => GetProductsCubit()..getAllProducts(),
+          create: (context) => GetProductsCubit(ApiService(Dio()))..getAllProducts(),
         ),
         BlocProvider(
           create: (context) => GetBarcodesCubit(),
