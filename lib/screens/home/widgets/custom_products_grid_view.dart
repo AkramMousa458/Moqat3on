@@ -19,34 +19,39 @@ class CustomProductsGridView extends StatelessWidget {
       child: BlocBuilder<GetProductsCubit, GetProductsState>(
         builder: (context, state) {
           if (state is GetProductsFailure) {
-            showCustomSnackBar(
-                context: context, text: state.errMessage, status: false);
-            return const SizedBox(width: 10);
+            // showCustomSnackBar(
+            //     context: context, text: state.errMessage, status: false);
+            // return const SizedBox(width: 10);
+            return Center(child: Text(state.errMessage));
           } else if (state is GetProductsSuccess) {
-            return GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 0.0,
-                crossAxisSpacing: 16.0,
-                childAspectRatio: 0.9,
-              ),
-              itemCount: state.allProducts.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).push(
-                      ProductScreen.routeName,
-                      extra: state.allProducts[index],
-                    );
-                  },
-                  child: CustomProductItem(
-                    productModel: state.allProducts[index],
-                  ),
-                );
-              },
-            );
+            if (state.allProducts.isEmpty) {
+              return const Center(child: Text('لا يوجد منتجات بعد!'));
+            } else {
+              return GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 0.0,
+                  crossAxisSpacing: 16.0,
+                  childAspectRatio: 0.9,
+                ),
+                itemCount: state.allProducts.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      GoRouter.of(context).push(
+                        ProductScreen.routeName,
+                        extra: state.allProducts[index],
+                      );
+                    },
+                    child: CustomProductItem(
+                      productModel: state.allProducts[index],
+                    ),
+                  );
+                },
+              );
+            }
           } else {
             return const Center(child: CustomLoadingWidget());
           }

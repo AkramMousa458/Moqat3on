@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class CompanyBarcodeModel {
   final String name;
   final int barcodeNumber;
@@ -14,5 +16,19 @@ class CompanyBarcodeModel {
       name: data['name'] ?? '',
       barcodeNumber: data['barcodeNumber'] ?? 0,
     );
+  }
+
+  // Method to encode this object to a JSON-like map
+  Map<String, dynamic> toMap() => {
+        'name': name,
+        'barcodeNumber': barcodeNumber,
+      };
+
+  // Method to print the data in JSON format
+  String toJson() => jsonEncode(toMap());
+
+  // Optionally, you could include a method to print the JSON directly
+  void printJson() {
+    print(toJson());
   }
 }

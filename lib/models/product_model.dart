@@ -17,8 +17,8 @@ class ProductModel {
   });
 
   // Example factory method to create a Product from a JSON-like map
-  factory ProductModel.fromSnapshot(var docs) {
-    Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
+  factory ProductModel.fromSnapshot(var data) {
+    // Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
 
     return ProductModel(
       name: data['name'] ?? '',
