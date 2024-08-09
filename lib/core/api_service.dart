@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:scanner/uri.dart';
+import 'package:scanner/core/uri.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // The ApiService class for making HTTP GET, POST, and DELETE requests
