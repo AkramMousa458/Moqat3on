@@ -33,11 +33,11 @@ dependencies:
   cached_network_image: ^3.3.1
   change_app_package_name: ^1.1.0
   cloud_firestore: 4.15.8
+  firebase_core: 2.27.0
   cupertino_icons: ^1.0.2
   device_preview: ^1.1.0
   dio: ^5.5.0+1
   firebase_auth: ^4.17.8
-  firebase_core: ^2.27.0
   firebase_messaging: 14.7.19
   flutter:
     sdk: flutter
