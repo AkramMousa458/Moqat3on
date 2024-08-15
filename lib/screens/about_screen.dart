@@ -11,7 +11,7 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lightBlack,
+      backgroundColor: Colors.transparent,
       body: ListView(
         children: [
           const SizedBox(height: 10),
@@ -129,7 +129,7 @@ class AboutScreen extends StatelessWidget {
               ),
               SizedBox(height: 30),
               CustomText(
-                text: '(الإصدار: 2.0.1) 🇵🇸 لا تنسوا الدعاء لإخواننا في فلسطين',
+                text: '(الإصدار: 2.8.1) 🇵🇸 لا تنسوا الدعاء لإخواننا في فلسطين',
                 size: 12,
               ),
               SizedBox(height: 40),
