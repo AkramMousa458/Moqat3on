@@ -30,10 +30,10 @@ final GoRouter router = GoRouter(
       path: HomeScreen.routeName,
       builder: (context, state) => const HomeScreen(),
     ),
-    GoRoute(
-      path: SearchScreen.routeName,
-      builder: (context, state) => const SearchScreen(),
-    ),
+    // GoRoute(
+    //   path: SearchScreen.routeName,
+    //   builder: (context, state) => const SearchScreen(),
+    // ),
     GoRoute(
       path: ProfileScreen.routeName,
       builder: (context, state) => const ProfileScreen(),

@@ -22,7 +22,9 @@ class CustomSearchTextField extends StatelessWidget {
         height: 0.8,
       ),
       onTap: () {
-        if (goSearch) customNavigate(context, SearchScreen.routeName);
+        FocusScope.of(context).unfocus();
+        showSearch(context: context, delegate: CustomSearch());
+        // if (goSearch) customNavigate(context, SearchScreen.routeName);
       },
       decoration: InputDecoration(
         hintText: 'ابحث',
