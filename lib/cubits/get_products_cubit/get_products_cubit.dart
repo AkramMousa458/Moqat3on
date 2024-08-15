@@ -19,12 +19,6 @@ class GetProductsCubit extends Cubit<GetProductsState> {
     emit(GetProductsLoading());
     try {
       var data = await _apiService.get(endPoint: 'product/getAllProduct');
-      // QuerySnapshot querySnapshot =
-      //     await firestore.collection("products").get();
-      // allProductsList.clear();
-      // allProductsList = querySnapshot.docs
-      //     .map((doc) => ProductModel.fromSnapshot(doc))
-      //     .toList();
       List<dynamic> productsData = data['data'];
       allProductsList = productsData
           .map(
@@ -46,13 +40,13 @@ class GetProductsCubit extends Cubit<GetProductsState> {
   Future<void> getProductsByCategory(String category) async {
     emit(GetProductsLoading());
     try {
-      QuerySnapshot querySnapshot = await firestore
-          .collection("products")
-          .where("category", isEqualTo: category)
-          .get();
-      List<ProductModel> filteredProductsList = querySnapshot.docs
-          .map((doc) => ProductModel.fromSnapshot(doc))
-          .toList();
+      List<ProductModel> filteredProductsList = [];
+      for (var element in allProductsList) {
+        if (element.category.toLowerCase() == category.toLowerCase()) {
+          filteredProductsList.add(element);
+        }
+      }
+
       emit(GetProductsSuccess(allProducts: filteredProductsList));
     } catch (e) {
       emit(GetProductsFailure(errMessage: "Failed to fetch products: $e"));
