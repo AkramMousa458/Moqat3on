@@ -91,7 +91,7 @@ void showReportBottomSheet(
                               if (state is AddReportFailure) {
                                 Navigator.pop(context);
                                 isLoading = false;
-                                print(state.errMessage);
+                                log(state.errMessage);
                                 showCustomSnackBar(
                                   context: context,
                                   text: state.errMessage,
