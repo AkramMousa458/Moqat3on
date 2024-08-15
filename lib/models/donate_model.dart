@@ -6,8 +6,8 @@ class DonateModel {
     required this.url,
   });
 
-  factory DonateModel.fromSnapshot(var docs) {
-    Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
+  factory DonateModel.fromSnapshot(var data) {
+    // Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
 
     return DonateModel(
       text: data['text'] ?? '',
@@ -15,4 +15,10 @@ class DonateModel {
       url: data['url'] ?? '',
     );
   }
+
+  Map<String, dynamic> toMap() => {
+        'text': text,
+        'image': image,
+        'url': url,
+      };
 }
