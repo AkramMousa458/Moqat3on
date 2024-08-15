@@ -22,7 +22,6 @@ class SearchScreen extends SearchDelegate {
     return IconButton(
         onPressed: () {
           FocusScope.of(context).unfocus(); // Unfocus the keyboard
-          FocusScope.of(context).unfocus(); // Unfocus the keyboard
           close(context, null);
         },
         icon: const Icon(Icons.arrow_back));
@@ -48,17 +47,17 @@ class SearchScreen extends SearchDelegate {
                 crossAxisSpacing: 16.0,
                 childAspectRatio: 0.98,
               ),
-              itemCount: productsList.length,
+              itemCount: filteredList.length, // Use filteredList here
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
                     GoRouter.of(context).push(
                       ProductScreen.routeName,
-                      extra: productsList[index],
+                      extra: filteredList[index], // Use filteredList here
                     );
                   },
                   child: CustomProductItem(
-                    productModel: productsList[index],
+                    productModel: filteredList[index], // Use filteredList here
                   ),
                 );
               },
@@ -69,8 +68,8 @@ class SearchScreen extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     var productsList = context.read<GetProductsCubit>().allProductsList;
-    var filteredList = productsList.where((coupon) {
-      return coupon.name.toLowerCase().contains(query.toLowerCase());
+    var filteredList = productsList.where((product) {
+      return product.name.toLowerCase().contains(query.toLowerCase());
     }).toList();
 
     return Padding(
@@ -86,17 +85,17 @@ class SearchScreen extends SearchDelegate {
                 crossAxisSpacing: 16.0,
                 childAspectRatio: 0.98,
               ),
-              itemCount: productsList.length,
+              itemCount: filteredList.length, // Use filteredList here
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
                     GoRouter.of(context).push(
                       ProductScreen.routeName,
-                      extra: productsList[index],
+                      extra: filteredList[index], // Use filteredList here
                     );
                   },
                   child: CustomProductItem(
-                    productModel: productsList[index],
+                    productModel: filteredList[index], // Use filteredList here
                   ),
                 );
               },
