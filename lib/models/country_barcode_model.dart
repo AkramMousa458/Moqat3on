@@ -7,8 +7,8 @@ class CountryBarcodeModel {
     required this.lastCode,
   });
 
-   factory CountryBarcodeModel.fromSnapshot(var docs) {
-    Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
+   factory CountryBarcodeModel.fromSnapshot(var data) {
+    // Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
 
     return CountryBarcodeModel(
       name: data['name'] ?? '',

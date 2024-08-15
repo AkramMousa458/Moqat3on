@@ -30,8 +30,17 @@ class CustomDonateItem extends StatelessWidget {
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: AppColors.redBlck),
+          boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.08),
+                spreadRadius: 3,
+                blurRadius: 30,
+                offset: const Offset(0, 3),
+              ),
+            ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

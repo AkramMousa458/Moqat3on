@@ -26,6 +26,14 @@ class CustomProductItem extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.08),
+                spreadRadius: 3,
+                blurRadius: 30,
+                offset: const Offset(0, 3),
+              ),
+            ],
           ),
           child: Column(
             children: [
@@ -57,6 +65,7 @@ class CustomProductItem extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const SizedBox(width: 5),
                   productModel.boycott == 'نعم'
                       ? const Icon(
                           FontAwesomeIcons.ban,
@@ -67,6 +76,17 @@ class CustomProductItem extends StatelessWidget {
                           color: AppColors.primaryColor,
                         ),
                 ],
+              ),
+              Text(
+                productModel.boycott == 'نعم' ? 'مقاطعة' : 'أمان',
+                textAlign: TextAlign.right,
+                overflow: TextOverflow.ellipsis,
+                style: CustomTextStyle.stylesFont500Size14.copyWith(
+                  color: productModel.boycott == 'نعم'
+                      ? AppColors.redBlck
+                      : AppColors.primaryColor,
+                  // fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),

@@ -23,7 +23,8 @@ class CustomCategoriesScrollItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Center(
-        child: Container(
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
           alignment: Alignment.center,
           width: width,
           height: height,
@@ -40,7 +41,7 @@ class CustomCategoriesScrollItem extends StatelessWidget {
             style: TextStyle(
               fontSize: fontSize,
               fontWeight: fontWeight,
-              color: isColor ? AppColors.offwhite : AppColors.redBlck,
+              color: isColor ? AppColors.white : AppColors.redBlck,
             ),
           ),
         ),

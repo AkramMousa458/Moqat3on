@@ -32,7 +32,7 @@ class _ScanScreenState extends State<ScanScreen> {
   Widget build(BuildContext context) {
     GetBarcodesCubit barcodesCubit = BlocProvider.of<GetBarcodesCubit>(context);
     return Scaffold(
-      backgroundColor: AppColors.offwhite,
+      backgroundColor: AppColors.white,
       body: ListView(
         physics: const BouncingScrollPhysics(),
         children: [

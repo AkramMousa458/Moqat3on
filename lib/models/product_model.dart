@@ -25,7 +25,7 @@ class ProductModel {
     return ProductModel(
       name: data['name'] ?? '',
       category: data['category'] ?? '',
-      boycott: data['boycott'] ?? '',
+      boycott: data['Boycott'] ?? '',
       boycottReason: data['boycottReason'] ?? '',
       country: data['country'] ?? '',
       image: data['image'] ??

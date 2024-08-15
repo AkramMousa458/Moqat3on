@@ -47,7 +47,7 @@ class Scanner extends StatelessWidget {
           create: (context) => GetProductsCubit(ApiService())..getAllProducts(),
         ),
         BlocProvider(
-          create: (context) => GetBarcodesCubit(),
+          create: (context) => GetBarcodesCubit(ApiService(Dio())),
         ),
         BlocProvider(
           create: (context) => NotificationCubit()

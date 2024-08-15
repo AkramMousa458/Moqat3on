@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
+import 'package:scanner/screens/home/widgets/about_us_widget.dart';
 import 'package:scanner/screens/home/widgets/cancel_duaa_notification_widget.dart';
 import 'package:scanner/widgets/custom_app_bar.dart';
 
@@ -10,7 +11,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.offwhite,
+      backgroundColor: AppColors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -24,6 +25,7 @@ class SettingsScreen extends StatelessWidget {
                     title: 'الإعدادت',
                   ),
                   CancelDuaaNotifiactionWidget(),
+                  AboutUsWidget(),
                 ],
               ),
             ),

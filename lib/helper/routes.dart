@@ -1,12 +1,12 @@
 import 'package:go_router/go_router.dart';
 import 'package:scanner/models/product_model.dart';
+import 'package:scanner/screens/about_screen.dart';
 import 'package:scanner/screens/auth/login_screen.dart';
 import 'package:scanner/screens/home/home_screen.dart';
 import 'package:scanner/screens/home/navigator_widget.dart';
 import 'package:scanner/screens/products_profiles/product_screen.dart';
 import 'package:scanner/screens/profile/profile_screen.dart';
 import 'package:scanner/screens/profile/widgets/check_signup_profile.dart';
-import 'package:scanner/screens/search/search_sceen.dart';
 import 'package:scanner/screens/settings_screen.dart';
 import 'package:scanner/screens/splash_screen.dart';
 
@@ -31,8 +31,8 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: SearchScreen.routeName,
-      builder: (context, state) => const SearchScreen(),
+      path: AboutScreen.routeName,
+      builder: (context, state) => const AboutScreen(),
     ),
     GoRoute(
       path: ProfileScreen.routeName,

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 class CompanyBarcodeModel {
   final String name;
   final int barcodeNumber;
@@ -9,8 +11,8 @@ class CompanyBarcodeModel {
     required this.barcodeNumber,
   });
 
-  factory CompanyBarcodeModel.fromSnapshot(var docs) {
-    Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
+  factory CompanyBarcodeModel.fromSnapshot(var data) {
+    // Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
 
     return CompanyBarcodeModel(
       name: data['name'] ?? '',
@@ -29,6 +31,8 @@ class CompanyBarcodeModel {
 
   // Optionally, you could include a method to print the JSON directly
   void printJson() {
-    print(toJson());
+    if (kDebugMode) {
+      print(toJson());
+    }
   }
 }

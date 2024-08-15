@@ -35,6 +35,14 @@ class CustomAlternativeItem extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.white,
               borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.08),
+                spreadRadius: 3,
+                blurRadius: 30,
+                offset: const Offset(0, 3),
+              ),
+            ],
             ),
             child: Column(
               children: [
