@@ -157,7 +157,6 @@ class _ProductScreenState extends State<ProductScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                sizeHeight(16),
                 ProductsAlternative(
                   productModel: widget.productModel,
                 ),
