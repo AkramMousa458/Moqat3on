@@ -22,7 +22,7 @@ class GetProductsCubit extends Cubit<GetProductsState> {
       List<dynamic> productsData = data['data'];
       allProductsList = productsData
           .map(
-            (roomData) => ProductModel.fromSnapshot(roomData),
+            (product) => ProductModel.fromSnapshot(product),
           )
           .toList();
       emit(GetProductsSuccess(allProducts: allProductsList));

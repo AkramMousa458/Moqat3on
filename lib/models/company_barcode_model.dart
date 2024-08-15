@@ -9,8 +9,8 @@ class CompanyBarcodeModel {
     required this.barcodeNumber,
   });
 
-  factory CompanyBarcodeModel.fromSnapshot(var docs) {
-    Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
+  factory CompanyBarcodeModel.fromSnapshot(var data) {
+    // Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
 
     return CompanyBarcodeModel(
       name: data['name'] ?? '',
