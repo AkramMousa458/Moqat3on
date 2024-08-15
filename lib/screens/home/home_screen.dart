@@ -22,7 +22,6 @@ class HomeScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               children: [
                 CustomSearchTextField(
-                  goSearch: true,
                   onChanged: (value) {},
                 ),
                 const CustomCategoriesScrollView(),

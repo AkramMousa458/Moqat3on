@@ -19,9 +19,6 @@ class CustomProductsGridView extends StatelessWidget {
       child: BlocBuilder<GetProductsCubit, GetProductsState>(
         builder: (context, state) {
           if (state is GetProductsFailure) {
-            // showCustomSnackBar(
-            //     context: context, text: state.errMessage, status: false);
-            // return const SizedBox(width: 10);
             return Center(child: Text(state.errMessage));
           } else if (state is GetProductsSuccess) {
             if (state.allProducts.isEmpty) {
@@ -34,7 +31,7 @@ class CustomProductsGridView extends StatelessWidget {
                   crossAxisCount: 2,
                   mainAxisSpacing: 0.0,
                   crossAxisSpacing: 16.0,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: 0.98,
                 ),
                 itemCount: state.allProducts.length,
                 itemBuilder: (BuildContext context, int index) {

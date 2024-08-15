@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
-import 'package:scanner/helper/navigation.dart';
-import 'package:scanner/screens/search/search_sceen.dart';
+import 'package:scanner/screens/search/search_screen.dart';
 
 class CustomSearchTextField extends StatelessWidget {
   const CustomSearchTextField({
     super.key,
     required this.onChanged,
-    required this.goSearch,
   });
 
   final Function(String) onChanged;
-  final bool goSearch;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +20,7 @@ class CustomSearchTextField extends StatelessWidget {
       ),
       onTap: () {
         FocusScope.of(context).unfocus();
-        showSearch(context: context, delegate: CustomSearch());
-        // if (goSearch) customNavigate(context, SearchScreen.routeName);
+        showSearch(context: context, delegate: SearchScreen());
       },
       decoration: InputDecoration(
         hintText: 'ابحث',
