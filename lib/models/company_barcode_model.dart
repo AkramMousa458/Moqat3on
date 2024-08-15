@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 class CompanyBarcodeModel {
   final String name;
   final int barcodeNumber;
@@ -29,6 +31,8 @@ class CompanyBarcodeModel {
 
   // Optionally, you could include a method to print the JSON directly
   void printJson() {
-    print(toJson());
+    if (kDebugMode) {
+      print(toJson());
+    }
   }
 }

@@ -6,7 +6,6 @@ import 'package:scanner/screens/home/navigator_widget.dart';
 import 'package:scanner/screens/products_profiles/product_screen.dart';
 import 'package:scanner/screens/profile/profile_screen.dart';
 import 'package:scanner/screens/profile/widgets/check_signup_profile.dart';
-import 'package:scanner/screens/search/search_screen.dart';
 import 'package:scanner/screens/settings_screen.dart';
 import 'package:scanner/screens/splash_screen.dart';
 
