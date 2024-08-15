@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:scanner/models/product_model.dart';
+import 'package:scanner/screens/about_screen.dart';
 import 'package:scanner/screens/auth/login_screen.dart';
 import 'package:scanner/screens/home/home_screen.dart';
 import 'package:scanner/screens/home/navigator_widget.dart';
@@ -29,10 +30,10 @@ final GoRouter router = GoRouter(
       path: HomeScreen.routeName,
       builder: (context, state) => const HomeScreen(),
     ),
-    // GoRoute(
-    //   path: SearchScreen.routeName,
-    //   builder: (context, state) => const SearchScreen(),
-    // ),
+    GoRoute(
+      path: AboutScreen.routeName,
+      builder: (context, state) => const AboutScreen(),
+    ),
     GoRoute(
       path: ProfileScreen.routeName,
       builder: (context, state) => const ProfileScreen(),

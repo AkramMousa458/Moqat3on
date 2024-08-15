@@ -22,10 +22,11 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
   int _selectedIndex = 0;
   final _pages = [
     const HomeScreen(),
-    const DonateScreen(),
     const ScanScreen(),
-    const AboutScreen(),
-    const ProfileScreen()
+    const DonateScreen(),
+    
+    // const AboutScreen(),
+    // const ProfileScreen()
   ];
 
   @override
@@ -80,10 +81,6 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
               icon: Icon(FontAwesomeIcons.houseChimney),
               label: 'الرئيسية',
             ),
-            const BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.handHoldingDollar),
-              label: 'التبرع',
-            ),
             BottomNavigationBarItem(
               icon: Container(
                 width: 50,
@@ -107,13 +104,18 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
               label: 'مسح',
             ),
             const BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.circleInfo),
-              label: 'عنا',
+              icon: Icon(FontAwesomeIcons.handHoldingDollar),
+              label: 'التبرع',
             ),
-            const BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.circleUser),
-              label: 'البروفايل',
-            ),
+
+            // const BottomNavigationBarItem(
+            //   icon: Icon(FontAwesomeIcons.circleInfo),
+            //   label: 'عنا',
+            // ),
+            // const BottomNavigationBarItem(
+            //   icon: Icon(FontAwesomeIcons.circleUser),
+            //   label: 'البروفايل',
+            // ),
           ],
         ),
       ),
