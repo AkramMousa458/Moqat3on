@@ -1,4 +1,5 @@
 class ProductModel {
+  final int id;
   final String name;
   final String category;
   final String boycott;
@@ -7,6 +8,7 @@ class ProductModel {
   final String image;
   final double rating;
   ProductModel({
+    required this.id,
     required this.name,
     required this.category,
     required this.boycott,
@@ -21,6 +23,7 @@ class ProductModel {
     // Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
 
     return ProductModel(
+      id: data['id'] ?? 0,
       name: data['name'] ?? '',
       category: data['category'] ?? '',
       boycott: data['Boycott'] ?? '',
@@ -34,6 +37,7 @@ class ProductModel {
 
   // Example method to encode this object to a JSON-like map
   Map<String, dynamic> toMap() => {
+        'id': id,
         'name': name,
         'category': category,
         'boycott': boycott,

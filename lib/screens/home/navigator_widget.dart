@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
-import 'package:scanner/screens/about_screen.dart';
 import 'package:scanner/screens/donate/donate_screen.dart';
 import 'package:scanner/screens/home/home_screen.dart';
-import 'package:scanner/screens/profile/profile_screen.dart';
 import 'package:scanner/screens/scan/scan_screen.dart';
 import 'package:scanner/screens/settings_screen.dart';
 

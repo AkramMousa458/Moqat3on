@@ -1,6 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scanner/core/api_service.dart';
 import 'package:scanner/cubits/add_report_cubit/add_report_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/show_custom_snack_bar.dart';
@@ -12,7 +15,6 @@ import 'package:scanner/widgets/custom_loading_widget.dart';
 
 void showReportBottomSheet(
     {required BuildContext context, required ProductModel productModel}) {
-  final currenUser = FirebaseAuth.instance.currentUser;
   TextEditingController messageController = TextEditingController();
   bool isLoading = false;
   showModalBottomSheet(
@@ -20,7 +22,7 @@ void showReportBottomSheet(
     isScrollControlled: true,
     builder: (BuildContext context) {
       return BlocProvider(
-        create: (context) => AddReportCubit(),
+        create: (context) => AddReportCubit(ApiService(Dio())),
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: DraggableScrollableSheet(
@@ -77,7 +79,7 @@ void showReportBottomSheet(
                         ),
                       ),
                       Text(
-                        'ملحوظة : سيتم إرسال معلومات المُرسِل والمنتج مع الإبلاغ',
+                        'ملحوظة : سيتم إرسال معلومات المنتج مع الإبلاغ',
                         style: CustomTextStyle.stylesFont300Size16
                             .copyWith(fontSize: 12),
                       ),
@@ -90,6 +92,7 @@ void showReportBottomSheet(
                               if (state is AddReportFailure) {
                                 Navigator.pop(context);
                                 isLoading = false;
+                                print(state.errMessage);
                                 showCustomSnackBar(
                                   context: context,
                                   text: state.errMessage,
@@ -117,14 +120,12 @@ void showReportBottomSheet(
                                       height: 60,
                                       onTap: () {
                                         if (messageController.text.isNotEmpty) {
+                                          log(productModel.id.toString());
                                           BlocProvider.of<AddReportCubit>(
                                                   context)
                                               .addReport(
                                                 report: ReportModel(
-                                                  userEmail: currenUser!.email!,
-                                                  userName:
-                                                      currenUser.displayName!,
-                                                  product: productModel,
+                                                  productId: productModel.id,
                                                   message:
                                                       messageController.text,
                                                 ),

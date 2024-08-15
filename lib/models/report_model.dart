@@ -1,25 +1,17 @@
-import 'package:scanner/models/product_model.dart';
-
 class ReportModel {
-  final String userEmail;
-  final String userName;
-  final ProductModel product;
+  final int productId;
   final String message;
 
   ReportModel({
-    required this.userEmail,
-    required this.userName,
-    required this.product,
+    required this.productId,
     required this.message,
   });
 
-  factory ReportModel.fromSnapshot(var docs) {
-    Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
+  factory ReportModel.fromSnapshot(var data) {
+    // Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
 
     return ReportModel(
-      userEmail: data['userEmail'],
-      userName: data['userName'],
-      product: data['product'],
+      productId: data['id'],
       message: data['message'] ?? '',
     );
   }
