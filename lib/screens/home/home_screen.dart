@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       child: Builder(
         builder: (context) {
           return Material(
-            color: AppColors.offwhite,
+            color: AppColors.white,
             child: ListView(
               physics: const BouncingScrollPhysics(),
               children: [

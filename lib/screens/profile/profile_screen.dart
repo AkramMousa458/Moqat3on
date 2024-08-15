@@ -36,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        backgroundColor: AppColors.offwhite,
+        backgroundColor: AppColors.white,
         title: Text(
           'تعديل $field',
           textDirection: TextDirection.rtl,
@@ -88,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.offwhite,
+      backgroundColor: AppColors.white,
       appBar: AppBar(
         title: const Text("الملف الشخصي"),
         centerTitle: true,

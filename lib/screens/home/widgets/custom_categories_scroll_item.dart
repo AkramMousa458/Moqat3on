@@ -41,7 +41,7 @@ class CustomCategoriesScrollItem extends StatelessWidget {
             style: TextStyle(
               fontSize: fontSize,
               fontWeight: fontWeight,
-              color: isColor ? AppColors.offwhite : AppColors.redBlck,
+              color: isColor ? AppColors.white : AppColors.redBlck,
             ),
           ),
         ),

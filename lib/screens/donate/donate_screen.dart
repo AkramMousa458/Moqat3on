@@ -14,7 +14,7 @@ class DonateScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => GetDonateCubit()..getDonate(),
       child: Scaffold(
-        backgroundColor: AppColors.offwhite,
+        backgroundColor: AppColors.white,
         appBar: AppBar(
           title: Padding(
             padding: const EdgeInsets.only(bottom: 16),

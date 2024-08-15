@@ -34,7 +34,7 @@ class CustomButtonApp extends StatelessWidget {
             : Text(
                 text,
                 style: const TextStyle(
-                  color: AppColors.offwhite,
+                  color: AppColors.white,
                   fontWeight: FontWeight.w500,
                 ),
               ),

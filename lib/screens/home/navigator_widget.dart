@@ -31,22 +31,7 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.offwhite,
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // FirebaseAuth.instance.signOut();
-      //     // GoRouter.of(context).go('/');
-      //     // BlocProvider.of<AddDonateCubit>(context).addDonate(
-      //     //   DonateModel(
-      //     //     text: 'بيت الزكاة المصري',
-      //     //     image:
-      //     //         'https://upload.wikimedia.org/wikipedia/ar/2/20/%D8%A8%D9%8A%D8%AA_%D8%A7%D9%84%D8%B2%D9%83%D8%A7%D8%A9_%D9%88%D8%A7%D9%84%D8%B5%D8%AF%D9%82%D8%A7%D8%AA_%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A.png',
-      //     //     url: 'https://baitzakat.org.eg/donationChannels/#5',
-      //     //   ),
-      //     // );
-      //   },
-      //   child: const Icon(Icons.add),
-      // ),
+      backgroundColor: AppColors.white,
       appBar: AppBar(
         actions: [
           IconButton(
@@ -81,6 +66,7 @@ class _NavigatorWidgetState extends State<NavigatorWidget> {
           showUnselectedLabels: false,
           iconSize: 23,
           elevation: 1,
+          backgroundColor: AppColors.white,
           selectedItemColor: AppColors.redBlck,
           unselectedItemColor: AppColors.deepGrey,
           type: BottomNavigationBarType.fixed,

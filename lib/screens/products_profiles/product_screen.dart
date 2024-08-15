@@ -33,13 +33,13 @@ class _ProductScreenState extends State<ProductScreen> {
             productModel: widget.productModel,
           );
         },
-        backgroundColor: AppColors.offwhite,
+        backgroundColor: AppColors.white,
         foregroundColor: AppColors.redBlck,
         child: const Icon(
           FontAwesomeIcons.exclamation,
         ),
       ),
-      backgroundColor: AppColors.offwhite,
+      backgroundColor: AppColors.white,
       body: Directionality(
         textDirection: TextDirection.rtl,
         child: SingleChildScrollView(

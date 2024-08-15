@@ -15,7 +15,7 @@ class CheckSignUpProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.offwhite,
+      backgroundColor: AppColors.white,
       body: Column(
         children: [
           sizeHeight(20),
