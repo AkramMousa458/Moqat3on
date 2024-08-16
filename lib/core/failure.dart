@@ -44,7 +44,7 @@ class ServerFailure extends Failure {
   // Factory method to create a ServerFailure instance from an HTTP response
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(response['message']);
+      return ServerFailure(response['message'] ?? 'there was an error');
     } else if (statusCode == 404) {
       return ServerFailure('Your request not found, Please try later!');
     } else if (statusCode == 500) {

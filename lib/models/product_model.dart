@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class ProductModel {
   final int id;
   final String name;
@@ -35,7 +37,7 @@ class ProductModel {
     );
   }
 
-  // Example method to encode this object to a JSON-like map
+// Example method to encode this object to a JSON-like map
   Map<String, dynamic> toMap() => {
         'id': id,
         'name': name,
@@ -46,4 +48,5 @@ class ProductModel {
         'image': image,
         'ratign': rating,
       };
+  String toJson() => jsonEncode(toMap());
 }

@@ -41,24 +41,24 @@ class SearchScreen extends SearchDelegate {
           ? const Center(child: Text('لا يوجد منتجات بهذا الإسم'))
           : GridView.builder(
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 0.0,
                 crossAxisSpacing: 16.0,
                 childAspectRatio: 0.98,
               ),
-              itemCount: productsList.length,
+              itemCount: filteredList.length,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
                     GoRouter.of(context).push(
                       ProductScreen.routeName,
-                      extra: productsList[index],
+                      extra: filteredList[index],
                     );
                   },
                   child: CustomProductItem(
-                    productModel: productsList[index],
+                    productModel: filteredList[index],
                   ),
                 );
               },
@@ -79,7 +79,7 @@ class SearchScreen extends SearchDelegate {
           ? const Center(child: Text('لا يوجد منتج بهذا الإسم'))
           : GridView.builder(
               shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 0.0,

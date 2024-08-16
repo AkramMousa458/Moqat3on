@@ -1,0 +1,1 @@
+const String uri = "https://moqat3a.dram.giize.com/";

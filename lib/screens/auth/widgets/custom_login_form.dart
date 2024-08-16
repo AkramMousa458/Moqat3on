@@ -40,9 +40,10 @@ class CustomLoginForm extends StatelessWidget {
       },
       builder: (context, state) {
         AuthCubit authCubit = BlocProvider.of<AuthCubit>(context);
+        GlobalKey<FormState> formKeyLogin = GlobalKey<FormState>();
 
         return Form(
-          key: authCubit.formKeyLogin,
+          key: formKeyLogin,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -71,7 +72,7 @@ class CustomLoginForm extends StatelessWidget {
               const SizedBox(height: 30),
               CustomButtonApp(
                 onPressed: () async {
-                  if (authCubit.formKeyLogin.currentState!.validate()) {
+                  if (formKeyLogin.currentState!.validate()) {
                     await authCubit.signINWithEmailAndPassword();
                   }
                 },

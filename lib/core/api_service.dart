@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:scanner/uri.dart';
+import 'package:scanner/core/uri.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // The ApiService class for making HTTP GET, POST, and DELETE requests
@@ -9,10 +9,10 @@ class ApiService {
 
   String? token;
   // Dio instance used for making HTTP requests
-  final Dio _dio;
+  final Dio _dio = Dio();
 
   // Constructor to initialize the ApiService with a Dio instance
-  ApiService(this._dio);
+  // ApiService(this._dio);
 
   // Asynchronous function to make a GET request to the API
   Future<Map<String, dynamic>> get({required String endPoint}) async {

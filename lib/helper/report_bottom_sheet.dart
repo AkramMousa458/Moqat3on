@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/core/api_service.dart';
@@ -22,7 +21,7 @@ void showReportBottomSheet(
     isScrollControlled: true,
     builder: (BuildContext context) {
       return BlocProvider(
-        create: (context) => AddReportCubit(ApiService(Dio())),
+        create: (context) => AddReportCubit(ApiService()),
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: DraggableScrollableSheet(
@@ -92,7 +91,7 @@ void showReportBottomSheet(
                               if (state is AddReportFailure) {
                                 Navigator.pop(context);
                                 isLoading = false;
-                                print(state.errMessage);
+                                log(state.errMessage);
                                 showCustomSnackBar(
                                   context: context,
                                   text: state.errMessage,

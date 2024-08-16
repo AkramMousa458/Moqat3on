@@ -15,6 +15,7 @@ class CustomCreateAccountForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GlobalKey<FormState> formKeySignUp = GlobalKey<FormState>();
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is CreateAccountSccessState) {
@@ -34,7 +35,7 @@ class CustomCreateAccountForm extends StatelessWidget {
       builder: (context, state) {
         AuthCubit authCubit = BlocProvider.of<AuthCubit>(context);
         return Form(
-          key: authCubit.formKeySignUp,
+          key: formKeySignUp,
           child: Column(
             children: [
               CustomTextFormFAuth(
@@ -67,8 +68,8 @@ class CustomCreateAccountForm extends StatelessWidget {
               const SizedBox(height: 24),
               CustomButtonApp(
                 onPressed: () async {
-                  if (authCubit.formKeyLogin.currentState!.validate()) {
-                    await authCubit.signINWithEmailAndPassword();
+                  if (formKeySignUp.currentState!.validate()) {
+                    await authCubit.signUpWithEmailAndPassword();
                   }
                 },
                 isLoading: state is SignInLoadingState ? true : false,
