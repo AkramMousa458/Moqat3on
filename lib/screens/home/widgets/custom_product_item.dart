@@ -51,17 +51,53 @@ class CustomProductItem extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
+              Text(
+                productModel.name,
+                textAlign: TextAlign.right,
+                overflow: TextOverflow.ellipsis,
+                style: CustomTextStyle.stylesFont500Size16.copyWith(
+                  color: AppColors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       flex: 1,
+              //       child: Text(
+              //         productModel.name,
+              //         textAlign: TextAlign.right,
+              //         overflow: TextOverflow.ellipsis,
+              //         style: CustomTextStyle.stylesFont500Size16.copyWith(
+              //           color: AppColors.black,
+              //           fontWeight: FontWeight.bold,
+              //         ),
+              //       ),
+              //     ),
+              //     const SizedBox(width: 5),
+              //     productModel.boycott == 'نعم'
+              //         ? const Icon(
+              //             FontAwesomeIcons.ban,
+              //             color: AppColors.redBlck,
+              //           )
+              //         : const Icon(
+              //             FontAwesomeIcons.check,
+              //             color: AppColors.primaryColor,
+              //           ),
+              //   ],
+              // ),
               Row(
                 children: [
                   Expanded(
                     flex: 1,
                     child: Text(
-                      productModel.name,
+                      productModel.boycott == 'نعم' ? 'مقاطعة' : 'أمان',
                       textAlign: TextAlign.right,
                       overflow: TextOverflow.ellipsis,
-                      style: CustomTextStyle.stylesFont500Size16.copyWith(
-                        color: AppColors.black,
-                        fontWeight: FontWeight.bold,
+                      style: CustomTextStyle.stylesFont500Size14.copyWith(
+                        color: productModel.boycott == 'نعم'
+                            ? AppColors.redBlck
+                            : AppColors.primaryColor,
                       ),
                     ),
                   ),
@@ -76,17 +112,6 @@ class CustomProductItem extends StatelessWidget {
                           color: AppColors.primaryColor,
                         ),
                 ],
-              ),
-              Text(
-                productModel.boycott == 'نعم' ? 'مقاطعة' : 'أمان',
-                textAlign: TextAlign.right,
-                overflow: TextOverflow.ellipsis,
-                style: CustomTextStyle.stylesFont500Size14.copyWith(
-                  color: productModel.boycott == 'نعم'
-                      ? AppColors.redBlck
-                      : AppColors.primaryColor,
-                  // fontWeight: FontWeight.bold,
-                ),
               ),
             ],
           ),
