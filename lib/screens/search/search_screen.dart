@@ -22,7 +22,6 @@ class SearchScreen extends SearchDelegate {
     return IconButton(
         onPressed: () {
           FocusScope.of(context).unfocus(); // Unfocus the keyboard
-          FocusScope.of(context).unfocus(); // Unfocus the keyboard
           close(context, null);
         },
         icon: const Icon(Icons.arrow_back));
@@ -31,52 +30,14 @@ class SearchScreen extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     var productsList = context.read<GetProductsCubit>().allProductsList;
-    var filteredList = productsList.where((product) {
-      return product.name.toLowerCase().contains(query.toLowerCase());
-    }).toList();
+    // var filteredList = productsList.where((product) {
+    //   return product.name.toLowerCase().contains(query.toLowerCase());
+    // }).toList();
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: filteredList.isEmpty
-          ? const Center(child: Text('لا يوجد منتجات بهذا الإسم'))
-          : GridView.builder(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 0.0,
-                crossAxisSpacing: 16.0,
-                childAspectRatio: 0.98,
-              ),
-              itemCount: filteredList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).push(
-                      ProductScreen.routeName,
-                      extra: filteredList[index],
-                    );
-                  },
-                  child: CustomProductItem(
-                    productModel: filteredList[index],
-                  ),
-                );
-              },
-            ),
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    var productsList = context.read<GetProductsCubit>().allProductsList;
-    var filteredList = productsList.where((coupon) {
-      return coupon.name.toLowerCase().contains(query.toLowerCase());
-    }).toList();
-
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: filteredList.isEmpty
-          ? const Center(child: Text('لا يوجد منتج بهذا الإسم'))
+      child: productsList.isEmpty
+          ? const Center(child: Text('لا يوجد منتجات بعد'))
           : GridView.builder(
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
@@ -97,6 +58,45 @@ class SearchScreen extends SearchDelegate {
                   },
                   child: CustomProductItem(
                     productModel: productsList[index],
+                  ),
+                );
+              },
+            ),
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    var productsList = context.read<GetProductsCubit>().allProductsList;
+    var filteredList = productsList.where((product) {
+      return product.name.toLowerCase().contains(query.toLowerCase());
+    }).toList();
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: filteredList.isEmpty
+          ? const Center(child: Text('لا يوجد منتج بهذا الإسم'))
+          : GridView.builder(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 0.0,
+                crossAxisSpacing: 16.0,
+                childAspectRatio: 0.98,
+              ),
+              itemCount: filteredList.length, 
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).push(
+                      ProductScreen.routeName,
+                      extra: filteredList[index], 
+                    );
+                  },
+                  child: CustomProductItem(
+                    productModel:
+                        filteredList[index], 
                   ),
                 );
               },
