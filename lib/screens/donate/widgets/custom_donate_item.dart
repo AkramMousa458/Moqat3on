@@ -55,7 +55,7 @@ class CustomDonateItem extends StatelessWidget {
             ),
             sizeHeight(5),
             Text(
-              donateModel.text,
+              donateModel.name,
               textAlign: TextAlign.center,
               style: CustomTextStyle.stylesFont300Size16.copyWith(
                 fontSize: 15,

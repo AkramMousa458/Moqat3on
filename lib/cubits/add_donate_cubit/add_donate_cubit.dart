@@ -15,7 +15,7 @@ class AddDonateCubit extends Cubit<AddDonateState> {
     emit(AddDonateLoading());
     try {
       await firestore.collection('donate').add({
-        'text': donateModel.text,
+        'text': donateModel.name,
         'image': donateModel.image,
         'url': donateModel.url,
       });
