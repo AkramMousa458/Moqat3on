@@ -44,6 +44,7 @@ class GetBarcodesCubit extends Cubit<GetBarcodesState> {
             (barcode) => CountryBarcodeModel.fromSnapshot(barcode),
           )
           .toList();
+
       emit(GetBarcodesSuccess());
     } catch (e) {
       emit(GetBarcodesFailure(errMessage: "Failed to fetch products: $e"));

@@ -29,10 +29,4 @@ class CompanyBarcodeModel {
   // Method to print the data in JSON format
   String toJson() => jsonEncode(toMap());
 
-  // Optionally, you could include a method to print the JSON directly
-  void printJson() {
-    if (kDebugMode) {
-      print(toJson());
-    }
-  }
 }

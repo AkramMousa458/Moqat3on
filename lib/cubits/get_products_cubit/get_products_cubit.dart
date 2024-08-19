@@ -28,9 +28,9 @@ class GetProductsCubit extends Cubit<GetProductsState> {
           )
           .toList();
 
-      for (var element in allProductsList) {
-        log(element.toJson());
-      }
+      // for (var element in allProductsList) {
+      //   log(element.toJson());
+      // }
       emit(GetProductsSuccess(allProducts: allProductsList));
     } catch (e) {
       if (e is DioException) {
