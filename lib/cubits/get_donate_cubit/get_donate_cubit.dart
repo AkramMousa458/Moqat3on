@@ -31,6 +31,10 @@ class GetDonateCubit extends Cubit<GetDonateState> {
             (donateData) => DonateModel.fromSnapshot(donateData),
           )
           .toList();
+
+      for (var element in donateList) {
+        print(element.toMap());
+      }
       emit(GetDonateSuccess(donateList: donateList));
     } catch (e) {
       if (e is DioException) {
