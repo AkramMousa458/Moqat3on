@@ -4,7 +4,7 @@ import 'package:scanner/cubits/get_donate_cubit/get_donate_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/screens/donate/widgets/custom_donate_item.dart';
-import 'package:scanner/widgets/custom_loading_widget.dart';
+import 'package:scanner/widgets/shimmer_loading_widget.dart';
 
 class DonateScreen extends StatelessWidget {
   const DonateScreen({super.key});
@@ -53,8 +53,18 @@ class DonateScreen extends StatelessWidget {
                   },
                 );
               } else {
-                return const Center(
-                  child: CustomLoadingWidget(),
+                return GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    childAspectRatio: 0.85,
+                  ),
+                  itemCount: 4,
+                  itemBuilder: (context, index) {
+                    return const ShimmerLoadingWidget();
+                  },
                 );
               }
             },

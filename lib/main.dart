@@ -9,6 +9,7 @@ import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/cubits/scan_cubit/scan_cubit.dart';
 import 'package:scanner/cubits/notification_cubit/notification_cubit.dart';
 import 'package:scanner/firebase_options.dart';
+import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/firebase_notification.dart';
 import 'package:scanner/helper/local_notification_service.dart';
 import 'package:scanner/helper/notification_enum.dart';
@@ -57,6 +58,7 @@ class Scanner extends StatelessWidget {
       ],
       child: MaterialApp.router(
         theme: ThemeData(
+          scaffoldBackgroundColor: AppColors.white,
           textTheme: GoogleFonts.cairoTextTheme(),
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.transparent,

@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
 class CompanyBarcodeModel {
   final String name;
   final int barcodeNumber;
