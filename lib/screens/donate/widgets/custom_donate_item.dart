@@ -5,7 +5,7 @@ import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/donate_model.dart';
 import 'package:scanner/screens/home/widgets/custom_categories_scroll_item.dart';
-import 'package:scanner/widgets/custom_loading_widget.dart';
+import 'package:scanner/widgets/shimmer_loading_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CustomDonateItem extends StatelessWidget {
@@ -34,13 +34,13 @@ class CustomDonateItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: AppColors.redBlck),
           boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.08),
-                spreadRadius: 3,
-                blurRadius: 30,
-                offset: const Offset(0, 3),
-              ),
-            ],
+            BoxShadow(
+              color: Colors.black.withOpacity(0.08),
+              spreadRadius: 3,
+              blurRadius: 30,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -49,8 +49,10 @@ class CustomDonateItem extends StatelessWidget {
               imageUrl: donateModel.image,
               fit: BoxFit.cover,
               height: MediaQuery.sizeOf(context).width / 6,
-              placeholder: (context, url) =>
-                  const Center(child: CustomLoadingWidget()),
+              placeholder: (context, url) => const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: ShimmerLoadingWidget(),
+              ),
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
             sizeHeight(5),
