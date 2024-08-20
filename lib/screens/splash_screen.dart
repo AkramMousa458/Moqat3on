@@ -1,8 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/navigation.dart';
-import 'package:scanner/screens/auth/login_screen.dart';
 import 'package:scanner/screens/home/navigator_widget.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,17 +20,20 @@ class _SplashScreenState extends State<SplashScreen> {
   late bool isSkiped;
   @override
   void initState() {
-    firebaseAuth.authStateChanges().listen((user) {
-      if (user == null) {
-        Future.delayed(const Duration(seconds: 2), () {
-          customReplacementNavigate(context, LoginScreen.routeName);
-        });
-      } else {
-        Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
           customReplacementNavigate(context, NavigatorWidget.routeName);
         });
-      }
-    });
+    // firebaseAuth.authStateChanges().listen((user) {
+    //   if (user == null) {
+    //     Future.delayed(const Duration(seconds: 2), () {
+    //       customReplacementNavigate(context, LoginScreen.routeName);
+    //     });
+    //   } else {
+    //     Future.delayed(const Duration(seconds: 2), () {
+    //       customReplacementNavigate(context, NavigatorWidget.routeName);
+    //     });
+    //   }
+    // });
 
     super.initState();
   }

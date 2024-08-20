@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +26,9 @@ class GetProductsCubit extends Cubit<GetProductsState> {
           )
           .toList();
 
-      for (var element in allProductsList) {
-        log(element.toJson());
-      }
+      // for (var element in allProductsList) {
+      //   log(element.toJson());
+      // }
       emit(GetProductsSuccess(allProducts: allProductsList));
     } catch (e) {
       if (e is DioException) {

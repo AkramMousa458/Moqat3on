@@ -35,6 +35,7 @@ class _ScanScreenState extends State<ScanScreen> {
       backgroundColor: AppColors.white,
       body: ListView(
         physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -114,17 +115,18 @@ class _ScanScreenState extends State<ScanScreen> {
                 child: scanPhoto
                     ? const Column(
                         children: [
+                          SizedBox(height: 50),
                           ScanChooseButton(
                             text: 'إستخدام الكـاميرا',
                             iconData: FontAwesomeIcons.cameraRetro,
                             isCamera: true,
                           ),
-                          SizedBox(height: 10),
-                          ScanChooseButton(
-                            text: 'إختيار من المعرض',
-                            iconData: FontAwesomeIcons.image,
-                            isCamera: false,
-                          ),
+                          // SizedBox(height: 10),
+                          // ScanChooseButton(
+                          //   text: 'إختيار من المعرض',
+                          //   iconData: FontAwesomeIcons.image,
+                          //   isCamera: false,
+                          // ),
                         ],
                       )
                     : Column(

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/core/api_service.dart';
 import 'package:scanner/core/failure.dart';
@@ -18,12 +18,6 @@ class GetDonateCubit extends Cubit<GetDonateState> {
     emit(GetDonateLoading());
     try {
       var data = await _apiService.get(endPoint: 'denotion/getAllDenotion');
-
-      // QuerySnapshot querySnapshot = await firestore.collection("donate").get();
-      // _donateList.clear();
-      // _donateList = querySnapshot.docs
-      //     .map((doc) => DonateModel.fromSnapshot(doc))
-      //     .toList();
 
       List<dynamic> donatesData = data['data'];
       donateList = donatesData

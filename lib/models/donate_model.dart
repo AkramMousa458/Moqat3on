@@ -12,13 +12,13 @@ class DonateModel {
     return DonateModel(
       name: data['name'] ?? '',
       image: data['image'] ?? '',
-      url: data['url'] ?? '',
+      url: data['link'] ?? '',
     );
   }
 
   Map<String, dynamic> toMap() => {
         'name': name,
         'image': image,
-        'url': url,
+        'link': url,
       };
 }

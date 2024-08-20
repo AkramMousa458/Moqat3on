@@ -7,7 +7,7 @@ class CountryBarcodeModel {
     required this.lastCode,
   });
 
-   factory CountryBarcodeModel.fromSnapshot(var data) {
+  factory CountryBarcodeModel.fromSnapshot(var data) {
     // Map<String, dynamic> data = docs.data() as Map<String, dynamic>;
 
     return CountryBarcodeModel(
@@ -16,4 +16,10 @@ class CountryBarcodeModel {
       lastCode: data['lastCode'] ?? 0,
     );
   }
+
+  Map<String, dynamic> toMap() => {
+        'name': name,
+        'firstCode': firstCode,
+        'lastCode': lastCode,
+      };
 }

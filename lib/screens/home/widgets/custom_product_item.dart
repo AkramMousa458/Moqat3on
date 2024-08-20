@@ -4,8 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
 import 'package:scanner/models/product_model.dart';
-import 'package:scanner/widgets/custom_loading_widget.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CustomProductItem extends StatelessWidget {
   const CustomProductItem({super.key, required this.productModel});
@@ -43,8 +43,14 @@ class CustomProductItem extends StatelessWidget {
                   imageUrl: productModel.image,
                   fit: BoxFit.cover,
                   height: MediaQuery.sizeOf(context).width / 4,
-                  placeholder: (context, url) =>
-                      const Center(child: CustomLoadingWidget()),
+                  placeholder: (context, url) => Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
+                    child: Container(
+                      color: Colors.white,
+                      height: MediaQuery.sizeOf(context).width / 4,
+                    ),
+                  ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),

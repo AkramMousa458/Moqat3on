@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
 import 'package:scanner/screens/home/widgets/custom_product_item.dart';
 import 'package:scanner/screens/products_profiles/product_screen.dart';
-import 'package:scanner/widgets/custom_loading_widget.dart';
+import 'package:scanner/widgets/shimmer_loading_widget.dart';
 
 class CustomProductsGridView extends StatelessWidget {
   const CustomProductsGridView({
@@ -49,7 +49,22 @@ class CustomProductsGridView extends StatelessWidget {
               );
             }
           } else {
-            return const Center(child: CustomLoadingWidget());
+            return GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16.0,
+                childAspectRatio: 0.95,
+              ),
+              itemCount: 6,
+              itemBuilder: (BuildContext context, int index) {
+                return const ShimmerLoadingWidget(
+                    );
+              },
+            );
+            // return const Center(child: CustomLoadingWidget());
           }
         },
       ),
