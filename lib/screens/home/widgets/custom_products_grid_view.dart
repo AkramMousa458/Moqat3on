@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:scanner/cubits/get_products_cubit/get_products_cubit.dart';
+import 'package:scanner/models/product_model.dart';
 import 'package:scanner/screens/home/widgets/custom_product_item.dart';
 import 'package:scanner/screens/products_profiles/product_screen.dart';
 import 'package:scanner/widgets/shimmer_loading_widget.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CustomProductsGridView extends StatelessWidget {
   const CustomProductsGridView({
@@ -60,8 +62,21 @@ class CustomProductsGridView extends StatelessWidget {
               ),
               itemCount: 6,
               itemBuilder: (BuildContext context, int index) {
-                return const ShimmerLoadingWidget(
-                    );
+                return Skeletonizer(
+                  enabled: true,
+                  child: CustomProductItem(
+                    productModel: ProductModel(
+                      id: 0,
+                      name: '',
+                      category: '',
+                      boycott: '',
+                      boycottReason: '',
+                      country: '',
+                      image: '',
+                      rating: 0,
+                    ),
+                  ),
+                );
               },
             );
             // return const Center(child: CustomLoadingWidget());
