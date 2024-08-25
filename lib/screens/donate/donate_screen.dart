@@ -39,7 +39,7 @@ class DonateScreen extends StatelessWidget {
                 );
               } else if (state is GetDonateSuccess) {
                 return GridView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisSpacing: 16,
