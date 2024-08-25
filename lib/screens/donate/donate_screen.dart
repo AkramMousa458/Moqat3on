@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scanner/cubits/get_donate_cubit/get_donate_cubit.dart';
 import 'package:scanner/helper/colors.dart';
 import 'package:scanner/helper/styles/app_text_styles.dart';
+import 'package:scanner/models/donate_model.dart';
 import 'package:scanner/screens/donate/widgets/custom_donate_item.dart';
-import 'package:scanner/widgets/shimmer_loading_widget.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class DonateScreen extends StatelessWidget {
   const DonateScreen({super.key});
@@ -63,7 +64,12 @@ class DonateScreen extends StatelessWidget {
                   ),
                   itemCount: 4,
                   itemBuilder: (context, index) {
-                    return const ShimmerLoadingWidget();
+                    return Skeletonizer(
+                      enabled: true,
+                      child: CustomDonateItem(
+                        donateModel: DonateModel(name: '', image: '', url: ''),
+                      ),
+                    );
                   },
                 );
               }
