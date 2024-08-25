@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+    id 'org.jetbrains.kotlin.android'
 }
 
 def localProperties = new Properties()
@@ -54,8 +55,8 @@ android {
         multiDexEnabled true
         minSdkVersion 21
         targetSdkVersion 34
-        versionCode 3
-        versionName "1.0.3"
+        versionCode 4
+        versionName "2.8.1"
     }
 
     signingConfigs {
@@ -68,8 +69,8 @@ android {
     }
     buildTypes {
         release {
-            signingConfig signingConfigs.debug
-            // signingConfig signingConfigs.release
+            // signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 
